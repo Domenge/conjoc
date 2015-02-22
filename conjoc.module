@@ -1,0 +1,187 @@
+<?php
+
+/**
+ * @file
+ * Module file for conjoc.
+ */
+
+/**
+ * @defgroup conjoc Example: Menu
+ * @ingroup examples
+ * @{
+ * Demonstrates uses of the Menu APIs in Drupal.
+ *
+ * The Page Example module also talks about the menu system, as well
+ * as how to use menu arguments to generate pages.
+ *
+ * @see hook_menu()
+ * @see hook_menu_alter()
+ * @see hook_menu_link_alter()
+ * @see conjoc
+ * @see page_conjoc()
+ */
+
+/**
+ * Implements hook_menu().
+ *
+ * A simple example which defines a page callback and a menu entry.
+ */
+//require_once('conjoc_webForm.inc');
+
+function conjoc_menu() {
+  // Menu items are defined by placing them in an $items array. The array key
+  // (in this case 'conjoc') is the path that defines the menu router
+  // entry, so the page will be accessible from the URL
+  // example.com/examples/conjoc.
+
+  // Search page w/ajax autocomplete
+  $items['conjoc/verb_autocomplete'] = array(
+    'title' => t("Conjugador occitan dialecte Lengadocian"),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ajax_conjoc_verb_autocomplete'),
+    //    'page callback' => '_conjoc_menu_page',
+    'access arguments' => array('access conjoc'),
+    'file' => 'conjoc_webForm.inc',
+    'weight' => 10,
+  );
+
+  $items['conjoc/verb_autocomplete_callback'] = array(
+    'page callback' => 'ajax_conjoc_verb_autocomplete_callback',
+    'file' => 'conjoc_webForm.inc',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access conjoc'),
+  );
+
+  $items['conjoc/verb_autocomplete/usuals'] = array(
+    'title' => t("Conjugador occitan"),
+    'page callback' => '_conjoc_menu_page',
+    'access arguments' => array('access conjoc'),
+    'file' => 'conjoc_webForm.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['conjoc/verb_autocomplete/better_see'] = array(
+    'title' => t("Conjugador occitan"),
+    'page callback' => '_conjoc_menu_page',
+    'access arguments' => array('access conjoc'),
+    'file' => 'conjoc_webForm.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['conjoc/verb_autocomplete/singles'] = array(
+    'title' => t("Conjugador occitan"),
+    'page callback' => '_conjoc_menu_page',
+    'access arguments' => array('access conjoc'),
+    'file' => 'conjoc_webForm.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['conjoc/verb_autocomplete/top20'] = array(
+    'title' => t("Conjugador occitan"),
+    'page callback' => '_conjoc_menu_page',
+    'access arguments' => array('access conjoc'),
+    'file' => 'conjoc_webForm.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  /*
+    PROVENCAL
+  */
+
+  $items['conjoc/provencal'] = array(
+    'title' => t("Conjugador occitan dialecte provencal"),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ajax_provencal_verb_autocomplete'),
+    'access arguments' => array('access conjoc'),
+    'file' => 'conjoc_webForm.inc',
+    'weight' => 10,
+  );
+
+  $items['conjoc/verb_autocomplete_prov_callback'] = array(
+    'page callback' => 'ajax_provencal_verb_autocomplete_callback',
+    'file' => 'conjoc_webForm.inc',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access conjoc'),
+  );
+
+  /*
+    GASCON
+  */
+
+  $items['conjoc/gascon'] = array(
+    'title' => t("Conjugador occitan dialecte gascon"),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ajax_gascon_verb_autocomplete'),
+    'access arguments' => array('access conjoc'),
+    'file' => 'conjoc_webForm.inc',
+    'weight' => 10,
+  );
+
+  $items['conjoc/verb_autocomplete_gasc_callback'] = array(
+    'page callback' => 'ajax_gascon_verb_autocomplete_callback',
+    'file' => 'conjoc_webForm.inc',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access conjoc'),
+  );
+
+/*  
+  $items['conjoc/verb_autocomplete_gasc_validate'] = array(
+    'page callback' => 'ajax_conjoc_verb_autocomplete_validate',
+    'file' => 'conjoc_webForm.inc',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access conjoc'),
+  );
+*/  
+
+  
+  $items['conjoc/verb_autocomplete_gasc_submit'] = array(
+    'page callback' => 'ajax_conjoc_verb_autocomplete_submit',
+    'file' => 'conjoc_webForm.inc',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access conjoc'),
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback for use with most of the menu entries.
+ *
+ * The arguments it receives determine what it outputs.
+ *
+ * @param string $content
+ *   The base content to output.
+ * @param string $arg1
+ *   First additional argument from the path used to access the menu
+ * @param string $arg2
+ *   Second additional argument.
+ */
+function _conjoc_menu_page($content = NULL, $arg1 = NULL, $arg2 = NULL) {
+
+  if (!empty($content)) {
+    $form_state = array();
+
+    $args = func_get_args();
+    $form_state['build_info']['args'] = $args;
+    $form_state['values']['verb_search']['verb'] = $content;
+    $form_state['values']['action'] = 'force';
+    return drupal_build_form('ajax_conjoc_verb_autocomplete', $form_state);
+  }
+
+  return drupal_set_message(t('Conjoc content is void.'), 'error');
+}
+
+/**
+ * Implements hook_permission().
+ *
+ * Provides a demonstration access string.
+ */
+function conjoc_permission() {
+  return array(
+    'access conjoc' => array(
+      'title' => t('Access the protected conjoc menu'),
+    ),
+  );
+
+}
+

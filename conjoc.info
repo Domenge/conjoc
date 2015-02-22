@@ -1,0 +1,13 @@
+name = conjoc
+description = Conjugator automated for occitan language
+package = oc
+core = 7.x
+dependencies[] = xautoload (>= 7.x-4.0)
+files[] = includes/*.inc
+
+; Information added by Drupal.org packaging script on 2014-10-03
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "oc"
+datestamp = "1412378934"
+
