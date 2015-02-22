@@ -1,5 +1,5 @@
 # conjoc
-Class library for conjugating some occitan dialects (lengadocian, provençal, gascon). Expandable, ready for leveraging. This class library is used in a Drupal module but can be ported to any environement.
+Class library for conjugating some occitan dialects (lengadocian, provençal, gascon). Expandable, ready for leveraging, this class library is used in a Drupal module but can be ported to any environment.
 
 As of this writing the production version is not completely ported in object style, as you can see in the Drupal module especially « conjoc_webform.inc ».
 
@@ -13,3 +13,4 @@ ex :
   // line 748
     '#markup' => $drupalHTMLConverter->convertArray($gasconManager->getUsualVerbs()),
 ...
+An instance of ConjugationGasconManager is created so a HTMLConverter specially designed for Drupal. The converter acts as a filter giving a HTML code ready for a drupal website.
