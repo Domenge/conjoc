@@ -14,9 +14,64 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="Nouveau document 1">
+   sodipodi:docname="objectModel.pdf"
+   inkscape:export-filename="/home/domenge/tmp/conjoc/objectModel.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4">
+    <marker
+       inkscape:stockid="EmptyDiamondL"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="EmptyDiamondL"
+       style="overflow:visible">
+      <path
+         id="path4344"
+         d="M 0,-7.0710768 L -7.0710894,0 L 0,7.0710589 L 7.0710462,0 L 0,-7.0710768 z "
+         style="fill-rule:evenodd;fill:#FFFFFF;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.8)" />
+    </marker>
+    <marker
+       inkscape:stockid="EmptyDiamondM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="EmptyDiamondM"
+       style="overflow:visible">
+      <path
+         id="path4347"
+         d="M 0,-7.0710768 L -7.0710894,0 L 0,7.0710589 L 7.0710462,0 L 0,-7.0710768 z "
+         style="fill-rule:evenodd;fill:#FFFFFF;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.4)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mstart"
+       style="overflow:visible">
+      <path
+         id="path4244"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.4) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;">
+      <path
+         id="path4247"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
     <marker
        inkscape:stockid="Arrow2Mstart"
        orient="auto"
@@ -57,6 +112,34 @@
          d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
          transform="scale(-0.6,-0.6)" />
     </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend-4-8"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4131-9-7"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend-4-4"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4131-9-4"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)" />
+    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -65,18 +148,27 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="506.49254"
-     inkscape:cy="407.35134"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="364.67698"
+     inkscape:cy="233.36932"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     showgrid="false"
+     showgrid="true"
      inkscape:snap-bbox="true"
      inkscape:window-width="1875"
-     inkscape:window-height="1056"
+     inkscape:window-height="1028"
      inkscape:window-x="45"
      inkscape:window-y="24"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="0"
+     inkscape:snap-to-guides="false"
+     inkscape:snap-grids="false"
+     inkscape:snap-global="false"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3244" />
+  </sodipodi:namedview>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -96,7 +188,7 @@
      transform="translate(0,-308.2677)">
     <g
        id="g4047"
-       transform="translate(-146,0)">
+       transform="translate(-141.05025,-2.1213203)">
       <g
          id="g4031">
         <g
@@ -134,9 +226,9 @@
            height="83"
            x="256"
            y="82.094482" /></flowRegion><flowPara
-         id="flowPara2997"></flowPara></flowRoot>    <g
+         id="flowPara2997" /></flowRoot>    <g
        id="g4025"
-       transform="translate(-146,0)">
+       transform="translate(-148,-2)">
       <g
          transform="translate(99,54.428579)"
          id="g2999-6">
@@ -162,552 +254,726 @@
       </g>
     </g>
     <g
-       id="g2999-6-8"
-       transform="translate(256,56.42859)">
-      <g
-         id="g4037">
-        <rect
-           style="opacity:0.18930042;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.79724765;stroke-opacity:0"
-           id="rect2985-3-4"
-           width="249.3456"
-           height="40.202751"
-           x="19.327198"
-           y="380.83221" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="56.857147"
-           y="406.79074"
-           id="text2987-6-6"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-8-5"
-             x="56.857147"
-             y="406.79074"
-             style="font-size:12px">ConjugationManagerGascon</tspan></text>
-      </g>
-      <g
-         id="g4042">
-        <rect
-           style="opacity:0.18930042;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.79724765;stroke-opacity:0"
-           id="rect2985-3-4-4"
-           width="249.3456"
-           height="40.202751"
-           x="286.32721"
-           y="381.83221" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="323.85718"
-           y="407.79074"
-           id="text2987-6-6-4"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-8-5-4"
-             x="323.85718"
-             y="407.79074"
-             style="font-size:12px">ConjugationManagerProvencal</tspan></text>
-      </g>
-    </g>
-    <g
-       id="g2999-6-1"
-       transform="translate(96,143.42859)"
-       style="fill:#008000">
-      <g
-         id="g4015">
-        <rect
-           style="opacity:0.18930042;fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:0.67174739;stroke-opacity:0"
-           id="rect2985-3-3"
-           width="176.4711"
-           height="40.328251"
-           x="757.26447"
-           y="212.76947" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#008000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="780.85718"
-           y="238.79074"
-           id="text2987-6-3"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-8-4"
-             x="780.85718"
-             y="238.79074"
-             style="font-size:12px;fill:#008000">DatabaseProviderBase</tspan></text>
-      </g>
-      <g
-         id="g4020"
-         transform="translate(842,-168)">
-        <rect
-           style="opacity:0.18930042;fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:0.67174739;stroke-opacity:0"
-           id="rect2985-3-3-3"
-           width="176.4711"
-           height="40.328251"
-           x="-84.235527"
-           y="451.76947" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#008000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="-60.642853"
-           y="477.79071"
-           id="text2987-6-3-5"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-8-4-4"
-             x="-60.642853"
-             y="477.79071"
-             style="font-size:12px;fill:#008000">DatabaseProviderDrupal</tspan></text>
-      </g>
-      <g
-         id="g5080"
-         transform="translate(80,6)">
-        <g
-           transform="translate(0,134)"
-           id="g3990">
-          <rect
-             y="620.72614"
-             x="107.72108"
-             height="40.414978"
-             width="133.55783"
-             id="rect2985-3-3-4"
-             style="opacity:0.18930042;fill:#d45b27;fill-opacity:1;stroke:#000000;stroke-width:0.58501953;stroke-opacity:0" />
-          <text
-             sodipodi:linespacing="125%"
-             id="text2987-6-3-8"
-             y="646.79071"
-             x="129.35715"
-             style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d45b27;fill-opacity:1;stroke:none;font-family:Sans"
-             xml:space="preserve"><tspan
-               style="font-size:12px;fill:#d45b27;fill-opacity:1"
-               y="646.79071"
-               x="129.35715"
-               id="tspan2989-8-4-9"
-               sodipodi:role="line">ConverterBase</tspan></text>
-        </g>
-      </g>
-      <g
-         id="g3995"
-         transform="translate(0,134)">
-        <rect
-           style="opacity:0.18930042;fill:#d45b27;fill-opacity:1;stroke:#000000;stroke-width:0.58501953;stroke-opacity:0"
-           id="rect2985-3-3-4-5"
-           width="133.55783"
-           height="40.414978"
-           x="-76.778931"
-           y="691.72607" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d45b27;fill-opacity:1;stroke:none;font-family:Sans"
-           x="-53.142853"
-           y="717.79065"
-           id="text2987-6-3-8-8"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-8-4-9-8"
-             x="-53.142853"
-             y="717.79065"
-             style="font-size:12px;fill:#d45b27;fill-opacity:1">ConverterHTML</tspan></text>
-      </g>
-      <g
-         id="g4010"
-         transform="translate(0,134)">
-        <rect
-           style="opacity:0.18930042;fill:#d45b27;fill-opacity:1;stroke:#000000;stroke-width:0.58501953;stroke-opacity:0"
-           id="rect2985-3-3-4-5-6"
-           width="133.55783"
-           height="40.414978"
-           x="428.22107"
-           y="695.72607" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d45b27;fill-opacity:1;stroke:none;font-family:Sans"
-           x="451.85718"
-           y="721.79065"
-           id="text2987-6-3-8-8-1"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-8-4-9-8-0"
-             x="451.85718"
-             y="721.79065"
-             style="font-size:12px;fill:#d45b27;fill-opacity:1">ConverterJSON</tspan></text>
-      </g>
-      <g
-         id="g4005">
-        <g
-           id="g5094">
-          <rect
-             y="827.72607"
-             x="274.22107"
-             height="40.414978"
-             width="133.55783"
-             id="rect2985-3-3-4-5-1"
-             style="opacity:0.18930042;fill:#d45b27;fill-opacity:1;stroke:#000000;stroke-width:0.58501953;stroke-opacity:0" />
-          <text
-             sodipodi:linespacing="125%"
-             id="text2987-6-3-8-8-14"
-             y="853.79065"
-             x="289.85718"
-             style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d45b27;fill-opacity:1;stroke:none;font-family:Sans"
-             xml:space="preserve"><tspan
-               style="font-size:12px;fill:#d45b27;fill-opacity:1"
-               y="853.79065"
-               x="289.85718"
-               id="tspan2989-8-4-9-8-6"
-               sodipodi:role="line">ConverterLATEX</tspan></text>
-        </g>
-        <flowRoot
-           xml:space="preserve"
-           id="flowRoot5086"
-           style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
-             id="flowRegion5088"><rect
-               id="rect5090"
-               width="167"
-               height="66"
-               x="348"
-               y="652.09448" /></flowRegion><flowPara
-             id="flowPara5092"></flowPara></flowRoot>      </g>
-      <g
-         id="g4000"
-         transform="translate(0,134)">
-        <rect
-           style="opacity:0.18930042;fill:#d45b27;fill-opacity:1;stroke:#000000;stroke-width:0.58501953;stroke-opacity:0"
-           id="rect2985-3-3-4-5-2"
-           width="133.55783"
-           height="40.414978"
-           x="106.22107"
-           y="693.72607" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d45b27;fill-opacity:1;stroke:none;font-family:Sans"
-           x="129.85718"
-           y="719.79065"
-           id="text2987-6-3-8-8-0"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-8-4-9-8-02"
-             x="129.85718"
-             y="719.79065"
-             style="font-size:12px;fill:#d45b27;fill-opacity:1">ConverterCSV</tspan></text>
-      </g>
-    </g>
-    <g
-       id="g2999-1"
-       transform="translate(60,181.42858)">
+       id="g4037"
+       transform="translate(254,52.428579)">
       <rect
-         y="340.73148"
-         x="415.22644"
-         height="40.404232"
-         width="138.54707"
-         id="rect2985-0"
-         style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.59576726;stroke-opacity:0" />
+         y="380.83221"
+         x="19.327198"
+         height="40.202751"
+         width="249.3456"
+         id="rect2985-3-4"
+         style="opacity:0.18930042;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.79724765;stroke-opacity:0" />
       <text
          sodipodi:linespacing="125%"
-         id="text2987-9"
-         y="366.79074"
-         x="434.85718"
+         id="text2987-6-6"
+         y="406.79074"
+         x="56.857147"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px"
-           y="366.79074"
-           x="434.85718"
-           id="tspan2989-5"
-           sodipodi:role="line">ConjugationBase</tspan></text>
-      <g
-         id="g5055"
-         transform="translate(-310,14)">
-        <g
-           id="g5075">
-          <rect
-             y="411.82504"
-             x="381.82001"
-             height="40.21711"
-             width="240.35995"
-             id="rect2985-0-6"
-             style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0" />
-          <text
-             sodipodi:linespacing="125%"
-             id="text2987-9-4"
-             y="436.79077"
-             x="398.35718"
-             style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-             xml:space="preserve"><tspan
-               style="font-size:12px"
-               y="436.79077"
-               x="398.35718"
-               id="tspan2989-5-2"
-               sodipodi:role="line">ConjugationLengadocianFirstGroup</tspan></text>
-        </g>
-      </g>
-      <g
-         transform="translate(-266,110)"
-         id="g5060">
-        <rect
-           style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0"
-           id="rect2985-0-6-1"
-           width="240.35995"
-           height="40.21711"
-           x="405.82001"
-           y="475.82507" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="425.35718"
-           y="501.79077"
-           id="text2987-9-4-0"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-5-2-0"
-             x="425.35718"
-             y="501.79077"
-             style="font-size:12px">ConjugationLengadocianAuxilliary</tspan></text>
-      </g>
-      <g
-         transform="translate(-26,22)"
-         id="g5070">
-        <rect
-           style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0"
-           id="rect2985-0-6-2"
-           width="240.35995"
-           height="40.21711"
-           x="139.82001"
-           y="509.82507" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="147.35718"
-           y="533.79077"
-           id="text2987-9-4-6"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-5-2-00"
-             x="147.35718"
-             y="533.79077"
-             style="font-size:12px">ConjugationLengadocianThirdGroup</tspan></text>
-      </g>
-      <g
-         transform="matrix(1.1285545,0,0,1,-385.43365,-80)"
-         id="g5065">
-        <rect
-           style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0"
-           id="rect2985-0-6-21"
-           width="240.35995"
-           height="40.21711"
-           x="423.82001"
-           y="557.82507" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="425.35718"
-           y="585.79077"
-           id="text2987-9-4-2"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-5-2-3"
-             x="425.35718"
-             y="585.79077"
-             style="font-size:12px">ConjugationLengadocianSecondGroup</tspan></text>
-      </g>
-      <g
-         transform="translate(-21.99998,11.99999)"
-         id="g5055-7">
-        <g
-           id="g5075-1">
-          <rect
-             y="411.82504"
-             x="381.82001"
-             height="40.21711"
-             width="240.35995"
-             id="rect2985-0-6-19"
-             style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0" />
-          <text
-             sodipodi:linespacing="125%"
-             id="text2987-9-4-25"
-             y="436.79077"
-             x="398.35718"
-             style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-             xml:space="preserve"><tspan
-               style="font-size:12px"
-               y="436.79077"
-               x="398.35718"
-               id="tspan2989-5-2-09"
-               sodipodi:role="line">ConjugationGasconFirstGroup</tspan></text>
-        </g>
-      </g>
-      <g
-         transform="translate(22.00002,107.99999)"
-         id="g5060-6">
-        <rect
-           style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0"
-           id="rect2985-0-6-1-8"
-           width="240.35995"
-           height="40.21711"
-           x="405.82001"
-           y="475.82507" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="425.35718"
-           y="501.79077"
-           id="text2987-9-4-0-3"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-5-2-0-8"
-             x="425.35718"
-             y="501.79077"
-             style="font-size:12px">ConjugationGasconAuxilliary</tspan></text>
-      </g>
-      <g
-         transform="translate(262.00002,19.99999)"
-         id="g5070-9">
-        <rect
-           style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0"
-           id="rect2985-0-6-2-8"
-           width="240.35995"
-           height="40.21711"
-           x="139.82001"
-           y="509.82507" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="147.35718"
-           y="533.79077"
-           id="text2987-9-4-6-5"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-5-2-00-3"
-             x="147.35718"
-             y="533.79077"
-             style="font-size:12px">ConjugationGasconThirdGroup</tspan></text>
-      </g>
-      <g
-         transform="matrix(1.1285545,0,0,1,-97.43363,-82.00001)"
-         id="g5065-2">
-        <rect
-           style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0"
-           id="rect2985-0-6-21-8"
-           width="240.35995"
-           height="40.21711"
-           x="423.82001"
-           y="557.82507" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="425.35718"
-           y="585.79077"
-           id="text2987-9-4-2-4"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-5-2-3-4"
-             x="425.35718"
-             y="585.79077"
-             style="font-size:12px">ConjugationGasconSecondGroup</tspan></text>
-      </g>
-      <g
-         transform="translate(274.00002,10.99999)"
-         id="g5055-7-2">
-        <g
-           id="g5075-1-2">
-          <rect
-             y="411.82504"
-             x="381.82001"
-             height="40.21711"
-             width="240.35995"
-             id="rect2985-0-6-19-4"
-             style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0" />
-          <text
-             sodipodi:linespacing="125%"
-             id="text2987-9-4-25-5"
-             y="436.79077"
-             x="398.35718"
-             style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-             xml:space="preserve"><tspan
-               style="font-size:12px"
-               y="436.79077"
-               x="398.35718"
-               id="tspan2989-5-2-09-4"
-               sodipodi:role="line">ConjugationProvencalFirstGroup</tspan></text>
-        </g>
-      </g>
-      <g
-         transform="translate(318.00002,106.99999)"
-         id="g5060-6-8">
-        <rect
-           style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0"
-           id="rect2985-0-6-1-8-7"
-           width="240.35995"
-           height="40.21711"
-           x="405.82001"
-           y="475.82507" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="425.35718"
-           y="501.79077"
-           id="text2987-9-4-0-3-9"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-5-2-0-8-5"
-             x="425.35718"
-             y="501.79077"
-             style="font-size:12px">ConjugationProvencalAuxilliary</tspan></text>
-      </g>
-      <g
-         transform="translate(558.00002,18.99999)"
-         id="g5070-9-8">
-        <rect
-           style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0"
-           id="rect2985-0-6-2-8-2"
-           width="240.35995"
-           height="40.21711"
-           x="139.82001"
-           y="509.82507" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="147.35718"
-           y="533.79077"
-           id="text2987-9-4-6-5-4"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-5-2-00-3-0"
-             x="147.35718"
-             y="533.79077"
-             style="font-size:12px">ConjugationProvencalThirdGroup</tspan></text>
-      </g>
-      <g
-         transform="matrix(1.1285545,0,0,1,198.56637,-83.00001)"
-         id="g5065-2-5">
-        <rect
-           style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0"
-           id="rect2985-0-6-21-8-5"
-           width="240.35995"
-           height="40.21711"
-           x="423.82001"
-           y="557.82507" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="425.35718"
-           y="585.79077"
-           id="text2987-9-4-2-4-4"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan2989-5-2-3-4-2"
-             x="425.35718"
-             y="585.79077"
-             style="font-size:12px">ConjugationProvencalSecondGroup</tspan></text>
-      </g>
-      <flowRoot
-         xml:space="preserve"
-         id="flowRoot5278"
+           y="406.79074"
+           x="56.857147"
+           id="tspan2989-8-5"
+           sodipodi:role="line">ConjugationManagerGascon</tspan></text>
+    </g>
+    <g
+       id="g4042"
+       transform="translate(254,51.428579)">
+      <rect
+         y="381.83221"
+         x="286.32721"
+         height="40.202751"
+         width="249.3456"
+         id="rect2985-3-4-4"
+         style="opacity:0.18930042;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.79724765;stroke-opacity:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2987-6-6-4"
+         y="407.79074"
+         x="323.85718"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         transform="translate(-62,126.83912)"><flowRegion
-           id="flowRegion5280"><rect
-             id="rect5282"
-             width="918"
-             height="249"
-             x="215"
-             y="266.09448" /></flowRegion><flowPara
-           id="flowPara5284"></flowPara></flowRoot>    </g>
-  </g>
+         xml:space="preserve"><tspan
+           style="font-size:12px"
+           y="407.79074"
+           x="323.85718"
+           id="tspan2989-8-5-4"
+           sodipodi:role="line">ConjugationManagerProvencal</tspan></text>
+    </g>
+    <a
+       id="a3332">
+      <g
+         style="fill:#008000"
+         transform="translate(96,143.42859)"
+         id="g2999-6-1">
+        <g
+           id="g4015">
+          <rect
+             y="212.76947"
+             x="757.26447"
+             height="40.328251"
+             width="176.4711"
+             id="rect2985-3-3"
+             style="opacity:0.18930042;fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:0.67174739;stroke-opacity:0" />
+          <text
+             sodipodi:linespacing="125%"
+             id="text2987-6-3"
+             y="238.79074"
+             x="780.85718"
+             style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#008000;fill-opacity:1;stroke:none;font-family:Sans"
+             xml:space="preserve"><tspan
+               style="font-size:12px;fill:#008000"
+               y="238.79074"
+               x="780.85718"
+               id="tspan2989-8-4"
+               sodipodi:role="line">DatabaseProviderBase</tspan></text>
+        </g>
+        <g
+           transform="translate(842,-168)"
+           id="g4020">
+          <rect
+             y="451.76947"
+             x="-84.235527"
+             height="40.328251"
+             width="176.4711"
+             id="rect2985-3-3-3"
+             style="opacity:0.18930042;fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:0.67174739;stroke-opacity:0" />
+          <text
+             sodipodi:linespacing="125%"
+             id="text2987-6-3-5"
+             y="477.79071"
+             x="-60.642853"
+             style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#008000;fill-opacity:1;stroke:none;font-family:Sans"
+             xml:space="preserve"><tspan
+               style="font-size:12px;fill:#008000"
+               y="477.79071"
+               x="-60.642853"
+               id="tspan2989-8-4-4"
+               sodipodi:role="line">DatabaseProviderDrupal</tspan></text>
+        </g>
+        <g
+           transform="translate(80,6)"
+           id="g5080">
+          <g
+             id="g3990"
+             transform="translate(0,134)">
+            <rect
+               style="opacity:0.18930042;fill:#d45b27;fill-opacity:1;stroke:#000000;stroke-width:0.58501953;stroke-opacity:0"
+               id="rect2985-3-3-4"
+               width="133.55783"
+               height="40.414978"
+               x="107.72108"
+               y="620.72614" />
+            <text
+               xml:space="preserve"
+               style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d45b27;fill-opacity:1;stroke:none;font-family:Sans"
+               x="129.35715"
+               y="646.79071"
+               id="text2987-6-3-8"
+               sodipodi:linespacing="125%"><tspan
+                 sodipodi:role="line"
+                 id="tspan2989-8-4-9"
+                 x="129.35715"
+                 y="646.79071"
+                 style="font-size:12px;fill:#d45b27;fill-opacity:1">ConverterBase</tspan></text>
+          </g>
+        </g>
+        <g
+           transform="translate(0,134)"
+           id="g3995">
+          <rect
+             y="691.72607"
+             x="-76.778931"
+             height="40.414978"
+             width="133.55783"
+             id="rect2985-3-3-4-5"
+             style="opacity:0.18930042;fill:#d45b27;fill-opacity:1;stroke:#000000;stroke-width:0.58501953;stroke-opacity:0" />
+          <text
+             sodipodi:linespacing="125%"
+             id="text2987-6-3-8-8"
+             y="717.79065"
+             x="-53.142853"
+             style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d45b27;fill-opacity:1;stroke:none;font-family:Sans"
+             xml:space="preserve"><tspan
+               style="font-size:12px;fill:#d45b27;fill-opacity:1"
+               y="717.79065"
+               x="-53.142853"
+               id="tspan2989-8-4-9-8"
+               sodipodi:role="line">ConverterHTML</tspan></text>
+        </g>
+        <g
+           transform="translate(0,134)"
+           id="g4010">
+          <rect
+             y="695.72607"
+             x="428.22107"
+             height="40.414978"
+             width="133.55783"
+             id="rect2985-3-3-4-5-6"
+             style="opacity:0.18930042;fill:#d45b27;fill-opacity:1;stroke:#000000;stroke-width:0.58501953;stroke-opacity:0" />
+          <text
+             sodipodi:linespacing="125%"
+             id="text2987-6-3-8-8-1"
+             y="721.79065"
+             x="451.85718"
+             style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d45b27;fill-opacity:1;stroke:none;font-family:Sans"
+             xml:space="preserve"><tspan
+               style="font-size:12px;fill:#d45b27;fill-opacity:1"
+               y="721.79065"
+               x="451.85718"
+               id="tspan2989-8-4-9-8-0"
+               sodipodi:role="line">ConverterJSON</tspan></text>
+        </g>
+        <g
+           id="g4005">
+          <g
+             id="g5094">
+            <rect
+               style="opacity:0.18930042;fill:#d45b27;fill-opacity:1;stroke:#000000;stroke-width:0.58501953;stroke-opacity:0"
+               id="rect2985-3-3-4-5-1"
+               width="133.55783"
+               height="40.414978"
+               x="274.22107"
+               y="827.72607" />
+            <text
+               xml:space="preserve"
+               style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d45b27;fill-opacity:1;stroke:none;font-family:Sans"
+               x="289.85718"
+               y="853.79065"
+               id="text2987-6-3-8-8-14"
+               sodipodi:linespacing="125%"><tspan
+                 sodipodi:role="line"
+                 id="tspan2989-8-4-9-8-6"
+                 x="289.85718"
+                 y="853.79065"
+                 style="font-size:12px;fill:#d45b27;fill-opacity:1">ConverterLATEX</tspan></text>
+          </g>
+          <flowRoot
+             style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"
+             id="flowRoot5086"
+             xml:space="preserve"><flowRegion
+               id="flowRegion5088"><rect
+                 y="652.09448"
+                 x="348"
+                 height="66"
+                 width="167"
+                 id="rect5090" /></flowRegion><flowPara
+               id="flowPara5092" /></flowRoot>        </g>
+        <g
+           transform="translate(0,134)"
+           id="g4000">
+          <rect
+             y="693.72607"
+             x="106.22107"
+             height="40.414978"
+             width="133.55783"
+             id="rect2985-3-3-4-5-2"
+             style="opacity:0.18930042;fill:#d45b27;fill-opacity:1;stroke:#000000;stroke-width:0.58501953;stroke-opacity:0" />
+          <text
+             sodipodi:linespacing="125%"
+             id="text2987-6-3-8-8-0"
+             y="719.79065"
+             x="129.85718"
+             style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d45b27;fill-opacity:1;stroke:none;font-family:Sans"
+             xml:space="preserve"><tspan
+               style="font-size:12px;fill:#d45b27;fill-opacity:1"
+               y="719.79065"
+               x="129.85718"
+               id="tspan2989-8-4-9-8-02"
+               sodipodi:role="line">ConverterCSV</tspan></text>
+        </g>
+      </g>
+    </a>
+    <rect
+       style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.59576726;stroke-opacity:0"
+       id="rect2985-0"
+       width="138.54707"
+       height="40.404232"
+       x="475.22644"
+       y="522.16003" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="494.85718"
+       y="548.2193"
+       id="text2987-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2989-5"
+         x="494.85718"
+         y="548.2193"
+         style="font-size:12px">ConjugationBase</tspan></text>
+    <g
+       transform="translate(-250,195.42858)"
+       id="g5055">
+      <g
+         id="g5075">
+        <rect
+           style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0"
+           id="rect2985-0-6"
+           width="240.35995"
+           height="40.21711"
+           x="381.82001"
+           y="411.82504" />
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="398.35718"
+           y="436.79077"
+           id="text2987-9-4"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan2989-5-2"
+             x="398.35718"
+             y="436.79077"
+             style="font-size:12px">ConjugationLengadocianFirstGroup</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g5060"
+       transform="translate(-232.87006,291.42858)">
+      <rect
+         y="475.82507"
+         x="405.82001"
+         height="40.21711"
+         width="240.35995"
+         id="rect2985-0-6-1"
+         style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2987-9-4-0"
+         y="501.79077"
+         x="425.35718"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px"
+           y="501.79077"
+           x="425.35718"
+           id="tspan2989-5-2-0"
+           sodipodi:role="line">ConjugationLengadocianAuxilliary</tspan></text>
+    </g>
+    <g
+       id="g5070"
+       transform="translate(7.5944084,209.5499)">
+      <rect
+         y="509.82507"
+         x="139.82001"
+         height="40.21711"
+         width="240.35995"
+         id="rect2985-0-6-2"
+         style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2987-9-4-6"
+         y="533.79077"
+         x="147.35718"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px"
+           y="533.79077"
+           x="147.35718"
+           id="tspan2989-5-2-00"
+           sodipodi:role="line">ConjugationLengadocianThirdGroup</tspan></text>
+    </g>
+    <g
+       id="g5065"
+       transform="matrix(1.1285545,0,0,1,-373.43365,101.42858)">
+      <rect
+         y="557.82507"
+         x="423.82001"
+         height="40.21711"
+         width="240.35995"
+         id="rect2985-0-6-21"
+         style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2987-9-4-2"
+         y="585.79077"
+         x="425.35718"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px"
+           y="585.79077"
+           x="425.35718"
+           id="tspan2989-5-2-3"
+           sodipodi:role="line">ConjugationLengadocianSecondGroup</tspan></text>
+    </g>
+    <g
+       id="g5055-7"
+       transform="translate(38.50002,193.92857)">
+      <g
+         id="g5075-1">
+        <rect
+           style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0"
+           id="rect2985-0-6-19"
+           width="240.35995"
+           height="40.21711"
+           x="381.82001"
+           y="411.82504" />
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="398.35718"
+           y="436.79077"
+           id="text2987-9-4-25"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan2989-5-2-09"
+             x="398.35718"
+             y="436.79077"
+             style="font-size:12px">ConjugationGasconFirstGroup</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g5060-6"
+       transform="translate(82.00002,289.42857)">
+      <rect
+         y="475.82507"
+         x="405.82001"
+         height="40.21711"
+         width="240.35995"
+         id="rect2985-0-6-1-8"
+         style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2987-9-4-0-3"
+         y="501.79077"
+         x="425.35718"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px"
+           y="501.79077"
+           x="425.35718"
+           id="tspan2989-5-2-0-8"
+           sodipodi:role="line">ConjugationGasconAuxilliary</tspan></text>
+    </g>
+    <g
+       id="g5070-9"
+       transform="translate(322.00002,201.42857)">
+      <rect
+         y="509.82507"
+         x="139.82001"
+         height="40.21711"
+         width="240.35995"
+         id="rect2985-0-6-2-8"
+         style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2987-9-4-6-5"
+         y="533.79077"
+         x="147.35718"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px"
+           y="533.79077"
+           x="147.35718"
+           id="tspan2989-5-2-00-3"
+           sodipodi:role="line">ConjugationGasconThirdGroup</tspan></text>
+    </g>
+    <g
+       id="g5065-2"
+       transform="matrix(1.0974467,0,0,1,-64.260975,99.42857)">
+      <rect
+         y="557.82507"
+         x="423.82001"
+         height="40.21711"
+         width="240.35995"
+         id="rect2985-0-6-21-8"
+         style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2987-9-4-2-4"
+         y="585.79077"
+         x="425.35718"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px"
+           y="585.79077"
+           x="425.35718"
+           id="tspan2989-5-2-3-4"
+           sodipodi:role="line">ConjugationGasconSecondGroup</tspan></text>
+    </g>
+    <g
+       id="g5055-7-2"
+       transform="translate(334.00002,192.42857)">
+      <g
+         id="g5075-1-2">
+        <rect
+           style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0"
+           id="rect2985-0-6-19-4"
+           width="240.35995"
+           height="40.21711"
+           x="381.82001"
+           y="411.82504" />
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="398.35718"
+           y="436.79077"
+           id="text2987-9-4-25-5"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan2989-5-2-09-4"
+             x="398.35718"
+             y="436.79077"
+             style="font-size:12px">ConjugationProvencalFirstGroup</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g5060-6-8"
+       transform="translate(378.00002,288.42857)">
+      <rect
+         y="475.82507"
+         x="405.82001"
+         height="40.21711"
+         width="240.35995"
+         id="rect2985-0-6-1-8-7"
+         style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2987-9-4-0-3-9"
+         y="501.79077"
+         x="425.35718"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px"
+           y="501.79077"
+           x="425.35718"
+           id="tspan2989-5-2-0-8-5"
+           sodipodi:role="line">ConjugationProvencalAuxilliary</tspan></text>
+    </g>
+    <g
+       id="g5070-9-8"
+       transform="translate(618.00002,200.42857)">
+      <rect
+         y="509.82507"
+         x="139.82001"
+         height="40.21711"
+         width="240.35995"
+         id="rect2985-0-6-2-8-2"
+         style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2987-9-4-6-5-4"
+         y="533.79077"
+         x="147.35718"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px"
+           y="533.79077"
+           x="147.35718"
+           id="tspan2989-5-2-00-3-0"
+           sodipodi:role="line">ConjugationProvencalThirdGroup</tspan></text>
+    </g>
+    <g
+       id="g5065-2-5"
+       transform="matrix(1.1285545,0,0,1,220.56637,98.42857)">
+      <rect
+         y="557.82507"
+         x="423.82001"
+         height="40.21711"
+         width="240.35995"
+         id="rect2985-0-6-21-8-5"
+         style="opacity:0.18930042;fill:#ffb200;fill-opacity:1;stroke:#000000;stroke-width:0.78289044;stroke-opacity:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2987-9-4-2-4-4"
+         y="585.79077"
+         x="425.35718"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px"
+           y="585.79077"
+           x="425.35718"
+           id="tspan2989-5-2-3-4-2"
+           sodipodi:role="line">ConjugationProvencalSecondGroup</tspan></text>
+    </g>
+    <flowRoot
+       transform="translate(-2,308.2677)"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="flowRoot5278"
+       xml:space="preserve"><flowRegion
+         id="flowRegion5280"><rect
+           y="266.09448"
+           x="215"
+           height="249"
+           width="918"
+           id="rect5282" /></flowRegion><flowPara
+         id="flowPara5284" /></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:1.01140808999999998px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend);marker-start:url(#EmptyDiamondL)"
+       d="m 400.21675,394.67279 -0.69571,38.96526"
+       id="path3182"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.90803099px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 110.30945,413.75637 560.91088,0"
+       id="path3258"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.98500000000000021;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:none;marker-start:url(#Arrow1Mstart)"
+       d="m 109.59415,433.65115 0.72191,-20.16734"
+       id="path3260"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend-4)"
+       d="m 671.04434,104.86995 0,20.5061"
+       id="path3262"
+       inkscape:connector-curvature="0"
+       transform="translate(0,308.2677)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.04648745000000010px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#EmptyDiamondL);marker-end:url(#Arrow2Mend-4)"
+       d="m 546.81125,564.1471 -0.66061,43.93016"
+       id="path3182-8"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.04345298px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend-4)"
+       d="m 257.24829,581.61028 -0.66365,24.60908"
+       id="path3260-6"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.28409135px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 93.525187,961.79892 507.259873,0"
+       id="path3258-4"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#EmptyDiamondL)"
+       d="m 354.5,636.09448 0,17.5"
+       id="path3304"
+       inkscape:connector-curvature="0"
+       transform="translate(0,308.2677)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend-4-4)"
+       d="m 94.5,962.36218 0,6.5"
+       id="path3306"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend-4-4)"
+       d="m 264.5,654.09448 0,8.5 m 170,-9 -0.5,9.5 m 167,-10 0,10.5"
+       id="path3312"
+       inkscape:connector-curvature="0"
+       transform="translate(0,308.2677)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#EmptyDiamondL);marker-end:url(#Arrow2Mend-4)"
+       d="m 950.25,397.61218 0.25,30.5"
+       id="path3320"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m 546.48095,277.84448 311.23958,-0.44047"
+       id="path3326"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path3182-8"
+       inkscape:connection-start-point="d4"
+       transform="translate(0,308.2677)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 543.76511,277.40401 257.38687,275.98979"
+       id="path3369"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       transform="translate(0,308.2677)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.95758414px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend-4-4);display:inline"
+       d="m 855.578,584.32618 0.74952,18.96273"
+       id="path3371"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend-4)"
+       d="m 379.71634,585.67171 -0.7071,95.45941"
+       id="path3383"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="opacity:0.18930042;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.93194276;stroke-opacity:0"
+       id="rect3428"
+       width="383.15088"
+       height="151.05795"
+       x="658.88031"
+       y="811.61029" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="662.5"
+       y="839.36218"
+       id="text3430"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3432"
+         x="662.5"
+         y="839.36218"
+         style="font-size:14px">Scenario</tspan><tspan
+         sodipodi:role="line"
+         x="662.5"
+         y="856.86218"
+         style="font-size:10px"
+         id="tspan8029" /><tspan
+         sodipodi:role="line"
+         x="662.5"
+         y="870.37518"
+         id="tspan3434"
+         style="font-size:10px">ConjugationManagerLengadocian is instanciated and uses internally one </tspan><tspan
+         sodipodi:role="line"
+         x="662.5"
+         y="882.87518"
+         style="font-size:10px"
+         id="tspan3436"> of the four ConjugationLengadocian.... depending of the verb group </tspan><tspan
+         sodipodi:role="line"
+         x="662.5"
+         y="895.37518"
+         style="font-size:10px"
+         id="tspan3438">passed as parameter.</tspan><tspan
+         sodipodi:role="line"
+         x="662.5"
+         y="907.87518"
+         style="font-size:10px"
+         id="tspan3444">To reach the data, a class derived of DatabaseProviderBase is used.</tspan><tspan
+         sodipodi:role="line"
+         x="662.5"
+         y="920.37518"
+         style="font-size:10px"
+         id="tspan3446">Then the contents of the conjugation is passed to a concrete class </tspan><tspan
+         sodipodi:role="line"
+         x="662.5"
+         y="932.87518"
+         style="font-size:10px"
+         id="tspan8025">of ConverterBase that translates the content either </tspan><tspan
+         sodipodi:role="line"
+         x="662.5"
+         y="945.37518"
+         style="font-size:10px"
+         id="tspan8027">in HTLM, LATEX, JSON. ...</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.16515589px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend-4)"
+       d="m 388.63027,585.30285 -0.67654,135.44889"
+       id="path3383-2"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.31800914px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend-4)"
+       d="m 397.10846,585.87927 -0.6533,179.48364"
+       id="path3383-0"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="1094.5"
+       y="566.09448"
+       id="text8013"
+       sodipodi:linespacing="125%"
+       transform="translate(0,308.2677)"><tspan
+         sodipodi:role="line"
+         id="tspan8015"></tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8031"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:14px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion8033"><rect
+           id="rect8035"
+           width="418.5"
+           height="203"
+           x="652.5"
+           y="519.59448" /></flowRegion><flowPara
+         id="flowPara8037"></flowPara></flowRoot>  </g>
 </svg>
