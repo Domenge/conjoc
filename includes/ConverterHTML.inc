@@ -118,7 +118,7 @@ class ConverterHTML implements IConverter{
     $out .= "<tr><th></th><th>Present</th><th>Imperfach</th><th>Preterit</th><th>Futur</th></tr>";
 	
     for($i=0;$i<6;$i++){
-      $out .= "<tr><td>$persons[$i]</td><td>$present[$i]</td><td>$imperfect[$i]</td><td>$preterit[$i]</td><td>$future[$i]</td></tr>";
+      $out .= "<tr><td><i>$persons[$i]</i></td><td>$present[$i]</td><td>$imperfect[$i]</td><td>$preterit[$i]</td><td>$future[$i]</td></tr>";
     }
 
     $out .= "</tbody></table>";
@@ -133,7 +133,7 @@ class ConverterHTML implements IConverter{
     $conditional = $ary[0];
     
     for($j=0;$j<6;$j++){
-      $out .= "<tr><td>$persons[$j]</td><td>$conditional[$j]</td></tr>";
+      $out .= "<tr><td><i>$persons[$j]</i></td><td>$conditional[$j]</td></tr>";
     }
     
     $out .= "</tbody></table>";
@@ -189,7 +189,7 @@ class ConverterHTML implements IConverter{
     $subjunctive_past    = $ary[1];
     
     for($j=0;$j<6;$j++){
-      $out .= "<tr><td>$persons[$j]</td><td>$subjunctive_present[$j]</td><td>$subjunctive_past[$j]</td></tr>";
+      $out .= "<tr><td><i>$persons[$j]</i></td><td>$subjunctive_present[$j]</td><td>$subjunctive_past[$j]</td></tr>";
     }
     
     $out .= "</tbody></table>";
@@ -199,12 +199,12 @@ class ConverterHTML implements IConverter{
 
   private function getPersonsArray(){
     $ary = array();
-    $ary[] = 'S1'; 
-    $ary[] = 'S2'; 
-    $ary[] = 'S3'; 
-    $ary[] = 'P1'; 
-    $ary[] = 'P2'; 
-    $ary[] = 'P3';
+    $ary[] = 's1'; 
+    $ary[] = 's2'; 
+    $ary[] = 's3'; 
+    $ary[] = 'p1'; 
+    $ary[] = 'p2'; 
+    $ary[] = 'p3';
      
     return $ary;
   }

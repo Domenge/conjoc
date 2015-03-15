@@ -699,6 +699,7 @@ function ajax_gascon_verb_autocomplete($form, &$form_state) {
 
   $gasconManager = new ConjugationGasconManager();
   $drupalHTMLConverter = new ConverterHTML();
+  $drupalLATEXConverter = new ConverterLATEX();
 //  print_r($form_state);
   
   $verb   = (!empty($form_state['values']['gasc_verb_search']['verb']))?$form_state['values']['gasc_verb_search']['verb']: $gasconManager->getRandomVerb();
@@ -847,9 +848,17 @@ function ajax_gascon_verb_autocomplete($form, &$form_state) {
   '#collapsed' => FALSE,
   );
 
-  $form['gasc_verb_conjugated']['conjugation'] = array(
-    '#markup' => '<div>'. $drupalHTMLConverter->convertConjugation($gasconManager->conjugate()) .'</div>',
+  $conjugated = $gasconManager->conjugate();
+  $fileNameToDownload = $drupalLATEXConverter->convertConjugation($conjugated);
+
+  $form['gasc_verb_conjugated']['downloadPDF'] = array(
+    '#markup' => l(t("ficha en format PDF «" . $verb . "»" ) ,$fileNameToDownload) . '<img width="32px" src="/sites/default/files/img/logopdf.png"></img>',
   );
+
+  $form['gasc_verb_conjugated']['conjugation'] = array(
+    '#markup' => '<div>'. $drupalHTMLConverter->convertConjugation($conjugated) .'</div>',
+  );
+  
 
   return $form;
 } // ajax_gascon_verb_autocomplete 
