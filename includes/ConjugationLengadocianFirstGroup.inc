@@ -5,21 +5,19 @@ class ConjugationLengadocianFirstGroup extends ConjugationBase{
 
   protected function getStandardConjugation(){
 
-    $arr = array();
-    $arr[] = "i,as,a,am,atz,an";
-    $arr[] = "avi,avas,ava,àvam,àvatz,avan";
-    $arr[] = "èi,ès,è,èm,ètz,èn";
-    $arr[] = "arèi,aràs,arà,aram,aratz,aràn";
-    $arr[] = "ar";
-    $arr[] = "ant";
-    $arr[] = "at,ada";
-    $arr[] = "a,em,atz,es,em,etz";
-    $arr[] = "i,es,e,em,etz,en";
-    $arr[] = "èssi,èsses,èsse,èssem,èssetz,èssen";
-    $arr[] = "arí,arés,aré,arem,aretz,arén";
-    
-    return $arr;
-
+  $arr = array();
+  $arr['00_IndPres|Present']                 =  "i,as,a,am,atz,an";
+  $arr['01_IndImp|Imperfach']                =  "avi,avas,ava,àvem,àvetz,avan";
+  $arr['02_IndPret|Preterit']                =  "èri,ères,èt,èrem,èretz,èron";
+  $arr['03_IndFutur|Futur']                  =  "arai,aràs,arà,arem,aretz,aràn";
+  $arr['04_Infinitiu|Infinitiu']             =  "ar";
+  $arr['05_Gerondiu|Gerondiu']               =  "ant";
+  $arr['06_PartPassat|Participi passat']     =  "at,ada";
+  $arr['07_Imperatiu|Imperatiu']             =  "a,em,atz,es,em,etz";
+  $arr['08_SubPres|Subjontiu present']       =  "e,es,e,em,etz,en";
+  $arr['09_SubImp|Subjontiu imperfach']      =  "èsse,èsses,èsse,èssem,èssetz,èsson";
+  $arr['10_Conditional|Conditional']         =  "ariái,ariás,ariá,ariam,ariatz,arián";
+  return $arr;
   } // setStandardConjugation
 
   protected function fixRadical($radical,$desinence){
@@ -28,7 +26,7 @@ class ConjugationLengadocianFirstGroup extends ConjugationBase{
     $desinences = array('i','as','','a','an','e','es','en','ias','ia','ian');
   
     if(in_array($desinence,$desinences)){
-      switch ($this->getModel()){
+      switch ($this->getVerbModel()){
         case '106 a' : $pattern = '/(.+?)a(.+?)$/'; $replacement = '${1}à${2}'; break;
           //      case '106 b' : $pattern = '/(.+?)e(.+?)$/'; $replacement = '${1}é${2}'; break;
         //      case '106 c' :
@@ -85,7 +83,7 @@ class ConjugationLengadocianFirstGroup extends ConjugationBase{
     $desinences = array('i','as','a','an','e','es','en');
 
     if(in_array($desinence,$desinences)){
-      switch ($this->getModel()){
+      switch ($this->getVerbModel()){
         case '107 a' :   // Attention dar,  di becomes dau
           $desinence = ($desinence=='i' ? 'au':$desinence); break;
         case '107 b' :   // Attention estar,  estid becomes estau
@@ -100,7 +98,7 @@ class ConjugationLengadocianFirstGroup extends ConjugationBase{
 
   protected function getConjugationArray(){
 
-    $infinitive = $this->getName();
+    $infinitive = $this->getVerb();
 
     $pattern = '/ \d{1}$/';
 
@@ -147,25 +145,27 @@ class ConjugationLengadocianFirstGroup extends ConjugationBase{
 
   }
 
-  protected function conjugate(){
+/*
+  public function conjugate(){
 
     $conjugations = $this->getConjugationArray();
 
     $arr = array();
-    $arr["id"] = $this->getId();
-    $arr["name"] = $this->getName();
-    $arr["infinitive"] = $conjugations[ConjugationBase::INFINITIVE];
-    $arr["model"] = $this->getModel();
-    $arr["comments"] = $this->getComments();
-    $arr["libmodel"] = $this->getLibModel();
-    $arr["dialect"] = "gascon";
-    $arr["localization"] = $this->getLocalization();
-    $arr["comments"] = $this->getComments();
-    $arr["conjugations"] = $conjugations;
+    $arr["id"]              = $this->getId();
+    $arr["name"]            = $this->getVerb();
+    $arr["infinitive"]      = $conjugations[ConjugationBase::INFINITIVE];
+    $arr["model"]           = $this->getVerbModel();
+    $arr["comments"]        = $this->getComments();
+    $arr["libmodel"]        = $this->getLibModel();
+    $arr["dialect"]         = "lengadocian";
+    $arr["localization"]    = $this->getLocalization();
+    $arr["comments"]        = $this->getComments();
+    $arr["conjugations"]    = $conjugations;
     $arr["desinenceLengths"] = $this->getDesinenceLengthArray();
   
     return $arr;
   }
+*/
 
   public function display(){
     return $this->conjugate();

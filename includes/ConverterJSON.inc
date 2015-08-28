@@ -1,6 +1,6 @@
 <?php
 
-class ConverterLATEX implements IConverter{
+class ConverterJSON implements IConverter{
 
   private $verbName = "";
   private $workPath = "";
@@ -79,10 +79,10 @@ class ConverterLATEX implements IConverter{
 
   public function convertConjugation(array $conjugated){
 
-    $this->verbName = preg_replace('/ /', '_', $conjugated["name"]);
+    $this->verbName = $conjugated["name"];
     $this->workPath = drupal_get_path('module', 'conjoc'). "/cache";
     $this->templateTEX = drupal_get_path('module', 'conjoc'). "/templates/conjugation.tex";
-    $this->fullFileName = "sites/default/files/latex_pdf/$this->verbName.pdf";
+    $this->fullFileName = "sites/default/files/$this->verbName.pdf";
 
     // do some caching 
     // if the file already exists, returns its name
@@ -91,9 +91,8 @@ class ConverterLATEX implements IConverter{
     }
 
     $conjugations = $conjugated["conjugations"];
-    $model        = $conjugated["model"];
-    $dialect      = $conjugated["dialect"];
-    $defModel     = $conjugated["libmodel"];
+    $model = $conjugated["model"];
+    $defModel = $conjugated["libmodel"];
 
     $tokensArray = $this->getTokensArray();
 
@@ -101,19 +100,20 @@ class ConverterLATEX implements IConverter{
     // for each temps
     for ($i=ConjugationBase::IND_PRESENT;$i < ConjugationBase::CONDITIONAL +1 ;$i++){
       $conjugation = $conjugations[$i];
+
       $this->mergeTokensArray($index,$tokensArray,$conjugation);        
+
     } // for
     
-    $tokensArray[]="s/Dialect/$dialect/";
     $tokensArray[]="s/Vèrb/$this->verbName/";
     $tokensArray[]="s/Modèl/Modèl \«$model\»/";
 
     $pattern = '/\//';
     $replacement = '\/';
     $defModel = preg_replace($pattern, $replacement, $defModel);
-    	
+
     $tokensArray[]="s/DefMdl/$defModel/";
-    
+
     $out = "";
     
     // the array of array is flatten in one string
@@ -134,6 +134,7 @@ class ConverterLATEX implements IConverter{
 
   private function createPDF(){
 
+
     if (!isset($this->verbName)){
        return "";
     }
@@ -145,7 +146,7 @@ class ConverterLATEX implements IConverter{
 
     $commandLATEX = "/usr/local/bin/pdflatex -synctex=1 -output-directory=$this->workPath -interaction=nonstopmode $this->workPath/$this->verbName.tex";
 
-    $commandMOVE = "mv $this->workPath/$this->verbName.pdf sites/default/files/latex_pdf/.";
+    $commandMOVE = "mv $this->workPath/$this->verbName.pdf sites/default/files/.";
 
     $commandREMOVE = "rm $this->workPath/$this->verbName.*";
 
@@ -159,7 +160,7 @@ class ConverterLATEX implements IConverter{
     $str = exec($commandMOVE,$output,$return_var);
 
     // do some housekeeping
-//    $str = exec($commandREMOVE,$output,$return_var);
+    $str = exec($commandREMOVE,$output,$return_var);
 
 
   } // createPDF
@@ -172,6 +173,6 @@ class ConverterLATEX implements IConverter{
     return "";	 
   }
  
-} // class ConverterLATEX
+} // class ConverterJSON
 
 ?>

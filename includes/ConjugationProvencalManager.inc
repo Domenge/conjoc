@@ -2,7 +2,7 @@
 
 class ConjugationProvencalManager extends ConjugationManagerBase{
   public function __construct(){
-    $this->setDialect(PROVENCAL);
+    $this->setDialect(ConjugationManagerBase::PROVENCAL);
   } // __construct
 
   public function generateConjugation(){

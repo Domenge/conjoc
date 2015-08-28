@@ -1,5 +1,7 @@
 <?php
 
+require_once(drupal_get_path('module', 'conjoc').'/conjugador_lib.inc');
+
 class ConverterHTML implements IConverter{
 
   protected function getTempses(){

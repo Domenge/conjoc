@@ -1,0 +1,131 @@
+td.labelcpio {font-weight: bold;}
+
+.glossterm { color: #1b4ca2; font-weight: bold; text-decoration: none; }
+.genregram { color: #006600; font-style: italic; text-decoration: none; }
+
+span.genregram_in{ color: #006600; font-style: italic; text-decoration: none; }
+span.glossdef_oc { color: ##FFCC00; font-weight: normal; text-decoration: none; }
+span.glossdef_fr { color: ##FFCC00; font-weight: bold; text-decoration: none; }
+span.lexical_field { color: ##FFCC00; font-style: italic; text-decoration: none; }
+
+span.laus { color: #3333FF; font-weight: normal; text-decoration: none; }
+span.rbvd { color: #3333FF; font-weight: normal; text-decoration: none; }
+span.prov { color: #3333FF; font-weight: normal; text-decoration: none; }
+span.atau { color: #3333FF; font-weight: normal; text-decoration: none; }
+span.alpc { color: #3333FF; font-weight: normal; text-decoration: none; }
+span.pnst { color: #3333FF; font-weight: normal; text-decoration: none; }
+span.cmbs { color: #666666; font-weight: normal; text-decoration: none; }
+span.glns { color: #666666; font-weight: normal; text-decoration: none; }
+span.omlh { color: #666666; font-weight: normal; text-decoration: none; }
+
+.leng { color: #3333FF; font-weight: normal; text-decoration: none; }
+.gasc { color: #3333FF; font-weight: normal; text-decoration: none; }
+.prvc { color: #3333FF; font-weight: normal; text-decoration: none; }
+.auv { color: #3333FF; font-weight: normal; text-decoration: none; }
+.valp { color: #3333FF; font-weight: normal; text-decoration: none; }
+.lim { color: #3333FF; font-weight: normal; text-decoration: none; }
+
+.lengextract { color: #990000; font-weight: normal; text-decoration: none; }
+.gascextract { color: #009900; font-weight: normal; text-decoration: none; }
+.prvcextract { color: #3333FF; font-weight: normal; text-decoration: none; }
+.auvextract { color: #3333FF; font-weight: normal; text-decoration: none; }
+.valpextract { color: #3333FF; font-weight: normal; text-decoration: none; }
+.limextract { color: #3333FF; font-weight: normal; text-decoration: none; }
+.commentsextract { color: #3333FF; font-style: italic; text-decoration: none; }
+
+.example-fr {color: #666666; font-style: italic; text-decoration: none;}
+.example-oc {color: #666666; font-weight: normal; text-decoration: none;}
+.suffix-feminine  {color: #666666; font-weight: normal; text-decoration: none;}
+.suffix-masculine  {color: #666666; font-weight: normal; text-decoration: none;}
+.prefix  {color: #B48CB7; font-weight: bold; text-decoration: none;}
+
+span.mjnr { color: #FF0000; font-weight: normal; text-decoration: none; }
+span.sept { color: #3333FF; font-weight: normal; text-decoration: none; }
+
+.term { color: #000000; font-weight: bold; text-decoration: none; }
+.catgram { color: #999999; font-style: italic; text-decoration: none; }
+.acception { color: #000000; font-style: italic; text-decoration: none; }
+.common { color: #FF0000; font-weight: bold; text-decoration: none; }
+.common_lg { color: #06266F; font-weight: bold; text-decoration: none; }
+.widely_used { color: #FF0000; font-style: italic; text-decoration: none; }
+.localization { color: #009900; font-style: italic; text-decoration: none; }
+.headerBasic {font-size:1.85em; color: #000000; font-weight: bold; text-decoration: none; }
+.remaining {display:none; color: #000000; font-style: italic; text-decoration: none;}
+
+#definition_seen
+{
+padding:10px;
+border:1px dotted gray;
+margin:0px;
+}
+
+#definitions_source
+{
+    border: 1px solid black;
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    width:100%;
+    border-collapse:collapse;
+}
+
+#definitions_source td, #definitions_source th 
+{
+    font-size:1em;
+    border:1px solid #98bf21;
+    padding:3px 7px 2px 7px;
+}
+
+#definitions_source th 
+{
+    font-size:1.1em;
+    text-align:left;
+    padding-top:5px;
+    padding-bottom:4px;
+    background-color:#A7C942;
+    color:#ffffff;
+}
+
+#definitions_source tr.alt td 
+{
+    color:#000000;
+    background-color:#EAF2D3;
+}
+
+/*dynamic list*/
+
+/* Big box with list of options */
+#ajax_listOfOptions{
+  position:absolute;  /* Never change this one */
+  width:175px;  /* Width of box */
+  height:250px;  /* Height of box */
+  overflow:auto;  /* Scrolling features */
+  border:1px solid #317082;  /* Dark green border */
+  background-color:#FFF;  /* White background color */
+  text-align:left;
+  font-size:0.9em;
+  z-index:100;
+}
+#ajax_listOfOptions div{  /* General rule for both .optionDiv and .optionDivSelected */
+  margin:1px;    
+  padding:1px;
+  cursor:pointer;
+  font-size:0.9em;
+}
+#ajax_listOfOptions .optionDiv{  /* Div for each item in list */
+
+}
+
+#ajax_listOfOptions .optionDiv .completed{  /* Div for each item in list */
+    color: #ff0000; font-style: italic; text-decoration: none; 
+}
+
+
+#ajax_listOfOptions .optionDivSelected{ /* Selected item in the list */
+  background-color:#317082;
+  color:#FFF;
+}
+#ajax_listOfOptions_iframe{
+  background-color:#F00;
+  position:absolute;
+  z-index:5;
+} 
+

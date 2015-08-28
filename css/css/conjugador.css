@@ -1,0 +1,211 @@
+
+.bugTrackersNote{
+    font-size:0.75em;
+    font-family:"Arial", Times, sans;
+    color: #FFCCFF; font-style: italic; text-decoration: none;
+}
+
+.conjudador_osca{
+    font-size:0.875em;
+    font-family:"Arial", Times, sans;
+}
+
+.des{color:#000000;font-weight:bold; text-decoration:none;}
+
+.indicative,.impersonal_forms,.subjunctive,.imperative,.conditional
+{
+    padding:10px;
+    border:1px dotted gray;
+    margin:10px;
+    max-width:40%;
+    background-color:#FCFCFC;
+}
+
+.label_conjugation{
+    color: #666666; font-style: italic; text-decoration: none;
+}
+
+.label_mode{
+    color: green; font-weight: bold; text-decoration: none;
+}
+
+.lbl_usual_verbs,.lbl_single_verbs,.lbl_top20_verbs,.lbl_otherInModel_verbs{
+    font-weight: bold; text-decoration: none;
+}
+
+/*
+.impersonal_forms
+{
+    float:right;
+    position:relative;
+    left: 300px;
+    top :-445px; 
+}
+*/
+
+.dropdownlist_verb{
+    float:left;
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:50%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+}
+
+.usual_verbs{
+/*    clear:both;*/
+    float:left;
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:50%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+}
+
+.see_also_verb{
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:50%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+}
+
+.see_also{
+    float:rigth;
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:50%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+    color: green; font-style: italic; text-decoration: none; 
+}
+
+.single_verbs{
+/*    clear:both; */
+    float:left;
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:50%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+}
+
+/*
+.top20_verbs{
+    float:left;
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:50%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+}
+*/
+
+.verb{
+    clear:both;
+ }
+
+.label_verb{
+    font-weight:bold;
+    font-size:1.25em;
+}
+
+.label_notes{
+    clear:both;
+    font-weight:bold;
+}
+
+.indicative{
+    float: left;
+}
+
+.subjunctive{
+    float:left;
+}
+
+.conditional{
+    float:left;
+}
+.imperative{
+    float:left;
+}
+
+.impersonal_forms{
+    float:left;
+}
+
+
+
+.gascon_localization{
+    color: blue; text-decoration: none;
+}
+
+.notes{
+    clear:both;
+    float:left;
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:75%;
+    background-color:#FCFCFC;
+    font-size:0.5em;
+    font-family:"Arial", Times, sans;
+}
+
+
+/*dynamic list*/
+
+/* Big box with list of options */
+#ajax_listOfOptions{
+  position:absolute;  /* Never change this one */
+  width:175px;  /* Width of box */
+  height:250px;  /* Height of box */
+  overflow:auto;  /* Scrolling features */
+  border:1px solid #317082;  /* Dark green border */
+  background-color:#FFF;  /* White background color */
+  text-align:left;
+  font-size:0.9em;
+  z-index:100;
+}
+#ajax_listOfOptions div{  /* General rule for both .optionDiv and .optionDivSelected */
+  margin:1px;    
+  padding:1px;
+  cursor:pointer;
+  font-size:0.9em;
+  font-family:"Arial", Times, sans;
+}
+#ajax_listOfOptions .optionDiv{  /* Div for each item in list */
+
+}
+
+#ajax_listOfOptions .optionDiv .completed{  /* Div for each item in list */
+    color: #ff0000; font-style: italic; text-decoration: none; 
+}
+
+
+#ajax_listOfOptions .optionDivSelected{ /* Selected item in the list */
+  background-color:#317082;
+  color:#FFF;
+}
+#ajax_listOfOptions_iframe{
+  background-color:#F00;
+  position:absolute;
+  z-index:5;
+} 
+
+/*TABS*/
+
+body { font-size: 80%; font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif; }
+ul#tabs { list-style-type: none; margin: 30px 0 0 0; padding: 0 0 0.3em 0; }
+ul#tabs li { display: inline; }
+ul#tabs li a { color: #42454a; background-color: #dedbde; border: 1px solid #c9c3ba; border-bottom: none; padding: 0.3em; text-decoration: none; }
+ul#tabs li a:hover { background-color: #f1f0ee; }
+ul#tabs li a.selected { color: #000; background-color: #f1f0ee; font-weight: bold; padding: 0.7em 0.3em 0.38em 0.3em; }
+div.tabContent { border: 1px solid #c9c3ba; padding: 0.5em; background-color: #f1f0ee; }
+div.tabContent.hide { display: none; }

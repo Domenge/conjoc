@@ -7,6 +7,11 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
     return $results->fetchObject();
   } // getVerb
 
+  public function getVerbById($id){
+    $results = db_query("SELECT * FROM {" . $this->getBaseTableName() . "_verbsmodel} WHERE id =:id",array(':id'=>$id));
+    return $results->fetchObject();
+  } // getVerbById
+
   public function getVerbModel($numModel){
     $results = db_query("SELECT * FROM {" . $this->getBaseTableName() . "_model} WHERE nummodel=:numModel",array(':numModel'=>$numModel));
     return $results->fetchObject();
@@ -89,7 +94,7 @@ T O  B E  D O N E
     return $matches;
   } // getVerbAutoComplete
 
-  function getRandomVerb(){
+  public function getRandomVerb(){
     $results = db_query("SELECT * FROM {" . $this->getBaseTableName() . "_verbsmodel} ORDER BY RAND() LIMIT 1");
     $line = $results->fetchObject();
 
@@ -97,7 +102,7 @@ T O  B E  D O N E
 
   } // getRandomVerb()
 
-  function getSingleVerbs(){
+  public function getSingleVerbs(){
     $results = db_query("SELECT COUNT(*) as cpter, group_concat(verb) as concat FROM {". 
     $this->getBaseTableName() 
     . "_verbsmodel} GROUP BY nummodel ORDER BY cpter ASC LIMIT 25");
@@ -117,6 +122,45 @@ T O  B E  D O N E
     return $arrRet;
   } // getSingleVerbs()
 
-} // class ConjugationDataProviderDrupal
+  public function getAllDuplicatedVerbs(){
 
-?>
+    $results = db_query("SELECT DISTINCT left(verb,locate(' ', verb)) as element FROM  {". 
+    $this->getBaseTableName() 
+    . "_verbsmodel} where verb regexp '[[:digit:]]' order by binary verb");
+
+    $arrRet = array();  
+
+    while($line = $results->fetchObject()){
+      	 $arrRet[] = $line->element;
+    } // while
+  
+    return $arrRet;
+  } // getAllDuplicatedVerbs()
+
+/*
+*/
+
+  public function getAllVerbs(){
+    $results = db_query("SELECT * FROM {". 
+    $this->getBaseTableName() 
+    . "_verbsmodel} where substr(nummodel,1,1) = '3' AND verb = 'abatre'  ORDER BY BINARY verb");
+//    . "_verbsmodel} ORDER BY BINARY verb LIMIT 100");
+//    . "_verbsmodel} WHERE nummodel < ='abatre'");
+
+    $arrRet = array();  
+
+    while($line = $results->fetchObject()){
+    	$arr = array();
+    	$arr['verb']= $line->verb;
+    	$arr['row']= $line->row;
+    	$arr['infinitive']= $line->infinitive;
+      	$arrRet[] = $arr;
+    } // while
+  
+    return $arrRet;
+  } // getAllVerbs()
+  
+  public function insertIndexedVerb(array $fields){
+    db_insert('conjoc_index')->fields($fields)->execute();
+  } // insertIndexedVerb
+} // class ConjugationDataProviderDrupal

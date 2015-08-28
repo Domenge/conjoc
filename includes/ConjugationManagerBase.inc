@@ -154,6 +154,167 @@ abstract class ConjugationManagerBase{
   public function conjugate(){
      return $this->generateConjugation()->conjugate();
   }
+
+  public function processIndexation(){
+    $indexationConverter = new ConverterIndexation();
+    $allVerbs = $this->_dataProvider->getAllVerbs();
+    
+/*    	
+Array ( 
+[id] => 11821 
+[name] => abajanir 
+[infinitive] => Array ( [0] => abajanir ) 
+[model] => 200 
+[comments] => not yet implemented 
+[libmodel] => conjugason 2 radical consonantic 
+[dialect] => lengadocian 
+[localization] => C 
+[conjugations] => Array ( [0] => Array ( [0] => abajanissi [1] => abajanisses [2] => abajanís [3] => abajanissem [4] => abajanissetz [5] => abajanissen ) [1] => Array ( [0] => abajanivi [1] => abajanivas [2] => abajaniva [3] => abajan­ívam [4] => abajanívatz [5] => abajanivan ) [2] => Array ( [0] => abajanii [1] => abajanís [2] => abajaní [3] => abajanim [4] => abajanitz [5] => abajanín ) [3] => Array ( [0] => abajanirèi [1] => abajaniràs [2] => abajanirà [3] => abajaniram [4] => abajaniratz [5] => abajaniràn ) [4] => Array ( [0] => abajanir ) [5] => Array ( [0] => abajanissent ) [6] => Array ( [0] => abajanit [1] => abajanida ) [7] => Array ( [0] => abajanís [1] => abajanim [2] => abajanitz [3] => abajanescas [4] => abajanescam [5] => abajanescatz ) [8] => Array ( [0] => abajanesqui [1] => abajanescas [2] => abajanesca [3] => abajanescam [4] => abajanescatz [5] => abajanescan ) [9] => Array ( [0] => abajanissi [1] => abajanisses [2] => abajanisse [3] => abajaníssem [4] => abajaníssetz [5] => abajanissen ) [10] => Array ( [0] => abajanirí [1] => abajanirés [2] => abajaniré [3] => abajanirem [4] => abajaniretz [5] => abajanirén ) ) 
+[desinenceLengths] => Array ( [0] => 1,2,1,2,3,2 [1] => 3,4,3,4,5,4 [2] => 3,4,2,4,5,4 [3] => 4,4,3,4,5,4 [4] => 2 [5] => 3 [6] => 1,2,3,2,2,3 [7] => 1,2,1,2,3,2 [8] => 4,5,4,4,6,5 [9] => 5,5,4,5,6,5 ) ) 
+*/
+
+    foreach($allVerbs as $aVerb){
+        $infinitive = $aVerb['infinitive'];
+        $row = $aVerb['row'];
+        
+	$this->setVerb($aVerb['verb']);
+	
+    	$ary = $this->conjugate();
+	$name = $ary['name'];
+
+	$conjugations = $ary['conjugations'];
+	$model = $ary['model'];
+	$dialect = $indexationConverter->encodeDialect($ary['dialect']);
+	drupal_set_message("$name,$row,$infinitive,$model,$dialect");	
+	// put POS default values 
+	$aryPOS = array();
+	
+	//$aryPOS['person'] = 1;
+	// II Gender 1 Masculine 2 Feminine 3 Neuter
+	$aryPOS['gender'] = 0;
+	// III Number 1 Singular 2 Plural
+	//$aryPOS['number'] = 1;
+	// IV Finiteness 1 Finite 2 Non-finite
+	$aryPOS['finiteness'] = 0;
+	// V Mood 1 Indicative 2 Subjunctive 3 Imperative 4 Conditional 5 Infinitive 6 Participle 7 Gerund 8 Supine
+	// $aryPOS['mood'] = 1;
+	// VI Tense 1 Present 2 Imperfect 3 Future 4 Past
+	// $aryPOS['tense'] = 1;
+	// VII Voice 1 Active 2 Passive
+	$aryPOS['voice'] = 0;
+	// VIII Status 1 Main 2 Auxiliary 3 Semi-auxiliary
+	$aryPOS['status'] = 1;
+	
+	if ($model == '001' || $model == '002'){
+		$aryPOS['status'] = 2;
+	}
+	if ($model == '003' || $model == '003 b' || $model == '004'){
+		$aryPOS['status'] = 3;
+	}
+
+	// IX Aspect 1 Perfective 2 Imperfective
+	$aryPOS['aspect'] = 0;
+	// X Separability 1 Non-separable 2 Separable
+	$aryPOS['separability'] = 0;
+	// XI Reflexivity 1 Reflexive 2 Non-reflexive
+	$aryPOS['reflexivity'] = 0;
+	// XII Auxiliary 1 Have 2 Be
+	$aryPOS['auxiliary'] = 0;
+	// iterating in the conjugations, a record is created for each flexion
+
+	for($i=ConjugationBase::IND_PRESENT; $i < ConjugationBase::LAST_NORMAL_TEMPS + 1; $i++){
+
+      	   $conjugation = $conjugations[$i];
+      	   print_r($conjugation);
+/*      	   
+Array ( [0] => abati [1] => abates [2] => abat [3] => abatem [4] => abatetz [5] => abaten ) 
+Array ( [0] => abat�vi [1] => abat�vas [2] => abat�va [3] => abat�vam [4] => abat�vatz [5] => abat�van ) 
+Array ( [0] => abatoi [1] => abat�s [2] => abat� [3] => abatom [4] => abatotz [5] => abat�n ) 
+Array ( [0] => abater�i [1] => abater�s [2] => abater� [3] => abateram [4] => abateratz [5] => abater�n ) 
+Array ( [0] => abat ) 
+Array ( [0] => abatent ) 
+Array ( [0] => abatut [1] => abatuda ) 
+Array ( [0] => abat [1] => abatem [2] => abatetz [3] => abatias [4] => abatiam [5] => abatiatz ) 
+Array ( [0] => abati [1] => abatias [2] => abatia [3] => abatiam [4] => abatiatz [5] => abatian ) 
+Array ( [0] => abatossi [1] => abatosses [2] => abatosse [3] => abat�ssem [4] => abat�ssetz [5] => abatossen ) 
+Array ( [0] => abater� [1] => abater�s [2] => abater� [3] => abaterem [4] => abateretz [5] => abater�n ) 
+*/
+	   switch($i){
+	     case ConjugationBase::IND_PRESENT : 
+	     case ConjugationBase::IND_IMPERFECT : 
+	     case ConjugationBase::IND_PRETERIT : 
+	     case ConjugationBase::IND_FUTUR :
+	     	$mood = '1'; 
+	     	break;
+             case ConjugationBase::INFINITIVE  : $mood = '5'; break;
+             case ConjugationBase::GERUND      : $mood = '7'; break;
+             case ConjugationBase::PAST_PARTICIPLE  : $mood = '6'; break;
+             case ConjugationBase::IMPERATIVE  : $mood = '3'; break;
+             case ConjugationBase::SUBJ_PRESENT: 
+             case ConjugationBase::SUBJ_IMPERFECT: 
+             	$mood = '2'; break;
+             case ConjugationBase::CONDITIONAL : $mood = '4'; break;
+      	   }
+      	   
+      	   $aryPOS['mood'] = $mood;
+      	   $aryPOS['tense'] = $indexationConverter->encodeTense($i);
+      	   
+      	   if ($i == ConjugationBase::INFINITIVE || $i == ConjugationBase::GERUND){
+      	   	  $conj = $conjugation[0];
+		  $aryPOS['person'] = 0;
+		  $aryPOS['number'] = 1;
+	    	  $pos = $indexationConverter->encodePOS($aryPOS);
+    		  $fields = array('verb' => $infinitive, 'row' => $row, 'dialect' => $dialect, 'nummodel' => $model, 'conjugation' => $conj, 'pos' => $pos);
+//                  $this->_dataProvider->insertIndexedVerb($fields);
+      	   }else if ($i == ConjugationBase::PAST_PARTICIPLE){
+      	   	  $conj = $conjugation[0];
+		  $aryPOS['person'] = 0;
+		  $aryPOS['number'] = 1;
+		  $aryPOS['gender'] = 1;
+		  $aryPOS['tense'] = 4;
+
+	    	  $pos = $indexationConverter->encodePOS($aryPOS);
+    		  $fields = array('verb' => $infinitive, 'row' => $row, 'dialect' => $dialect, 'nummodel' => $model, 'conjugation' => $conj, 'pos' => $pos);
+//                $this->_dataProvider->insertIndexedVerb($fields);
+
+      	   	  $conj = $conjugation[1];
+		  $aryPOS['person'] = 0;
+		  $aryPOS['number'] = 1;
+	  	  $aryPOS['gender'] = 2;
+
+	    	  $pos = $indexationConverter->encodePOS($aryPOS);
+    		  $fields = array('verb' => $infinitive, 'row' => $row, 'dialect' => $dialect, 'nummodel' => $model, 'conjugation' => $conj, 'pos' => $pos);
+//                $this->_dataProvider->insertIndexedVerb($fields);
+
+      	   }else if ($i == ConjugationBase::IMPERATIVE){
+      	   	for($j=0;$j < 6;$j++){
+	     	  $conj = $conjugation[$j];
+	     	  $person = ($j < 3)? $j+1:$j-2;
+		  $aryPOS['person'] = $person;
+	     	  $number = ($j < 3)? 1:2;
+		  $aryPOS['number'] = $number;
+	    	  $pos = $indexationConverter->encodePOS($aryPOS);
+    		  $fields = array('verb' => $infinitive, 'row' => $row, 'dialect' => $dialect, 'nummodel' => $model, 'conjugation' => $conj, 'pos' => $pos);
+//                $this->_dataProvider->insertIndexedVerb($fields);
+	     	} // for	     
+      	   }else{   // OTHERS
+      	   	for($j=0;$j < 6;$j++){
+	     	  $conj = $conjugation[$j];
+	     	  $person = ($j < 3)? $j+1:$j-2;
+		  $aryPOS['person'] = $person;
+	     	  $number = ($j < 3)? 1:2;
+		  $aryPOS['number'] = $number;
+	    	  $pos = $indexationConverter->encodePOS($aryPOS);
+    		  $fields = array('verb' => $infinitive, 'row' => $row, 'dialect' => $dialect, 'nummodel' => $model, 'conjugation' => $conj, 'pos' => $pos);
+//                $this->_dataProvider->insertIndexedVerb($fields);
+	     	} // for	     
+      	   }      	   
+	} // for
+
+    }
+    return "<strong>done</strong>";
+	
+  } // processIndexation
 	
 } // class ConjugationManagerBase
 

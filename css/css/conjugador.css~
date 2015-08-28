@@ -1,0 +1,184 @@
+
+.des{color:#000000;font-weight:bold; text-decoration:none;}
+
+.indicative,.impersonal_forms,.subjunctive,.imperative,.conditional
+{
+    padding:10px;
+    border:1px dotted gray;
+    margin:10px;
+    max-width:40%;
+    background-color:#FCFCFC;
+}
+
+.label_conjugation{
+    color: #666666; font-style: italic; text-decoration: none;
+}
+
+.label_mode{
+    color: green; font-weight: bold; text-decoration: none;
+}
+
+.lbl_usual_verbs,.lbl_single_verbs,.lbl_top20_verbs,.lbl_otherInModel_verbs{
+    font-weight: bold; text-decoration: none;
+}
+
+/*
+.impersonal_forms
+{
+    float:right;
+    position:relative;
+    left: 300px;
+    top :-445px; 
+}
+*/
+
+.dropdownlist_verb{
+    float:left;
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:50%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+}
+
+.usual_verbs{
+/*    clear:both;*/
+    float:left;
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:50%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+}
+
+.see_also_verb{
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:50%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+}
+
+.see_also{
+    float:rigth;
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:50%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+    color: #ff0000; font-style: italic; text-decoration: none; 
+}
+
+.single_verbs{
+/*    clear:both; */
+    float:left;
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:50%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+}
+
+/*
+.top20_verbs{
+    float:left;
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:50%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+}
+*/
+
+.verb{
+    clear:both;
+ }
+
+.label_verb{
+    font-weight:bold;
+    font-size:1.25em;
+}
+
+.label_notes{
+    clear:both;
+    font-weight:bold;
+}
+
+.indicative{
+    float: left;
+}
+
+.imperative{
+    float:left;
+}
+
+.impersonal_forms{
+    float:left;
+}
+
+.subjunctive{
+    clear:both;
+    float:left;
+}
+
+.conditional{
+    float:left;
+}
+
+.notes{
+    clear:both;
+    float:left;
+    padding:10px;
+    border:1px solid gray;
+    margin:10px;
+    max-width:75%;
+    background-color:#FCFCFC;
+    font-size:0.875em;
+}
+
+
+/*dynamic list*/
+
+/* Big box with list of options */
+#ajax_listOfOptions{
+  position:absolute;  /* Never change this one */
+  width:175px;  /* Width of box */
+  height:250px;  /* Height of box */
+  overflow:auto;  /* Scrolling features */
+  border:1px solid #317082;  /* Dark green border */
+  background-color:#FFF;  /* White background color */
+  text-align:left;
+  font-size:0.9em;
+  z-index:100;
+}
+#ajax_listOfOptions div{  /* General rule for both .optionDiv and .optionDivSelected */
+  margin:1px;    
+  padding:1px;
+  cursor:pointer;
+  font-size:0.9em;
+}
+#ajax_listOfOptions .optionDiv{  /* Div for each item in list */
+
+}
+
+#ajax_listOfOptions .optionDiv .completed{  /* Div for each item in list */
+    color: #ff0000; font-style: italic; text-decoration: none; 
+}
+
+
+#ajax_listOfOptions .optionDivSelected{ /* Selected item in the list */
+  background-color:#317082;
+  color:#FFF;
+}
+#ajax_listOfOptions_iframe{
+  background-color:#F00;
+  position:absolute;
+  z-index:5;
+} 
+

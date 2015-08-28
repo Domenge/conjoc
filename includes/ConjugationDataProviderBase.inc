@@ -14,6 +14,7 @@ abstract class ConjugationDataProviderBase{
   }
 
   abstract public function getVerb($verb);
+  abstract public function getVerbById($id);
   abstract public function getVerbModel($numModel);
   abstract public function getTop20();
   abstract public function getOthersInModel($verb);
@@ -21,7 +22,10 @@ abstract class ConjugationDataProviderBase{
   abstract public function getVerbAutoComplete($string);
   abstract public function getRandomVerb();
   abstract public function getSingleVerbs();
+  abstract public function getAllVerbs();
+  abstract public function getAllDuplicatedVerbs();
+  abstract public function insertIndexedVerb(array $arr);
 	
-} // class ConjugationManagerBase
+} // class ConjugationDataProviderBase
 
 ?>

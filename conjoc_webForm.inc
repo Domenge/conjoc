@@ -22,8 +22,59 @@ require_once('conjugador_gr2.inc');
 require_once('conjugador_gr3.inc');
 
 /**
-   LENGADOCIAN
+   L E N G A D O C I A N
+   L E N G A D O C I A N
+   L E N G A D O C I A N
  */
+
+/*
+TEI
+*/ 
+
+function tei_export_lengadocian_all($form, &$form_state) {
+  $form['#tree'] = TRUE;
+
+  $lengadocianManager = new ConjugationLengadocianManager();
+  $teiConverter = new ConverterTEI();
+
+  $form['export_TEI'] = array(
+  '#type' => 'fieldset',
+  '#title' => t('Export Lengadocian all'),
+  '#weight' => 1,
+  '#collapsible' => FALSE,
+  );
+
+  $form['export_TEI']['all'] = array(
+    '#markup' => $teiConverter->convertArray($lengadocianManager->getAllVerbs()),
+    '#weight' => 1,
+  );
+
+  return $form;
+} // tei_export_lengadocian_all
+
+/*
+Indexation
+*/ 
+function indexation_lengadocian_all($form, &$form_state) {
+  $form['#tree'] = TRUE;
+
+  $lengadocianManager = new ConjugationLengadocianManager();
+
+  $form['indexation_Lengadocian'] = array(
+  '#type' => 'fieldset',
+  '#title' => t('Index Lengadocian all'),
+  '#weight' => 1,
+  '#collapsible' => FALSE,
+  );
+
+  $form['indexation_Lengadocian']['all'] = array(
+    '#markup' => $lengadocianManager->processIndexation(),
+    '#weight' => 1,
+  );
+
+  return $form;
+} // indexation_lengadocian_all
+
 function ajax_conjoc_verb_autocomplete($form, &$form_state) {
 
   $form['#tree'] = TRUE;
@@ -491,388 +542,4 @@ function conjugador_getOthersInModel($verb){
   } // while
 
   return $arret;
-}
-
-/**
-   PROVENCAL
- */
-
-function ajax_provencal_verb_autocomplete($form, &$form_state) {
-
-  $form['#tree'] = TRUE;
-  $action = (!empty($form_state['values']['action']))?$form_state['values']['action']:'';
-
-  $verb   = (!empty($form_state['values']['prov_verb_search']['verb']))?$form_state['values']['prov_verb_search']['verb']: conjoc_getRandomProvencalVerb();
-
-  $randomVerb = empty($form_state['values']['prov_verb_search']['verb']);
-  /*
-    V E R B   S E A R C H
-  */
-  $form['prov_verb_search'] = array(
-  '#type' => 'fieldset',
-  '#title' => t('Verb search'),
-  '#weight' => 1,
-  '#collapsible' => FALSE,
-  );
-
-  $form['prov_verb_search']['verb'] = array(
-    '#weight' => 1,
-    '#type' => 'textfield',
-    '#default_value' => $verb,
-
-    '#title' => t('Choose a verb'),
-    // The autocomplete path is provided in hook_menu in ajax_example.module.
-    '#autocomplete_path' => 'conjoc/verb_autocomplete_prov_callback',
-  );
-
-  $form['prov_verb_search']['submit'] = array(
-    '#weight' => 2,
-    '#type' => 'submit',
-    '#value' => t('Submit'),
-  );
-
-  /*
-    U S U A L S   V E R B S
-  */
-
-  $form['prov_verbs_usuals'] = array(
-  '#type' => 'fieldset',
-  '#title' => t('Usual verbs'),
-  '#weight' => 2,
-  '#collapsible' => TRUE,
-  '#collapsed' => TRUE,
-  );
-
-  $form['prov_verbs_usuals']['info'] = array(
-    '#markup' => conjugador_displayUsuals(),
-    '#weight' => 1,
-  );
-
-  /*
-    T O P 2 0   V E R B S
-  */
-
-
-  $form['prov_TOP20_verbs'] = array(
-  '#type' => 'fieldset',
-  '#title' => t('Top 20 verbs'),
-  '#weight' => 3,
-  '#collapsible' => TRUE,
-  '#collapsed' => TRUE,
-  );
-   
-  $form['prov_TOP20_verbs']['selected'] = array(
-    '#type' => 'select',
-    '#title' => t('Selected'),
-    '#options' => conjugador_getTop20(),
-    //    '#default_value' => $category['prov_TOP20_verbs']['selected'],
-    '#description' => t('To be done.'),
-  );  
-
-  $form['prov_TOP20_verbs']['info'] = array(
-    //    '#markup' => '<div>'. conjugador_displayTop20($verb) .'</div>',
-  );
-
-  $form['prov_TOP20_verbs']['submit'] = array(
-    '#weight' => 2,
-    '#type' => 'submit',
-    '#value' => t('Submit to be translated'),
-  );
-
-  /*
-    S I N G L E   V E R B S
-  */
-
-  $form['prov_single_verbs'] = array(
-  '#type' => 'fieldset',
-  '#title' => t('Single verbs'),
-  '#weight' => 4,
-  '#collapsible' => TRUE,
-  '#collapsed' => TRUE,
-  );
-
-  $form['prov_single_verbs']['info'] = array(
-  '#markup' => conjugador_displaySingles(),
-  );
-
-  /*
-    O T H E R S   I N   M O D E L
-  */
-  $countOthers = 0;
-  if (isset($form_state['values']['prov_verb_search']['verb']) 
-  && ($countOthers = conjugador_countOthersInModel($form_state['values']['prov_verb_search']['verb'])) 
-  && $countOthers > 0 && $countOthers <= variable_get("MAX_OTHERVERBS")){
-
-    $form['prov_other_verbs_in_model'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Other verbs in model'),
-      '#weight' => 5,
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-    );
-    $form['prov_other_verbs_in_model']['selected'] = array(
-      '#type' => 'select',
-      '#title' => t('Selected'),
-      '#options' => conjugador_getOthersInModel($verb),
-      //    '#default_value' => $category['other_verbs_in_model']['selected'],
-      '#description' => t('To be done.'),
-    );  
-
-    $form['prov_other_verbs_in_model']['info'] = array(
-      //      '#markup' => '<div>'. conjugador_displayOthersInModel($verb) .'</div>',
-    );
-
-    $form['prov_other_verbs_in_model']['submit'] = array(
-      '#weight' => 2,
-      '#type' => 'submit',
-      '#value' => t('Submit, to be changed'),
-    );
-
-  }
-
-  /*
-    V E R B   C O N J U G A T E D
-  */
-
-  $form['prov_verb_conjugated'] = array(
-  '#type' => 'fieldset',
-  '#title' => ($randomVerb)?t('Random verb conjugated '):t('Verb conjugated'),
-  '#weight' => 7,
-  '#collapsible' => TRUE,
-  '#collapsed' => FALSE,
-  );
-
-  $action = "as to be done.";
-
-  $form['prov_verb_conjugated']['conjugation'] = array(
-    '#markup' => '<div>'. conjugador_l($verb, $action) .'</div>',
-  );
-
-  return $form;
-}
-
-/**
- *
- * @param string $string
- *   The string that will be searched.
- */
-function ajax_provencal_verb_autocomplete_callback($string = "") {
-
-  $matches = array();
-
-  if ($string) {
-    $query = db_select('provencal_verbsmodel','vm');
-    $query->join('provencal_model', 'm', 'vm.nummodel=m.nummodel');
-    $query->groupby('vm.verb');
-    $query->fields('vm', array('id','verb', 'nummodel'));
-    $query->fields('m', array('verb_prime','label_conjugation'));
-    $result = $query->condition('vm.verb', db_like($string) . '%', 'LIKE')->range(0, 100)->execute();
-
-    foreach ($result as $verbline) {
-      // In the simplest case (see user_autocomplete), the key and the value are
-      // the same. Here we'll display the uid along with the username in the
-      // dropdown.
-      $matches[$verbline->verb] = check_plain($verbline->verb) . " (n° model=$verbline->nummodel, $verbline->label_conjugation))";
-    }
-  } // if
-
-  drupal_json_output($matches);
-}
-
-function conjoc_getRandomProvencalVerb(){
-    $results = db_query("SELECT * FROM `provencal_verbsmodel` ORDER BY RAND() LIMIT 1");
-    $line = $results->fetchObject();
-
-    return($line->verb);
-
-} // conjoc_getRandomProvencalVerb()
-
-
-/*
-  G A S C O N
-*/
-
-function ajax_gascon_verb_autocomplete($form, &$form_state) {
-//  drupal_set_message('ajax_gascon_verb_autocomplete');
-  $form['#tree'] = TRUE;
-  $action = (!empty($form_state['values']['action']))?$form_state['values']['action']:'';
-
-  $gasconManager = new ConjugationGasconManager();
-  $drupalHTMLConverter = new ConverterHTML();
-  $drupalLATEXConverter = new ConverterLATEX();
-//  print_r($form_state);
-  
-  $verb   = (!empty($form_state['values']['gasc_verb_search']['verb']))?$form_state['values']['gasc_verb_search']['verb']: $gasconManager->getRandomVerb();
-
-  $gasconManager->setVerb($verb);
-
-  $randomVerb = empty($form_state['values']['gasc_verb_search']['verb']);
-  /*
-    V E R B   S E A R C H
-  */
-  $form['gasc_verb_search'] = array(
-  '#type' => 'fieldset',
-  '#title' => t('Verb search'),
-  '#weight' => 1,
-  '#collapsible' => FALSE,
-  );
-
-  $form['gasc_verb_search']['verb'] = array(
-    '#weight' => 1,
-    '#type' => 'textfield',
-    '#default_value' => $verb,
-
-    '#title' => t('Choose a verb'),
-    // The autocomplete path is provided in hook_menu in ajax_example.module.
-    '#autocomplete_path' => 'conjoc/verb_autocomplete_gasc_callback',
-  );
-
-  $form['gasc_verb_search']['submit'] = array(
-    '#weight' => 2,
-    '#type' => 'submit',
-    '#value' => t('Submit'),
-  );
-
-  /*
-    U S U A L S   V E R B S
-  */
-
-  $form['gasc_verbs_usuals'] = array(
-  '#type' => 'fieldset',
-  '#title' => t('Usual verbs'),
-  '#weight' => 2,
-  '#collapsible' => TRUE,
-  '#collapsed' => TRUE,
-  );
-
-  $form['gasc_verbs_usuals']['info'] = array(
-    '#markup' => $drupalHTMLConverter->convertArray($gasconManager->getUsualVerbs()),
-    '#weight' => 1,
-  );
-
-  /*
-    T O P 2 0   V E R B S
-  */
-
-
-  $form['gasc_TOP20_verbs'] = array(
-  '#type' => 'fieldset',
-  '#title' => t('Top 20 verbs'),
-  '#weight' => 3,
-  '#collapsible' => TRUE,
-  '#collapsed' => TRUE,
-  );
-   
-  $form['gasc_TOP20_verbs']['selected'] = array(
-    '#type' => 'select',
-    '#title' => t('Selected'),
-    '#options' => $gasconManager->getTop20(),
-    //    '#default_value' => $category['TOP20_verbs']['selected'],
-    '#description' => t('To be done.'),
-  );  
-
-  $form['gasc_TOP20_verbs']['info'] = array(
-    //    '#markup' => '<div>'. conjugador_displayTop20($verb) .'</div>',
-  );
-
-  $form['gasc_TOP20_verbs']['submit'] = array(
-    '#weight' => 2,
-    '#type' => 'submit',
-    '#value' => t('Submit to be translated'),
-  );
-
-  /*
-    S I N G L E   V E R B S
-  */
-
-  $form['gasc_single_verbs'] = array(
-  '#type' => 'fieldset',
-  '#title' => t('Single verbs'),
-  '#weight' => 4,
-  '#collapsible' => TRUE,
-  '#collapsed' => TRUE,
-  );
-
-  $form['gasc_single_verbs']['info'] = array(
-  '#markup' => $drupalHTMLConverter->convertArray($gasconManager->getSingleVerbs()),
-  );
-
-  /*
-    O T H E R S   I N   M O D E L
-  */
-
-  $countOthers = 0;
-
-  if (isset($form_state['values']['gasc_verb_search']['verb']) 
-  && ($countOthers = $gasconManager->getCountOthersInModel($form_state['values']['gasc_verb_search']['verb'])) 
-  && $countOthers > 0 
-  && $countOthers <= variable_get("MAX_OTHERVERBS")){
-
-    $form['gasc_other_verbs_in_model'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Other verbs in model'),
-      '#weight' => 5,
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-    );
-
-    $form['gasc_other_verbs_in_model']['selected'] = array(
-      '#type' => 'select',
-      '#title' => t('Selected'),
-      '#options' => $gasconManager->getOthersInModel($verb),
-      //    '#default_value' => $category['other_verbs_in_model']['selected'],
-      '#description' => t('To be done.'),
-    );  
-
-    $form['gasc_other_verbs_in_model']['info'] = array(
-      //      '#markup' => '<div>'. conjugador_displayOthersInModel($verb) .'</div>',
-    );
-
-    $form['gasc_other_verbs_in_model']['submit'] = array(
-      '#weight' => 2,
-      '#type' => 'submit',
-      '#value' => t('Submit, to be changed'),
-    );
-
-  }
-
-  /*
-    V E R B   C O N J U G A T E D
-  */
-
-  $form['gasc_verb_conjugated'] = array(
-  '#type' => 'fieldset',
-  '#title' => ($randomVerb)?t('Random verb conjugated '):t('Verb conjugated'),
-  '#weight' => 7,
-  '#collapsible' => TRUE,
-  '#collapsed' => FALSE,
-  );
-
-  $conjugated = $gasconManager->conjugate();
-  $fileNameToDownload = $drupalLATEXConverter->convertConjugation($conjugated);
-
-  $form['gasc_verb_conjugated']['downloadPDF'] = array(
-    '#markup' => l(t("ficha en format PDF «" . $verb . "»" ) ,$fileNameToDownload) . '<img width="32px" src="/sites/default/files/img/logopdf.png"></img>',
-  );
-
-  $form['gasc_verb_conjugated']['conjugation'] = array(
-    '#markup' => '<div>'. $drupalHTMLConverter->convertConjugation($conjugated) .'</div>',
-  );
-  
-
-  return $form;
-} // ajax_gascon_verb_autocomplete 
-
-function ajax_gascon_verb_autocomplete_submit($form, &$form_state) {
-  $form_state['rebuild'] = TRUE;
-}
-
-/**
- *
- * @param string $string
- *   The string that will be searched.
- */
-function ajax_gascon_verb_autocomplete_callback($string = "") {
-  $gasconManager = new ConjugationGasconManager();
-  $gasconManager->getVerbAutoComplete($string);
 }
