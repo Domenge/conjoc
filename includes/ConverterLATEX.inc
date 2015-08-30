@@ -6,6 +6,7 @@ class ConverterLATEX implements IConverter{
   private $workPath = "";
   private $fullFileName = '';
   private $templateTEX = '';
+  const FILECACHING = FALSE;
 
   protected function getTokensArray(){
 
@@ -79,6 +80,9 @@ class ConverterLATEX implements IConverter{
 
   public function convertConjugation(array $conjugated){
 
+    $pwd = dirname(__FILE__);
+    $pwd = preg_replace('/(.*)includes/', '${1}cache', $pwd);
+
     $this->verbName = preg_replace('/ /', '_', $conjugated["name"]);
     $this->workPath = drupal_get_path('module', 'conjoc'). "/cache";
     $this->templateTEX = drupal_get_path('module', 'conjoc'). "/templates/conjugation.tex";
@@ -86,7 +90,7 @@ class ConverterLATEX implements IConverter{
 
     // do some caching 
     // if the file already exists, returns its name
-    if (file_exists("$this->fullFileName")){
+    if (ConverterLATEX::FILECACHING && file_exists("$this->fullFileName")){
       return "$this->fullFileName";
     }
 
@@ -94,6 +98,18 @@ class ConverterLATEX implements IConverter{
     $model        = $conjugated["model"];
     $dialect      = $conjugated["dialect"];
     $defModel     = $conjugated["libmodel"];
+
+    switch($dialect){
+	case 'lengadocian':
+	    $creditsDialect = 'Crédits -- auteur et linguiste : Patric Sauzet ; conception et réalisation : Domenge Château-Annaud ; correction : Florença Malcouyre';
+	    break;
+	case 'gascon':
+	    $creditsDialect = 'Crédits -- auteurs et linguistes : Andrieu Bianchi, Maurici Romieu ; conception et réalisation : Domenge Château-Annaud ; lexicographe : Florença Malcouyre';
+	    break;
+	case 'provencau':
+	    $creditsDialect = 'Crédits -- auteur et linguiste : Bernat Moulin ; conception et réalisation : Domenge Château-Annaud';
+	    break;
+    }	
 
     $tokensArray = $this->getTokensArray();
 
@@ -107,12 +123,15 @@ class ConverterLATEX implements IConverter{
     $tokensArray[]="s/Dialect/$dialect/";
     $tokensArray[]="s/Vèrb/$this->verbName/";
     $tokensArray[]="s/Modèl/Modèl \«$model\»/";
+    $tokensArray[]="s/CREDITS/$creditsDialect/";
 
     $pattern = '/\//';
     $replacement = '\/';
     $defModel = preg_replace($pattern, $replacement, $defModel);
+    $pwd      = preg_replace($pattern, $replacement, $pwd);
     	
     $tokensArray[]="s/DefMdl/$defModel/";
+    $tokensArray[]="s/PWD/$pwd/g";
     
     $out = "";
     
@@ -159,8 +178,7 @@ class ConverterLATEX implements IConverter{
     $str = exec($commandMOVE,$output,$return_var);
 
     // do some housekeeping
-//    $str = exec($commandREMOVE,$output,$return_var);
-
+    $str = exec($commandREMOVE,$output,$return_var);
 
   } // createPDF
 

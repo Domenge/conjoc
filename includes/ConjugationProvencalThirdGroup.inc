@@ -15,16 +15,16 @@ class ConjugationProvencalThirdGroup extends ConjugationBase{
   protected getStandardConjugation(){
     $arr = array();
     $arr['00'] =  "i,es,,em,etz,en";
-    $arr['01'] =  "Ëvi,Ëvas,Ëva,Ëvam,Ëvatz,Ëvan";
-    $arr['02'] =  "oi,Ûs,Û,om,otz,Ûn";
-    $arr['03'] =  "erËi,er‡s,er‡,eram,eratz,er‡n";
+    $arr['01'] =  "√®vi,√®vas,√®va,√®vam,√®vatz,√®van";
+    $arr['02'] =  "oi,√≥s,√≥,om,otz,√≥n";
+    $arr['03'] =  "er√®i,er√†s,er√†,eram,eratz,er√†n";
     $arr['04'] =  "";
     $arr['05'] =  "ent";
     $arr['06'] =  "ut,uda";
     $arr['07'] =  ",em,etz,ias,iam,iatz";
     $arr['08'] =  "i,ias,ia,iam,iatz,ian";
-    $arr['09'] =  "ossi,osses,osse,Ûssem,Ûssetz,ossen";
-    $arr['10'] =  "erÌ,erÈs,erÈ,erem,eretz,erÈn";
+    $arr['09'] =  "ossi,osses,osse,√≥ssem,√≥ssetz,ossen";
+    $arr['10'] =  "er√≠,er√©s,er√©,erem,eretz,er√©n";
     return $arr;
   } // getStandardConjugation
 

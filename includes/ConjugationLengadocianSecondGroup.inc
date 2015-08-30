@@ -8,45 +8,45 @@ class ConjugationLengadocianSecondGroup extends ConjugationBase{
   $model = $this->getVerbModel();
    
   if ($model == '230'){
-    $arr['00_IndPres|Present']                 =  "i,es,,èm,sètz,on";
-    $arr['01_IndImp|Imperfach']                =  "iái,iás,iá,iam,iatz,ián";
-    $arr['02_IndPret|Preterit']                =  "iguèri,iguères,iguèt,iguèrem,iguèretz,iguèron";
-    $arr['03_IndFutur|Futur']                  =  "irai,iràs,irà,irem,iretz,iràn";
+    $arr['00_IndPres|Present']                 =  "i,es,,Ã¨m,sÃ¨tz,on";
+    $arr['01_IndImp|Imperfach']                =  "iÃ¡i,iÃ¡s,iÃ¡,iam,iatz,iÃ¡n";
+    $arr['02_IndPret|Preterit']                =  "iguÃ¨ri,iguÃ¨res,iguÃ¨t,iguÃ¨rem,iguÃ¨retz,iguÃ¨ron";
+    $arr['03_IndFutur|Futur']                  =  "irai,irÃ s,irÃ ,irem,iretz,irÃ n";
     $arr['04_Infinitiu|Infinitiu']             =  "ir";
     $arr['05_Gerondiu|Gerondiu']               =  "issent";
     $arr['06_PartPassat|Participi passat']     =  "it,ida";
     $arr['07_Imperatiu|Imperatiu']             =  ",am,etz,iscas,iscam,iscatz";
     $arr['08_SubPres|Subjontiu present']       =  "a,as,a,am,atz,an";
-    $arr['09_SubImp|Subjontiu imperfach']      =  "iguèsse,iguèsses,iguèsse,iguèssem,iguèssetz,iguèsson";
-    $arr['10_Conditional|Conditional']         =  "iriái,iriás,iriá,iriam,iriatz,irián";
+    $arr['09_SubImp|Subjontiu imperfach']      =  "iguÃ¨sse,iguÃ¨sses,iguÃ¨sse,iguÃ¨ssem,iguÃ¨ssetz,iguÃ¨sson";
+    $arr['10_Conditional|Conditional']         =  "iriÃ¡i,iriÃ¡s,iriÃ¡,iriam,iriatz,iriÃ¡n";
   return $arr;
   }
   if ($model == '210' || $model == '211' || $model == '212' || $model == '213'){
-    $arr['00_IndPres|Present']                 =  "ïssi,ïsses,ís,ïssèm,ïssètz,ïsson";
-    $arr['01_IndImp|Imperfach']                =  "ïssiái,ïssiás,ïssiá,ïssiam,ïssiatz,ïssián";
-    $arr['02_IndPret|Preterit']                =  "ïguèri,ïguères,ïguèt,ïguèrem,ïguèretz,ïguèron";
-    $arr['03_IndFutur|Futur']                  =  "ïrai,ïràs,ïrà,ïrem,ïretz,ïràn";
-    $arr['04_Infinitiu|Infinitiu']             =  "ïr";
-    $arr['05_Gerondiu|Gerondiu']               =  "ïssent";
-    $arr['06_PartPassat|Participi passat']     =  "ït,ida";
-    $arr['07_Imperatiu|Imperatiu']             =  "ís,ïscam,ïssetz,ïscas,ïscam,ïscatz";
-    $arr['08_SubPres|Subjontiu present']       =  "ïsca,ïscas,ïsca,ïscam,ïscatz,ïscan";
-    $arr['09_SubImp|Subjontiu imperfach']      =  "ïguèsse,ïguèsses,ïguèsse,ïguèssem,ïguèssetz,ïguèsson";
-    $arr['10_Conditional|Conditional']         =  "ïriái,ïriás,ïriá,ïriam,ïriatz,ïrián";
+    $arr['00_IndPres|Present']                 =  "Ã¯ssi,Ã¯sses,Ã­s,Ã¯ssÃ¨m,Ã¯ssÃ¨tz,Ã¯sson";
+    $arr['01_IndImp|Imperfach']                =  "Ã¯ssiÃ¡i,Ã¯ssiÃ¡s,Ã¯ssiÃ¡,Ã¯ssiam,Ã¯ssiatz,Ã¯ssiÃ¡n";
+    $arr['02_IndPret|Preterit']                =  "Ã¯guÃ¨ri,Ã¯guÃ¨res,Ã¯guÃ¨t,Ã¯guÃ¨rem,Ã¯guÃ¨retz,Ã¯guÃ¨ron";
+    $arr['03_IndFutur|Futur']                  =  "Ã¯rai,Ã¯rÃ s,Ã¯rÃ ,Ã¯rem,Ã¯retz,Ã¯rÃ n";
+    $arr['04_Infinitiu|Infinitiu']             =  "Ã¯r";
+    $arr['05_Gerondiu|Gerondiu']               =  "Ã¯ssent";
+    $arr['06_PartPassat|Participi passat']     =  "Ã¯t,ida";
+    $arr['07_Imperatiu|Imperatiu']             =  "Ã­s,Ã¯scam,Ã¯ssetz,Ã¯scas,Ã¯scam,Ã¯scatz";
+    $arr['08_SubPres|Subjontiu present']       =  "Ã¯sca,Ã¯scas,Ã¯sca,Ã¯scam,Ã¯scatz,Ã¯scan";
+    $arr['09_SubImp|Subjontiu imperfach']      =  "Ã¯guÃ¨sse,Ã¯guÃ¨sses,Ã¯guÃ¨sse,Ã¯guÃ¨ssem,Ã¯guÃ¨ssetz,Ã¯guÃ¨sson";
+    $arr['10_Conditional|Conditional']         =  "Ã¯riÃ¡i,Ã¯riÃ¡s,Ã¯riÃ¡,Ã¯riam,Ã¯riatz,Ã¯riÃ¡n";
   return $arr;
   }
 
-  $arr['00_IndPres|Present']                 =  "issi,isses,ís,issèm,issètz,isson";
-  $arr['01_IndImp|Imperfach']                =  "issiái,issiás,issiá,issiam,issiatz,issián";
-  $arr['02_IndPret|Preterit']                =  "iguèri,iguères,iguèt,iguèrem,iguèretz,iguèron";
-  $arr['03_IndFutur|Futur']                  =  "irai,iràs,irà,irem,iretz,iràn";
+  $arr['00_IndPres|Present']                 =  "issi,isses,Ã­s,issÃ¨m,issÃ¨tz,isson";
+  $arr['01_IndImp|Imperfach']                =  "issiÃ¡i,issiÃ¡s,issiÃ¡,issiam,issiatz,issiÃ¡n";
+  $arr['02_IndPret|Preterit']                =  "iguÃ¨ri,iguÃ¨res,iguÃ¨t,iguÃ¨rem,iguÃ¨retz,iguÃ¨ron";
+  $arr['03_IndFutur|Futur']                  =  "irai,irÃ s,irÃ ,irem,iretz,irÃ n";
   $arr['04_Infinitiu|Infinitiu']             =  "ir";
   $arr['05_Gerondiu|Gerondiu']               =  "issent";
   $arr['06_PartPassat|Participi passat']     =  "it,ida";
-  $arr['07_Imperatiu|Imperatiu']             =  "ís,iscam,issetz,iscas,iscam,iscatz";
+  $arr['07_Imperatiu|Imperatiu']             =  "Ã­s,iscam,issetz,iscas,iscam,iscatz";
   $arr['08_SubPres|Subjontiu present']       =  "isca,iscas,isca,iscam,iscatz,iscan";
-  $arr['09_SubImp|Subjontiu imperfach']      =  "iguèsse,iguèsses,iguèsse,iguèssem,iguèssetz,iguèsson";
-  $arr['10_Conditional|Conditional']         =  "iriái,iriás,iriá,iriam,iriatz,irián";
+  $arr['09_SubImp|Subjontiu imperfach']      =  "iguÃ¨sse,iguÃ¨sses,iguÃ¨sse,iguÃ¨ssem,iguÃ¨ssetz,iguÃ¨sson";
+  $arr['10_Conditional|Conditional']         =  "iriÃ¡i,iriÃ¡s,iriÃ¡,iriam,iriatz,iriÃ¡n";
   return $arr;
   } // setStandardConjugation
 
@@ -84,9 +84,11 @@ class ConjugationLengadocianSecondGroup extends ConjugationBase{
     if (preg_match($pattern, $infinitive)){
       $rootSaved = preg_replace('/(.+) (\d{1}$)/', '$1', $infinitive);
     }else{
-      $rootSaved = substr($infinitive,0,-2);
+      $rootSaved = preg_replace('/(.+)([iÃ¯]r)/', '$1', $infinitive);
+      drupal_set_message($rootSaved);    
     }
-        
+
+
     $conjugations = array();
 
     // for each temps
@@ -98,7 +100,9 @@ class ConjugationLengadocianSecondGroup extends ConjugationBase{
       foreach ($desinences as $elmnt){
         $root = $this->fixRadical($rootSaved,$elmnt);
         $elmnt = $this->fixDesinence($elmnt);
-        $tempsConjugated[] = utf8_encode($root.$elmnt); 
+        $conj = $this->phonologicFixes($root.'-'.$elmnt);
+        $conj = preg_replace('/-/', '', $conj);
+        $tempsConjugated[] = $conj; 
       } // for desinences
       $conjugations[] = $tempsConjugated;
     } // foreach temps

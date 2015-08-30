@@ -5,17 +5,17 @@ class ConjugationLengadocianThirdGroup extends ConjugationBase{
 
   protected function getStandardConjugation(){
   $arr = array();
-  $arr['00'] =  "i,es,,Ëm,Ëtz,on";
-  $arr['01'] =  "i·i,i·s,i·,iam,iatz,i·n";
-  $arr['02'] =  "Ëri,Ëres,Ët,Ërem,Ëretz,Ëron";
-  $arr['03'] =  "rai,r‡s,r‡,rem,retz,r‡n";
+  $arr['00'] =  "i,es,,√®m,√®tz,on";
+  $arr['01'] =  "i√°i,i√°s,i√°,iam,iatz,i√°n";
+  $arr['02'] =  "√®ri,√®res,√®t,√®rem,√®retz,√®ron";
+  $arr['03'] =  "rai,r√†s,r√†,rem,retz,r√†n";
   $arr['04'] =  "";
   $arr['05'] =  "ent";
   $arr['06'] =  "ut,uda";
-  $arr['07'] =  ",am,Ëtz,as,am,atz";
+  $arr['07'] =  ",am,√®tz,as,am,atz";
   $arr['08'] =  "a,as,a,am,atz,an";
-  $arr['09'] =  "Ësse,Ësses,Ësse,Ëssem,Ëssetz,Ësson";
-  $arr['10'] =  "ri·i,ri·s,ri·,riam,riatz,ri·n";
+  $arr['09'] =  "√®sse,√®sses,√®sse,√®ssem,√®ssetz,√®sson";
+  $arr['10'] =  "ri√°i,ri√°s,ri√°,riam,riatz,ri√°n";
 
   return $arr;
   } // getStandardConjugation

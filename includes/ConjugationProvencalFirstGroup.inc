@@ -7,16 +7,16 @@ class ConjugationProvencalFirstGroup extends ConjugationBase{
 
     $arr = array();
     $arr[] = "i,as,a,am,atz,an";
-    $arr[] = "avi,avas,ava,àvam,àvatz,avan";
-    $arr[] = "èi,ès,è,èm,ètz,èn";
-    $arr[] = "arèi,aràs,arà,aram,aratz,aràn";
+    $arr[] = "avi,avas,ava,Ã vam,Ã vatz,avan";
+    $arr[] = "Ã¨i,Ã¨s,Ã¨,Ã¨m,Ã¨tz,Ã¨n";
+    $arr[] = "arÃ¨i,arÃ s,arÃ ,aram,aratz,arÃ n";
     $arr[] = "ar";
     $arr[] = "ant";
     $arr[] = "at,ada";
     $arr[] = "a,em,atz,es,em,etz";
     $arr[] = "i,es,e,em,etz,en";
-    $arr[] = "èssi,èsses,èsse,èssem,èssetz,èssen";
-    $arr[] = "arí,arés,aré,arem,aretz,arén";
+    $arr[] = "Ã¨ssi,Ã¨sses,Ã¨sse,Ã¨ssem,Ã¨ssetz,Ã¨ssen";
+    $arr[] = "arÃ­,arÃ©s,arÃ©,arem,aretz,arÃ©n";
     
     return $arr;
 
@@ -29,15 +29,15 @@ class ConjugationProvencalFirstGroup extends ConjugationBase{
   
     if(in_array($desinence,$desinences)){
       switch ($this->getModel()){
-        case '106 a' : $pattern = '/(.+?)a(.+?)$/'; $replacement = '${1}à${2}'; break;
-          //      case '106 b' : $pattern = '/(.+?)e(.+?)$/'; $replacement = '${1}é${2}'; break;
+        case '106 a' : $pattern = '/(.+?)a(.+?)$/'; $replacement = '${1}Ã ${2}'; break;
+          //      case '106 b' : $pattern = '/(.+?)e(.+?)$/'; $replacement = '${1}Ã©${2}'; break;
         //      case '106 c' :
-        case '106 d' : $pattern = '/(.+?)i(.+?)$/'; $replacement = '${1}í${2}'; break;
-        case '106 e' : $pattern = '/(.+?)u(.+?)$/'; $replacement = '${1}ú${2}'; break;
+        case '106 d' : $pattern = '/(.+?)i(.+?)$/'; $replacement = '${1}Ã­${2}'; break;
+        case '106 e' : $pattern = '/(.+?)u(.+?)$/'; $replacement = '${1}Ãº${2}'; break;
         case '107 b' : 
           if (in_array($desinence,array('e','es','en'))){
             //drupal_set_message("$desinence"); 
-            $pattern = '/(.*?)e(.+?)$/'; $replacement = '${1}è${2}';}
+            $pattern = '/(.*?)e(.+?)$/'; $replacement = '${1}Ã¨${2}';}
           else{
             $pattern = '//'; $replacement = '';}
           break;
@@ -47,7 +47,7 @@ class ConjugationProvencalFirstGroup extends ConjugationBase{
         case '113'   :
         case '114'   :
         case '115'   :
-          $pattern = '/(.+)e(.+?)$/'; $replacement = '${1}è${2}'; break;
+          $pattern = '/(.+)e(.+?)$/'; $replacement = '${1}Ã¨${2}'; break;
         case '120'   :
         case '121'   :
         case '122'   :
@@ -58,19 +58,19 @@ class ConjugationProvencalFirstGroup extends ConjugationBase{
         case '126 b' :
         case '150'   :
         case '154'   :
-          $pattern = '/(.+)o(.+?)$/'; $replacement = '${1}ò${2}'; break;
+          $pattern = '/(.+)o(.+?)$/'; $replacement = '${1}Ã²${2}'; break;
         case '156'   :
-          $pattern = '/(.*)o(.+?)$/'; $replacement = '${1}ò${2}'; break;
+          $pattern = '/(.*)o(.+?)$/'; $replacement = '${1}Ã²${2}'; break;
         case '130'   :
-          $pattern = '/(.+)e(.+?)$/'; $replacement = '${1}iè${2}'; break;
+          $pattern = '/(.+)e(.+?)$/'; $replacement = '${1}iÃ¨${2}'; break;
         case '140'   :
         case '143'   :
-          $pattern = '/(.+)o(.+?)$/'; $replacement = '${1}uè${2}'; break;
+          $pattern = '/(.+)o(.+?)$/'; $replacement = '${1}uÃ¨${2}'; break;
         case '160'   :
           $pattern = '/(.+)u(.+?)$/'; $replacement = '${1}uo${2}'; break;
         case '170'   :
         case '173'   :
-          $pattern = '/(.+)u(.+?)$/'; $replacement = '${1}uè${2}'; break;
+          $pattern = '/(.+)u(.+?)$/'; $replacement = '${1}uÃ¨${2}'; break;
         default :
           return $radical;
     }
@@ -90,9 +90,9 @@ class ConjugationProvencalFirstGroup extends ConjugationBase{
           $desinence = ($desinence=='i' ? 'au':$desinence); break;
         case '107 b' :   // Attention estar,  estid becomes estau
           $desinence = ($desinence=='i' ? 'au':$desinence);
-          $desinence = ($desinence=='as' ? 'às':$desinence);
-          $desinence = ($desinence=='a' ? 'à':$desinence);
-          $desinence = ($desinence=='an' ? 'àn':$desinence);
+          $desinence = ($desinence=='as' ? 'Ã s':$desinence);
+          $desinence = ($desinence=='a' ? 'Ã ':$desinence);
+          $desinence = ($desinence=='an' ? 'Ã n':$desinence);
       }
     }        
     return $desinence;
@@ -121,7 +121,9 @@ class ConjugationProvencalFirstGroup extends ConjugationBase{
       foreach ($desinences as $elmnt){
         $root = $this->fixRadical($rootSaved,$elmnt);
         $elmnt = $this->fixDesinence($elmnt);
-        $tempsConjugated[] = utf8_encode($root.$elmnt); 
+        $conj = $this->phonologicFixes($root.'-'.$elmnt);
+        $conj = preg_replace('/-/', '', $conj);
+        $tempsConjugated[] = $conj; 
       } // for desinences
       $conjugations[] = $tempsConjugated;
     } // foreach temps

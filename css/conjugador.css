@@ -15,10 +15,10 @@
 .indicative,.impersonal_forms,.subjunctive,.imperative,.conditional
 {
     padding:10px;
-    border:1px dotted gray;
+    border:2px solid #8AC007;
     margin:10px;
-    max-width:40%;
     background-color:#FCFCFC;
+    border-radius: 25px;
 }
 
 .label_conjugation{
@@ -40,6 +40,7 @@
     position:relative;
     left: 300px;
     top :-445px; 
+    border-radius: 25px;
 }
 */
 
@@ -74,7 +75,7 @@
 }
 
 .see_also{
-    float:rigth;
+    float:right;
     padding:10px;
     border:1px solid gray;
     margin:10px;
@@ -102,7 +103,7 @@
     border:1px solid gray;
     margin:10px;
     max-width:50%;
-    background-color:#FCFCFC;
+    background-color:lavender;
     font-size:0.875em;
 }
 */
@@ -114,8 +115,18 @@
 .label_verb{
     font-weight:bold;
     font-size:1.25em;
+/*
+    border-radius: 25px;
+    background: #F0FFF0;
+    padding: 5px;
+    width: 200px;
+    height: 75px;    
+*/
 }
 
+.persons{
+    background: #F0FFF0;
+}
 .label_notes{
     clear:both;
     font-weight:bold;
@@ -126,17 +137,20 @@
 }
 
 .subjunctive{
+    clear:both;
     float:left;
 }
 
 .conditional{
     float:left;
 }
+
 .imperative{
     float:left;
 }
 
 .impersonal_forms{
+    clear:both;
     float:left;
 }
 

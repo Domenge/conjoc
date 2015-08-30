@@ -122,6 +122,15 @@ T O  B E  D O N E
     return $arrRet;
   } // getSingleVerbs()
 
+  public function getVerbFAR($verb){
+  // returns the prefix of the verb build on semiauxiliary FAR
+    $results = db_query("SELECT SUBSTR( verb, 1, position( 'far' IN verb ) -1 ) as verbtrimmed FROM {".
+    $this->getBaseTableName() 
+    . "_verbsmodel} where verb = :verb", array(':verb'=>$verb));
+    $line = $results->fetchObject();
+    return $line->verbtrimmed;  
+  }
+  
   public function getAllDuplicatedVerbs(){
 
     $results = db_query("SELECT DISTINCT left(verb,locate(' ', verb)) as element FROM  {". 

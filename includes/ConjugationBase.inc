@@ -51,6 +51,7 @@ abstract class ConjugationBase implements iDisplayable{
     "libmodel": "Modèl : conjugason 1 alternança ò/o",
     "dialect": "lengadocian",
     "comments": "",
+    "see_also": "",
     "conjugations": [
         "pòrti,pòrtas,pòrta,portam,portatz,pòrtan",
         "portavi,portavas,portava,portavam,portavatz,pòrtavan",
@@ -233,6 +234,7 @@ abstract class ConjugationBase implements iDisplayable{
     $arr["name"]             = $this->getVerb();
     $arr["infinitive"]       = $conjugations[ConjugationBase::INFINITIVE];
     $arr["model"]            = $this->getVerbModel();
+    $arr["see_also"]         = $this->getSeeAlso();
     $arr["comments"]         = $this->getComments();
     $arr["libmodel"]         = $this->getLibModel();
     $arr["dialect"]          = $this->getDialect();
@@ -243,6 +245,22 @@ abstract class ConjugationBase implements iDisplayable{
   
     return $arr;
   }
+
+  protected function fixRadical($radical, $desinence){
+    return $radical;
+  } // fixRadical
+
+  protected function fixDesinence($desinence){
+    return $desinence;
+  } // fixDesinence
+
+  protected function getDesinenceLengthArray(){
+    return array();
+  } // fixDesinence
+
+  protected function getStandardConjugation(){
+    return array();
+  } // getStandardConjugation
 
 
   public function getGroup(){return $this->_manager->getGroup();}
@@ -256,12 +274,10 @@ abstract class ConjugationBase implements iDisplayable{
   public function getAlias(){return $this->_manager->getAlias();}
   public function getSeeAlso(){return $this->_manager->getSeeAlso();}
   public function getDialect(){return $this->_manager->getDialect();}
+  public function getConjugations(){return $this->_manager->getConjugations();}
 
   abstract public function display();
-  abstract protected function getStandardConjugation();
   abstract protected function getConjugationArray();
-  abstract protected function fixRadical($radical,$desinence);
-  abstract protected function fixDesinence($desinence);
 } // class ConjugationBase
 
 ?>

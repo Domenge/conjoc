@@ -23,7 +23,7 @@
 
 /*
 TEI
-
+*/
 function tei_export_lengadocian_all($form, &$form_state) {
   $form['#tree'] = TRUE;
 
@@ -45,10 +45,11 @@ function tei_export_lengadocian_all($form, &$form_state) {
   return $form;
 } // tei_export_lengadocian_all
 
-*/ 
+ 
 
 /*
 Indexation
+*/
 
 function indexation_lengadocian_all($form, &$form_state) {
   $form['#tree'] = TRUE;
@@ -70,7 +71,7 @@ function indexation_lengadocian_all($form, &$form_state) {
   return $form;
 } // indexation_lengadocian_all
 
-*/ 
+
 
 /*
   L E N G A D O C I A N
@@ -81,27 +82,29 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
   $form['#tree'] = TRUE;
   $action = (!empty($form_state['values']['action']))?$form_state['values']['action']:'';
 
-  $lengadocianManager = new ConjugationLengadocianManager();
-  $drupalHTMLConverter = new ConverterHTML();
+  $lengadocianManager   = new ConjugationLengadocianManager();
+  $drupalHTMLConverter  = new ConverterHTML();
   $drupalLATEXConverter = new ConverterLATEX();
-//  print_r($form_state);
   
-  $verb   = (!empty($form_state['values']['leng_verb_search']['verb']))?$form_state['values']['leng_verb_search']['verb']: $lengadocianManager->getRandomVerb();
+  /*
+  Array ( [build_info] => Array ( [args] => Array ( ) [form_id] => ajax_lengadocian_verb_autocomplete [files] => Array ( [menu] => sites/default/modules/conjoc/conjoc_lengadocian_webForm.inc ) ) [rebuild] => [rebuild_info] => Array ( ) [redirect] => [temporary] => Array ( ) [submitted] => [executed] => [programmed] => [programmed_bypass_access_check] => 1 [cache] => [method] => post [groups] => Array ( ) [buttons] => Array ( ) [input] => Array ( ) ) 
+  */
+  $verb   = (!empty($form_state['values']['verb_search']['verb']))?$form_state['values']['verb_search']['verb']: $lengadocianManager->getRandomVerb();
 
   $lengadocianManager->setVerb($verb);
 
-  $randomVerb = empty($form_state['values']['leng_verb_search']['verb']);
+  $randomVerb = empty($form_state['values']['verb_search']['verb']);
   /*
     V E R B   S E A R C H
   */
-  $form['leng_verb_search'] = array(
+  $form['verb_search'] = array(
   '#type' => 'fieldset',
   '#title' => t('Verb search'),
   '#weight' => 1,
   '#collapsible' => FALSE,
   );
 
-  $form['leng_verb_search']['verb'] = array(
+  $form['verb_search']['verb'] = array(
     '#weight' => 1,
     '#type' => 'textfield',
     '#default_value' => $verb,
@@ -111,17 +114,18 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
     '#autocomplete_path' => 'conjoc/verb_autocomplete_lengadocian_callback',
   );
 
-  $form['leng_verb_search']['submit'] = array(
+  $form['verb_search']['submit'] = array(
     '#weight' => 2,
     '#type' => 'submit',
     '#value' => t('Submit'),
+    '#submit' => array('ajax_lengadocian_verb_autocomplete_submit'),
   );
 
   /*
     U S U A L S   V E R B S
   */
 
-  $form['leng_verbs_usuals'] = array(
+  $form['verbs_usuals'] = array(
   '#type' => 'fieldset',
   '#title' => t('Usual verbs'),
   '#weight' => 2,
@@ -129,7 +133,7 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
   '#collapsed' => TRUE,
   );
 
-  $form['leng_verbs_usuals']['info'] = array(
+  $form['verbs_usuals']['info'] = array(
     '#markup' => $drupalHTMLConverter->convertArray($lengadocianManager->getUsualVerbs()),
     '#weight' => 1,
   );
@@ -139,7 +143,7 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
   */
 
 
-  $form['leng_TOP20_verbs'] = array(
+  $form['TOP20_verbs'] = array(
   '#type' => 'fieldset',
   '#title' => t('Top 20 verbs'),
   '#weight' => 3,
@@ -147,7 +151,7 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
   '#collapsed' => TRUE,
   );
    
-  $form['leng_TOP20_verbs']['selected'] = array(
+  $form['TOP20_verbs']['selected'] = array(
     '#type' => 'select',
     '#title' => t('Selected'),
     '#options' => $lengadocianManager->getTop20(),
@@ -155,21 +159,21 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
     '#description' => t('To be done.'),
   );  
 
-  $form['leng_TOP20_verbs']['info'] = array(
+  $form['TOP20_verbs']['info'] = array(
     //    '#markup' => '<div>'. conjugador_displayTop20($verb) .'</div>',
   );
 
-  $form['leng_TOP20_verbs']['submit'] = array(
+  $form['TOP20_verbs']['submit'] = array(
     '#weight' => 2,
     '#type' => 'submit',
-    '#value' => t('Submit to be translated'),
+    '#value' => t('Submit to be translated'),    
   );
 
   /*
     S I N G L E   V E R B S
   */
 
-  $form['leng_single_verbs'] = array(
+  $form['single_verbs'] = array(
   '#type' => 'fieldset',
   '#title' => t('Single verbs'),
   '#weight' => 4,
@@ -177,7 +181,7 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
   '#collapsed' => TRUE,
   );
 
-  $form['leng_single_verbs']['info'] = array(
+  $form['single_verbs']['info'] = array(
   '#markup' => $drupalHTMLConverter->convertArray($lengadocianManager->getSingleVerbs()),
   );
 
@@ -187,12 +191,12 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
 
   $countOthers = 0;
 
-  if (isset($form_state['values']['leng_verb_search']['verb']) 
-  && ($countOthers = $lengadocianManager->getCountOthersInModel($form_state['values']['leng_verb_search']['verb'])) 
+  if (isset($form_state['values']['verb_search']['verb']) 
+  && ($countOthers = $lengadocianManager->getCountOthersInModel($form_state['values']['verb_search']['verb'])) 
   && $countOthers > 0 
   && $countOthers <= variable_get("MAX_OTHERVERBS")){
 
-    $form['leng_other_verbs_in_model'] = array(
+    $form['other_verbs_in_model'] = array(
       '#type' => 'fieldset',
       '#title' => t('Other verbs in model'),
       '#weight' => 5,
@@ -200,7 +204,7 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
       '#collapsed' => TRUE,
     );
 
-    $form['leng_other_verbs_in_model']['selected'] = array(
+    $form['other_verbs_in_model']['selected'] = array(
       '#type' => 'select',
       '#title' => t('Selected'),
       '#options' => $lengadocianManager->getOthersInModel($verb),
@@ -208,11 +212,11 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
       '#description' => t('To be done.'),
     );  
 
-    $form['leng_other_verbs_in_model']['info'] = array(
+    $form['other_verbs_in_model']['info'] = array(
       //      '#markup' => '<div>'. conjugador_displayOthersInModel($verb) .'</div>',
     );
 
-    $form['leng_other_verbs_in_model']['submit'] = array(
+    $form['other_verbs_in_model']['submit'] = array(
       '#weight' => 2,
       '#type' => 'submit',
       '#value' => t('Submit, to be changed'),
@@ -224,7 +228,7 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
     V E R B   C O N J U G A T E D
   */
 
-  $form['leng_verb_conjugated'] = array(
+  $form['verb_conjugated'] = array(
   '#type' => 'fieldset',
   '#title' => ($randomVerb)?t('Random verb conjugated '):t('Verb conjugated'),
   '#weight' => 7,
@@ -235,7 +239,21 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
   $conjugated = $lengadocianManager->conjugate();
   $fileNameToDownload = $drupalLATEXConverter->convertConjugation($conjugated);
 
-  $form['leng_verb_conjugated']['downloadPDF'] = array(
+
+
+  $form['verb_conjugated']['conjugation'] = array(
+    '#markup' => '<div>'. $drupalHTMLConverter->convertConjugation($conjugated) .'</div>',
+  );
+  
+  $form['exportation'] = array(
+  '#type' => 'fieldset',
+  '#title' => t('Exportation of the verb conjugation'),
+  '#weight' => 4,
+  '#collapsible' => TRUE,
+  '#collapsed' => TRUE,
+  );
+
+  $form['exportation']['downloadPDF'] = array(
     '#markup' => l( 
     t("ficha en format PDF «" . $verb . "»" . '<img width="32px" src="/sites/default/files/img/logopdf.png"></img>'), 
     $fileNameToDownload, 
@@ -247,10 +265,20 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
     ),
   );
 
-  $form['leng_verb_conjugated']['conjugation'] = array(
-    '#markup' => '<div>'. $drupalHTMLConverter->convertConjugation($conjugated) .'</div>',
+  $form['exportation']['conjugation'] = array(
+	'#type' => 'hidden',
+    	'#name' => 'TEI conjugations',
+	'#value' => $conjugated,
   );
-  
+
+  $form['exportation']['submit_TEI'] = array(
+	'#type' => 'image_button',
+    	'#name' => 'TEI card',
+    	'#value' => 'TEI card',
+    	'#src' => '/sites/default/files/img/logoxml.png',    	 
+        '#description' => t('The conjugation in Text Encoding Initiative (TEI).'),
+        '#submit' => array('lengadocian_TEI_submit'),
+  );
 
   return $form;
 } // ajax_lengadocian_verb_autocomplete 
@@ -267,4 +295,39 @@ function ajax_lengadocian_verb_autocomplete_submit($form, &$form_state) {
 function ajax_lengadocian_verb_autocomplete_callback($string = "") {
   $lengadocianManager = new ConjugationlengadocianManager();
   $lengadocianManager->getVerbAutoComplete($string);
+}
+
+function lengadocian_TEI_submit($form, &$form_state){
+
+  $drupalTEIConverter = new ConverterTEI();
+  $conjugated = $form_state['values']['exportation']['conjugation']; 
+  $drupalTEIConverter->convertConjugation($conjugated);  
+
+} // lengadocian_TEI_submit
+
+/**
+ * Page callback for use with most of the menu entries.
+ *
+ * The arguments it receives determine what it outputs.
+ *
+ * @param string $content
+ *   The base content to output.
+ * @param string $arg1
+ *   First additional argument from the path used to access the menu
+ * @param string $arg2
+ *   Second additional argument.
+ */
+function _lengadocian_menu_page($content = NULL, $arg1 = NULL, $arg2 = NULL) {
+
+  if (!empty($content)) {
+    $form_state = array();
+
+    $args = func_get_args();
+    $form_state['build_info']['args'] = $args;
+    $form_state['values']['verb_search']['verb'] = $content;
+    $form_state['values']['action'] = 'force';
+    return drupal_build_form('ajax_lengadocian_verb_autocomplete', $form_state);
+  }
+
+  return drupal_set_message(t('Conjoc content is void.'), 'error');
 }

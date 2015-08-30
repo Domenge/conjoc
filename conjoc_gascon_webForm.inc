@@ -50,7 +50,8 @@ function ajax_gascon_verb_autocomplete($form, &$form_state) {
   $form['gasc_verb_search']['submit'] = array(
     '#weight' => 2,
     '#type' => 'submit',
-    '#value' => t('Submit'),
+    '#value' => t('Vai querre'),
+    '#submit' => array('ajax_gascon_verb_autocomplete_submit'),    
   );
 
   /*
@@ -169,13 +170,26 @@ function ajax_gascon_verb_autocomplete($form, &$form_state) {
   );
 
   $conjugated = $gasconManager->conjugate();
+
+  $form['gasc_verb_conjugated']['conjugation'] = array(  
+    '#markup' => '<div>'. $drupalHTMLConverter->convertConjugation($conjugated) .'</div>',
+  );
+  
+  $form['exportation'] = array(
+  '#type' => 'fieldset',
+  '#title' => t('Exportation'),
+  '#weight' => 6,
+  '#collapsible' => TRUE,
+  '#collapsed' => TRUE,
+  );
+
   $fileNamePDFToDownload = $drupalLATEXConverter->convertConjugation($conjugated);
 
-  $form['gasc_verb_conjugated']['downloadPDF'] = array(
+  $form['exportation']['downloadPDF'] = array(
     '#markup' => l(t("ficha en format PDF «" . $verb . "»" ) ,$fileNamePDFToDownload) . '<img width="32px" src="/sites/default/files/img/logopdf.png"></img>',
   );
 
-  $form['gasc_verb_conjugated']['downloadTEI'] = array(
+  $form['exportation']['downloadTEI'] = array(
 	'#type' => 'image_button',
     	'#name' => 'TEI card',
     	'#value' => 'TEI card',
@@ -185,17 +199,11 @@ function ajax_gascon_verb_autocomplete($form, &$form_state) {
   );
 
 
-  $form['gasc_verb_conjugated']['downloadTEI']['conjugation'] = array(
+  $form['exportation']['downloadTEI']['conjugation'] = array(
 	'#type' => 'hidden',
     	'#name' => 'TEI conjugations',
 	'#value' => $conjugated,
   );
-
-
-  $form['gasc_verb_conjugated']['conjugation'] = array(  
-    '#markup' => '<div>'. $drupalHTMLConverter->convertConjugation($conjugated) .'</div>',
-  );
-  
 
   return $form;
 } // ajax_gascon_verb_autocomplete 
@@ -209,7 +217,7 @@ function ajax_gascon_verb_autocomplete_submit($form, &$form_state) {
 function gascon_TEI_submit($form, &$form_state){
 
   $drupalTEIConverter = new ConverterTEI();
-  $conjugated = $form_state['values']['gasc_verb_conjugated']['downloadTEI']['conjugation']; 
+  $conjugated = $form_state['values']['exportation']['downloadTEI']['conjugation']; 
   $drupalTEIConverter->convertConjugation($conjugated);  
 
 } // gascon_TEI_submit

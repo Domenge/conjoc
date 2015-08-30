@@ -40,7 +40,9 @@ class ConjugationLengadocianManager extends ConjugationManagerBase{
      return $arrRet;
   } // getUsuals 
 
-	
+  public function getVerbFAR($verb){
+  	return $this->getProvider()->getVerbFAR($verb);
+  }	
 } // class ConjugationLengadocianManager
 
 ?>

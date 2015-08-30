@@ -61,116 +61,86 @@ class ConverterHTML implements IConverter{
       		break; 
       } // switch
     } // for
-    return $this->formatConjugation($ModesArray);
+
+    $o = "";
+    
+    drupal_add_css(drupal_get_path('module', 'conjoc') . '/css/conjugador.css');
+    
+    // SEE ALSO
+    $see = $conjugated["see_also"];
+    $libmodel = $conjugated["libmodel"];
+    $model = $conjugated["model"];
+    $dialect = $conjugated["dialect"];
+    
+    $o .= '<div class="verb">';
+    if ($see){
+      $o .= t("remandament") . ' <span class="see_also">' . l("$see", "$dialect/verb_autocomplete/better_see/$see") . "</span><br><br>";
+    }else{
+      $o .= "<span class=\"label_verb\">$model</span> <span class=\"label_verb\">$libmodel</span>";
+    }
+
+    $o .= '</div>';
+    
+    $o .= $this->formatConjugation($ModesArray);
+    return $o; 
   } // convertConjugation
-
-/*
-      switch($i){
-        case  ConjugationBase::INFINITIVE:
-          $o = "$conjugation[0]<br>\n";
-          break;
-                
-        case  ConjugationBase::GERUND:
-           $o = "en $conjugation[0]<br>\n";
-         break;
-
-        case  ConjugationBase::IMPERATIVE:
-          for($j=0;$j<3;$j++){
-            $o .= "$conjugation[$j] !<br>\n";
-          }
-          for($j=0;$j<3;$j++){
-            $p = $j + 3;
-            $o .= "$conjugation[$p] pas !<br>\n";
-          }
-         break;
-                
-        case  ConjugationBase::PAST_PARTICIPLE:
-          $o = "$conjugation[0]<br>\n";
-          $o .= "$conjugation[1]<br>\n";
-          break;
-        default:
-          for($j=0;$j<6;$j++){
-            $o .= "$conjugation[$j]<br>\n";
-          }
-          
-      }
-      $out .= "<br><br><b>$tempses[$i]</b><br>";
-      $out .= $o; 
-    } // foreach
-    return $out;
-  */  
   
   private function formatConjugation($ConjugationArray){
-    $out = "";
+  /*
+    HTML and CSS code
+  */ 
+    $out = '';
     
-    
-    // Indicatiu
+    // INDICATIVE
     $ary = $ConjugationArray['Indicatiu'];
     $persons = $this->getPersonsArray();
     $tempses = array("present","imperfach","preterit","futur");
-    $out .= "<table><tbody>";
-    $out .= "<tr><th>Indicatiu</th></tr><tr>";
+    $out .= '<div class="indicative"><table><tbody>';
+    $out .= "<tr><th colspan='5'>Indicatiu</th></tr>";
     $j = 0;
-    $present = $ary[0];
+    $present   = $ary[0];
     $imperfect = $ary[1];
-    $preterit = $ary[2];
-    $future   = $ary[3];
+    $preterit  = $ary[2];
+    $future    = $ary[3];
       
-    $out .= "<table size=\"25%\"><tbody>";
     $out .= "<tr><th></th><th>Present</th><th>Imperfach</th><th>Preterit</th><th>Futur</th></tr>";
 	
     for($i=0;$i<6;$i++){
       $out .= "<tr><td><i>$persons[$i]</i></td><td>$present[$i]</td><td>$imperfect[$i]</td><td>$preterit[$i]</td><td>$future[$i]</td></tr>";
     }
 
-    $out .= "</tbody></table>";
+    $out .= "</tbody></table></div>";
    
-
-    // CONDITIONAL
-    $ary = $ConjugationArray['Conditional'];   
-    $out .= "<table><tbody>";
-    $out .= "<tr><th>Conditional</th></tr><tr>";    
-    $out .= "<table size=\"25%\"><tbody>";
-    $out .= '<tr><th></th><th>Present</th></tr>';
-    $conditional = $ary[0];
-    
-    for($j=0;$j<6;$j++){
-      $out .= "<tr><td><i>$persons[$j]</i></td><td>$conditional[$j]</td></tr>";
-    }
-    
-    $out .= "</tbody></table>";
-    
-    // Formas impersonalas
+    // IMPERSONAL FORMS
     $ary = $ConjugationArray['Formas impersonalas'];   
-    $out .= "<table><tbody>";
+    $out .= '<div class="impersonal_forms"><table><tbody>';
     $out .= "<tr><th>Formas impersonalas</th></tr><tr>";
     
-    $out .= "<table size=\"25%\"><tbody>";
+    $out .= "<table><tbody>";
     $out .= '<tr><th>Infinitiu</th></tr>';
     $infinitive = $ary[0];
     $out .= "<tr><td>$infinitive[0]</td></tr>";
     $out .= "</tbody></table>";
 
-    $out .= "<table size=\"25%\"><tbody>";
+    $out .= "<table><tbody>";
     $out .= '<tr><th>Participi passat</th></tr>';
     $past_particle = $ary[2];
     $out .= "<tr><td>$past_particle[0]</td></tr>";
     $out .= "</tbody></table>";
 
-    $out .= "<table size=\"25%\"><tbody>";
+    $out .= "<table><tbody>";
     $out .= '<tr><th>Gerondiu</th></tr>';
     $gerund = $ary[1];
     $out .= "<tr><td>en $gerund[0]</td></tr>";
     $out .= "</tbody></table>";
 
-    $out .= "</tbody></table>";
+    $out .= "</tbody></table></div>";
   
     // IMPERATIVE
     $ary = $ConjugationArray['Imperatiu'];   
-    $out .= "<table><tbody>";
-    $out .= "<tr><th>Imperatiu</th></tr><tr>";
+    $out .= '<div class="imperative"><table><tbody>';
+    $out .= "<tr><th colspan='2'>Imperatiu</th></tr><tr>";
     
-    $out .= "<table size=\"25%\"><tbody>";
     $out .= '<tr><th>forma positiva</th><th>forma negativa</th></tr>';
     $imperative = $ary[0];
     
@@ -179,13 +149,12 @@ class ConverterHTML implements IConverter{
       $out .= "<tr><td>$imperative[$j] !</td><td>$imperative[$p] pas !</td></tr>";
     }
     
-    $out .= "</tbody></table>";
+    $out .= "</tbody></table></div>";
     
     // SUBJUNCTIVE
     $ary = $ConjugationArray['Subjontiu'];   
-    $out .= "<table><tbody>";
-    $out .= "<tr><th>Subjontiu</th></tr><tr>";    
-    $out .= "<table size=\"25%\"><tbody>";
+    $out .= '<div class="subjunctive"><table><tbody>';
+    $out .= "<tr><th colspan='3'>Subjontiu</th></tr><tr>";    
     $out .= '<tr><th></th><th>Present</th><th>Passat</th></tr>';
     $subjunctive_present = $ary[0];
     $subjunctive_past    = $ary[1];
@@ -194,8 +163,22 @@ class ConverterHTML implements IConverter{
       $out .= "<tr><td><i>$persons[$j]</i></td><td>$subjunctive_present[$j]</td><td>$subjunctive_past[$j]</td></tr>";
     }
     
-    $out .= "</tbody></table>";
+    $out .= "</tbody></table></div>";
 
+
+    // CONDITIONAL
+    $ary = $ConjugationArray['Conditional'];   
+    $out .= '<div class="conditional"><table><tbody>';
+    $out .= "<tr><th  colspan='23'>Conditional</th></tr><tr>";    
+    $out .= '<tr><th></th><th>Present</th></tr>';
+    $conditional = $ary[0];
+    
+    for($j=0;$j<6;$j++){
+      $out .= "<tr><td><i>$persons[$j]</i></td><td>$conditional[$j]</td></tr>";
+    }
+    
+    $out .= "</tbody></table></div>";
+    
     return $out;  
   } // formatConjugation
 

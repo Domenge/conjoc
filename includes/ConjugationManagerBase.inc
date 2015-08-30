@@ -9,6 +9,7 @@ abstract class ConjugationManagerBase{
   private $_verbPrime;
   private $_verb;
   private $_model;
+  private $_conjugations;
   private $_group;
   private $_seeAlso;
   private $_alias;
@@ -77,6 +78,7 @@ abstract class ConjugationManagerBase{
     $this->_comments  = 'not yet implemented';
     $this->_libModel  = empty($modelObj->label_conjugation)?"":$modelObj->label_conjugation;
     $this->_verbPrime = empty($modelObj->verb_prime)?"":$modelObj->verb_prime;
+    $this->_conjugations = $modelObj->conjugations;
   }
 
   private function setVerbModel($model){
@@ -116,6 +118,14 @@ abstract class ConjugationManagerBase{
 
   public function getLocalization(){
     return 'C';
+  }
+
+  public function getConjugations(){
+    return $this->_conjugations;
+  }
+
+  public function getProvider(){
+    return $this->_dataProvider;
   }
 
   public function getTop20(){
@@ -165,6 +175,7 @@ Array (
 [name] => abajanir 
 [infinitive] => Array ( [0] => abajanir ) 
 [model] => 200 
+[see_also] => 200 
 [comments] => not yet implemented 
 [libmodel] => conjugason 2 radical consonantic 
 [dialect] => lengadocian 
@@ -225,20 +236,6 @@ Array (
 	for($i=ConjugationBase::IND_PRESENT; $i < ConjugationBase::LAST_NORMAL_TEMPS + 1; $i++){
 
       	   $conjugation = $conjugations[$i];
-      	   print_r($conjugation);
-/*      	   
-Array ( [0] => abati [1] => abates [2] => abat [3] => abatem [4] => abatetz [5] => abaten ) 
-Array ( [0] => abat�vi [1] => abat�vas [2] => abat�va [3] => abat�vam [4] => abat�vatz [5] => abat�van ) 
-Array ( [0] => abatoi [1] => abat�s [2] => abat� [3] => abatom [4] => abatotz [5] => abat�n ) 
-Array ( [0] => abater�i [1] => abater�s [2] => abater� [3] => abateram [4] => abateratz [5] => abater�n ) 
-Array ( [0] => abat ) 
-Array ( [0] => abatent ) 
-Array ( [0] => abatut [1] => abatuda ) 
-Array ( [0] => abat [1] => abatem [2] => abatetz [3] => abatias [4] => abatiam [5] => abatiatz ) 
-Array ( [0] => abati [1] => abatias [2] => abatia [3] => abatiam [4] => abatiatz [5] => abatian ) 
-Array ( [0] => abatossi [1] => abatosses [2] => abatosse [3] => abat�ssem [4] => abat�ssetz [5] => abatossen ) 
-Array ( [0] => abater� [1] => abater�s [2] => abater� [3] => abaterem [4] => abateretz [5] => abater�n ) 
-*/
 	   switch($i){
 	     case ConjugationBase::IND_PRESENT : 
 	     case ConjugationBase::IND_IMPERFECT : 
