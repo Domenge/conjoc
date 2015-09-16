@@ -2,9 +2,6 @@
 
 class ConverterIndexation implements IConverter{
 
-  public function __construct(){
-  } // __construct
-
   // EAGLES Morphosyntactic Annotation # 4.2.2 
   public function encodePOS($ary){
 /*
@@ -46,7 +43,7 @@ $person,$gender,$number,
     // split the pos string into characters
     $chars = preg_split('//', $pos, -1, PREG_SPLIT_NO_EMPTY);
     $arret = array();
-    $arret['type'] = (strtolower($chars[0]) == 'v')?'Verb':'error'; 
+    $arret['type'] = (strtolower($chars[0]) == 'v')?'verb':'error'; 
     $arret['person'] = $chars[1]; 
     // II Gender 1 Masculine 2 Feminine 3 Neuter
     $arret['gender'] = ($chars[2] == 1)?'Masculine':'N/A';
@@ -74,8 +71,8 @@ $person,$gender,$number,
     // VI Tense 1 Present 2 Imperfect 3 Future 4 Past
     $arret['tense'] = ($chars[6] == 1)?'Present':'N/A';
     $arret['tense'] = ($chars[6] == 2)?'Imperfect':$arret['tense'];
-    $arret['tense'] = ($chars[6] == 3)?'Future':$arret['tense'];
-    $arret['tense'] = ($chars[6] == 4)?'Past':$arret['tense'];
+    $arret['tense'] = ($chars[6] == 3)?'Imperative':$arret['tense'];
+    $arret['tense'] = ($chars[6] == 4)?'Conditional':$arret['tense'];
     // VII Voice 1 Active 2 Passive
     $arret['voice'] = ($chars[7] == 1)?'Active':'N/A';
     $arret['voice'] = ($chars[7] == 2)?'Passive':$arret['voice'];
@@ -107,15 +104,6 @@ $person,$gender,$number,
     return $strRet;
   } // encodeDialect
 
-  public function decodeDialect($str){
-    $str = strtoupper($str);
-    $strRet = ($str == 'LNG')?'lengadocian':'ERROR';
-    $strRet = ($str == 'GSC')?'gascon':$strRet;
-    $strRet = ($str == 'PRV')?'provencal':$strRet;
-  	
-    return $strRet;
-  } // decodeDialect
-
   public function encodeTense($code){
     $codeRet = 0;
     $codeRet = ($code == ConjugationBase::IND_PRESENT)?1:$codeRet;
@@ -128,7 +116,7 @@ $person,$gender,$number,
     $codeRet = ($code == ConjugationBase::SUBJ_IMPERFECT)?2:$codeRet;
     $codeRet = ($code == ConjugationBase::CONDITIONAL)?3:$codeRet; 	
     return $codeRet;
-  } // encodeTense
+  } // encodeDialect
   
   public function convertConjugation(array $conjugated){
 

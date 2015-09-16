@@ -96,6 +96,7 @@ function conjoc_menu() {
     'file' => 'conjoc_webForm.inc',
     'weight' => 10,
   );
+*/
 
   $items['conjoc/Indexation/allLengadocian'] = array(
     'title' => t("Indexation Lengadocian"),
@@ -105,7 +106,7 @@ function conjoc_menu() {
     'file' => 'conjoc_webForm.inc',
     'weight' => 10,
   );
-*/
+
   /*
     LENGADOCIAN
   */
@@ -185,7 +186,7 @@ function conjoc_menu() {
     'title' => t("Export TEI Lengadocian"),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('tei_export_lengadocian_all'),
-    'access arguments' => array('access conjoc'),
+    'access arguments' => array('admin conjoc'),
     'file' => 'conjoc_lengadocian_webForm.inc',
     'weight' => 10,
   );
@@ -194,9 +195,40 @@ function conjoc_menu() {
     'title' => t("Indexation Lengadocian"),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('indexation_lengadocian_all'),
+    'access arguments' => array('admin conjoc'),
+    'file' => 'conjoc_lengadocian_webForm.inc',
+    'weight' => 10,
+  );
+
+  $items['lengadocian/Indexation/searchform'] = array(
+    'title' => t("Indexation search form"),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('indexation_searchform'),
     'access arguments' => array('access conjoc'),
     'file' => 'conjoc_lengadocian_webForm.inc',
     'weight' => 10,
+  );
+
+  $items['conjoc/indexation_search/%/%'] = array(
+    'title' => 'Indexation search',
+    'page callback' => 'process_URL_arguments',
+    'file' => 'conjoc_lengadocian_webForm.inc',
+    'page arguments' => array(2,3),
+    'access callback' => TRUE,
+  );
+
+  $items['conjoc/verb_autocomplete_indexation_callback'] = array(
+    'page callback' => 'verb_autocomplete_indexation_callback',
+    'file' => 'conjoc_lengadocian_webForm.inc',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access conjoc'),
+  );
+
+  $items['conjoc/verb_autocomplete_indexation_submit'] = array(
+    'page callback' => 'verb_autocomplete_indexation_submit',
+    'file' => 'conjoc_lengadocian_webForm.inc',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access conjoc'),
   );
 
   /*
@@ -257,35 +289,51 @@ function conjoc_menu() {
     'access arguments' => array('access conjoc'),
   );
 
+  /*
+    D E B U G
+  */
+
+  $items['conjoc/debug'] = array(
+    'title' => t("Conjugador occitan dialecte debug"),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ajax_debug_verb_autocomplete'),
+    'access arguments' => array('access conjoc'),
+    'file' => 'conjoc_debug_webForm.inc',
+    'weight' => 10,
+  );
+
+  $items['conjoc/verb_autocomplete_debug_callback'] = array(
+    'page callback' => 'ajax_debug_verb_autocomplete_callback',
+    'file' => 'conjoc_debug_webForm.inc',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access conjoc'),
+  );
+
+  $items['conjoc/verb_autocomplete_debug_submit'] = array(
+    'page callback' => 'ajax_debug_verb_autocomplete_submit',
+    'file' => 'conjoc_debug_webForm.inc',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access conjoc'),
+  );
+
+  $items['conjoc/debug_submit'] = array(
+    'page callback' => 'ajax_debug_verb_autocomplete_submit',
+    'file' => 'conjoc_debug_webForm.inc',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access conjoc'),
+  );
+
+  $items['conjoc/debug_TEI_submit'] = array(
+    'page callback' => 'ajax_debug_verb_autocomplete_submit',
+    'file' => 'conjoc_debug_webForm.inc',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access conjoc'),
+  );
+
   return $items;
 }
 
-/**
- * Page callback for use with most of the menu entries.
- *
- * The arguments it receives determine what it outputs.
- *
- * @param string $content
- *   The base content to output.
- * @param string $arg1
- *   First additional argument from the path used to access the menu
- * @param string $arg2
- *   Second additional argument.
- */
-function _conjoc_menu_page($content = NULL, $arg1 = NULL, $arg2 = NULL) {
 
-  if (!empty($content)) {
-    $form_state = array();
-
-    $args = func_get_args();
-    $form_state['build_info']['args'] = $args;
-    $form_state['values']['verb_search']['verb'] = $content;
-    $form_state['values']['action'] = 'force';
-    return drupal_build_form('ajax_conjoc_verb_autocomplete', $form_state);
-  }
-
-  return drupal_set_message(t('Conjoc content is void.'), 'error');
-}
 
 /**
  * Implements hook_permission().
@@ -296,6 +344,9 @@ function conjoc_permission() {
   return array(
     'access conjoc' => array(
       'title' => t('Access the protected conjoc menu'),
+    ),
+    'admin conjoc' => array(
+      'title' => t('Administer conjoc content'),
     ),
   );
 

@@ -1,14 +1,14 @@
 <?php
 
-class ConverterJSON implements IConverter{
+class ConverterXML implements IConverter{
 
   public function __construct(){
   } // __construct
 
   public function convertConjugation(array $conjugated){
-   return '';
-        
+   return "";        
   } // convertConjugation
+
 
   public function convertArray(array $list){
     return "";
@@ -19,14 +19,20 @@ class ConverterJSON implements IConverter{
   }
 
   public function convertIndexedData($data){
-    $converter = new ConverterIndexation();
-
-    $arrPos = $converter->decodePOS($data->pos);
-    $arrData = (array)$data;
-    $arrData['decodedPOS'] = $arrPos;  
-    return json_encode($arrData);
+  	 $o = '<?xml version="1.0" ?>';
+	 $o .= '';
+/*
+<menubar>
+   <menu name="File">
+      <command value="New" action="CreateDoc" />
+      <command value="Open" action="OpenDoc" />    
+      <command value="Close" action="CloseDoc" />
+   </menu>
+</menubar>
+*/
+	return $o;
   }  // convertIndexedData
  
-} // class ConverterJSON
+} // class ConverterXML
 
 ?>

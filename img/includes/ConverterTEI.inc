@@ -20,6 +20,7 @@ class ConverterTEI implements IConverter{
   public function __construct(){
     $this->_converterIndexation = new ConverterIndexation();
   } // __construct
+
   
   public function getConverterIndexation() {return $this->_converterIndexation;}
    
@@ -29,7 +30,10 @@ class ConverterTEI implements IConverter{
     $dialect = $conjugated['dialect'];
     $out = "";
     $ModesArray = array();
-    
+    $verb = $conjugated['infinitive'][0];
+    $verb = preg_replace('/\'/','',$verb);    
+    $verb = preg_replace('/ /','_',$verb);
+        
     // for each temps
     for ($i=ConjugationBase::IND_PRESENT;$i < ConjugationBase::CONDITIONAL +1 ;$i++){
       $conjugation = $conjugations[$i];
@@ -72,18 +76,19 @@ class ConverterTEI implements IConverter{
 	$infinitive = $conjugated['infinitive'][0];
 	$o .= "\t\t\t$infinitive\n";
 	$o .= "\t\t</orth>\n";
-	$o .= "\t\t<model>\n";
+	$o .= "\t\t<iType type=\"verbTable\">\n";
 	$model = $conjugated['model'];
 	$o .= "\t\t\t$model\n";
-	$o .= "\t\t</model>\n";
+	$o .= "\t\t</iType>\n";
         $o .= $this->formatConjugation($model,$ModesArray);
 	$o .= "\t</form>\n";
     	$o .= "</entry>\n";
     } // if
 
     $o .= $this->getFooter();
-  $this->createDownloadFile($o,$conjugated['dialect']);	   
+  $this->createDownloadFile($o,"$verb". '_' ."$dialect");	   
   } // convertConjugation
+
   
   private function formatConjugation($model, $ConjugationArray){
     $out = "";
@@ -168,8 +173,11 @@ $str = <<<EOT
 	        	      $tns
 	        	    </tns>
 	        	    <pos>
-	        	      $pos
+	        	      verb
 	        	    </pos>
+	        	    <gram type="eaglescat">
+	        	      $pos
+	        	    </gram>
 	        	  </gramGrp>
 	        	</form>
 	        	       	
@@ -216,8 +224,11 @@ $str = <<<EOT
 	        	      $tns
 	        	    </tns>
 	        	    <pos>
-	        	      $pos
+	        	      verb
 	        	    </pos>
+	        	    <gram type="eaglescat">
+	        	      $pos
+	        	    </gram>	        	    
 	        	  </gramGrp>
 	        	</form>
 	        	       	
@@ -251,8 +262,11 @@ $str = <<<EOT
 	        	      $mood
 	        	    </mood>
 	        	    <pos>
-	        	      $pos
+	        	      verb
 	        	    </pos>
+	        	    <gram type="eaglescat">
+	        	      $pos
+	        	    </gram>	        	    
 	        	  </gramGrp>
 	        	</form> 
 	        	      	
@@ -282,8 +296,11 @@ $str = <<<EOT
 	        	      $mood
 	        	    </mood>
 	        	    <pos>
-	        	      $pos
+	        	      verb
 	        	    </pos>
+	        	    <gram type="eaglescat">
+	        	      $pos
+	        	    </gram>
 	        	  </gramGrp>
 	        	</form>
 	        	       	
@@ -324,8 +341,11 @@ $str = <<<EOT
 	        	      $gen
 	        	    </gen> 
 	        	    <pos>
-	        	      $pos
+	        	      verb
 	        	    </pos>
+	        	    <gram type="eaglescat">
+	        	      $pos
+	        	    </gram>
 	        	  </gramGrp>
 	        	</form>
 	        	       	
@@ -357,8 +377,11 @@ $str = <<<EOT
 	        	      $gen
 	        	    </gen> 
 	        	    <pos>
-	        	      $pos
+	        	      verb
 	        	    </pos>
+	        	    <gram type="eaglescat">
+	        	      $pos
+	        	    </gram>
       	             	  </gramGrp>
 	        	</form>
 	        	       	
@@ -404,8 +427,11 @@ $str = <<<EOT
 	        	      $usg
         		    </usg>
 	        	    <pos>
-	        	      $pos
+	        	      verb
 	        	    </pos>
+	        	    <gram type="eaglescat">
+	        	      $pos
+	        	    </gram>	        	    
 	        	  </gramGrp>
 	        	</form>
 	        	       	
@@ -458,8 +484,11 @@ $str = <<<EOT
 	        	      $tns
 	        	    </tns>
 	        	    <pos>
-	        	      $pos
+	        	      verb
 	        	    </pos>
+	        	    <gram type="eaglescat">
+	        	      $pos
+	        	    </gram>
 	        	  </gramGrp>
 	        	</form>
 	        	       	
@@ -483,10 +512,10 @@ EOT;
 	$infinitive = $value['infinitive'][0];
 	$o .= "\t\t\t$infinitive\n";
 	$o .= "\t\t</orth>\n";
-	$o .= "\t\t<model>\n";
+	$o .= "\t\t<iType type=\"verbTable\">\n";
 	$model = $value['model'];
 	$o .= "\t\t\t$model\n";
-	$o .= "\t\t</model>\n";
+	$o .= "\t\t</iType>\n";
         $o .= $this->convertConjugation($value);
 	$o .= "\t</form>\n";
     	$o .= "</entry>\n";
@@ -494,7 +523,7 @@ EOT;
     } // if
 
     $o .= $this->getFooter();
-    $this->createDownloadFile($o);	   
+    $this->createDownloadFile($o, $verb);	   
   } // convertArray
 
   public function convertSelect(array $conjugation){

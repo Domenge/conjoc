@@ -3,6 +3,7 @@
 class ConjugationLengadocianManager extends ConjugationManagerBase{
   public function __construct(){
     $this->setDialect(ConjugationManagerBase::LENGADOCIAN);
+    $this->setDialectCode(ConjugationManagerBase::LENGADOCIAN_CODE);
   } // __construct
 
   public function generateConjugation(){
@@ -42,8 +43,7 @@ class ConjugationLengadocianManager extends ConjugationManagerBase{
 
   public function getVerbFAR($verb){
   	return $this->getProvider()->getVerbFAR($verb);
-  }
-
+  }	
 } // class ConjugationLengadocianManager
 
 ?>

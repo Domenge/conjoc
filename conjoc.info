@@ -4,6 +4,7 @@ package = oc
 core = 7.x
 dependencies[] = xautoload (>= 7.x-4.0)
 files[] = includes/*.inc
+files[] = includes/ConverterJSON.inc
 
 ; Information added by Drupal.org packaging script on 2014-10-03
 version = "7.x-1.x-dev"

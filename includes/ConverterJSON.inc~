@@ -1,6 +1,6 @@
 <?php
 
-class ConverterJSON implements IConverter{
+class ConverterxJSON implements IConverter{
 
   public function __construct(){
   } // __construct
@@ -27,6 +27,6 @@ class ConverterJSON implements IConverter{
     return json_encode($arrData);
   }  // convertIndexedData
  
-} // class ConverterJSON
+} // class ConverterxJSON
 
 ?>

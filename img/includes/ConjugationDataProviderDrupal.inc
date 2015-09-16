@@ -131,27 +131,19 @@ T O  B E  D O N E
     return $line->verbtrimmed;  
   }
   
-  public function getIndexationAutoComplete($conjugation){
-     $matches = array();
-     if ($conjugation) {
-       $results = db_query("SELECT distinct conjugation, verb FROM {conjoc_index} where conjugation like '$conjugation%'");
+    public function getIndexationAutoComplete($conjugation){
+        $matches = array();
 
-       foreach ($results as $line) {
-      	 $matches[$line->conjugation] = check_plain($line->conjugation) . " ($line->verb)";
-       }
-    } // if
-    return $matches;     
-  } // getIndexationAutoComplete
+    	if ($conjugation) {
+      	   $results = db_query("SELECT distinct conjugation, verb FROM {conjoc_index} where conjugation like '$conjugation%'");
 
-  public function getIndexationData($conjugation){
-     if ($conjugation) {
-       $results = db_query("SELECT * FROM {conjoc_index} where conjugation = :conjugation", array(':conjugation'=> $conjugation));
-       $line = $results->fetchObject();
-       return $line;
-     } // if
+      	   foreach ($results as $line) {
+      		$matches[$line->conjugation] = check_plain($line->conjugation) . " ($line->verb)";
+      	   }
+    	} // if
 
-     return array();     
-  } // getIndexationData
+        return $matches;     
+   } // getIndexationAutoComplete
 
   public function getAllDuplicatedVerbs(){
 

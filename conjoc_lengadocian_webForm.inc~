@@ -396,14 +396,12 @@ function process_URL_arguments($content = NULL, $arg1 = NULL, $arg2 = NULL) {
 	     break;
 	case 'xml':
 	     $converter = new ConverterXML();
-	     $o = $converter->convertIndexedData($manager->getIndexationData($content)); 
-	     print $o;
-	     exit();
+//	     $o = $converter->convertIndexedData($manager->getIndexationData($content)); 
+	     $o = "XML $content"; break;
 	case 'csv':
 	     $converter = new ConverterCSVwithHeader();
 	     $o = $converter->convertIndexedData($manager->getIndexationData($content));
-	     print $o;
-	     exit();
+	     break; 
 	default :
 	     $o = "unknown mode  $content";		     
     }

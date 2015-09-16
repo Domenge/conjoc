@@ -1,15 +1,11 @@
 <?php
 
-class ConverterLATEX implements IConverter{
+class ConverterJSON implements IConverter{
 
   private $verbName = "";
   private $workPath = "";
   private $fullFileName = '';
   private $templateTEX = '';
-  const FILECACHING = FALSE;
-
-  public function __construct(){
-  } // __construct
 
   protected function getTokensArray(){
 
@@ -83,36 +79,20 @@ class ConverterLATEX implements IConverter{
 
   public function convertConjugation(array $conjugated){
 
-    $pwd = dirname(__FILE__);
-    $pwd = preg_replace('/(.*)includes/', '${1}cache', $pwd);
-
-    $this->verbName = preg_replace('/ /', '_', $conjugated["name"]);
+    $this->verbName = $conjugated["name"];
     $this->workPath = drupal_get_path('module', 'conjoc'). "/cache";
     $this->templateTEX = drupal_get_path('module', 'conjoc'). "/templates/conjugation.tex";
-    $this->fullFileName = "sites/default/files/latex_pdf/$this->verbName.pdf";
+    $this->fullFileName = "sites/default/files/$this->verbName.pdf";
 
     // do some caching 
     // if the file already exists, returns its name
-    if (ConverterLATEX::FILECACHING && file_exists("$this->fullFileName")){
+    if (file_exists("$this->fullFileName")){
       return "$this->fullFileName";
     }
 
     $conjugations = $conjugated["conjugations"];
-    $model        = $conjugated["model"];
-    $dialect      = $conjugated["dialect"];
-    $defModel     = $conjugated["libmodel"];
-
-    switch($dialect){
-	case 'lengadocian':
-	    $creditsDialect = 'Crédits -- auteur et linguiste : Patric Sauzet ; conception et réalisation : Domenge Château-Annaud ; correction : Florença Malcouyre';
-	    break;
-	case 'gascon':
-	    $creditsDialect = 'Crédits -- auteurs et linguistes : Andrieu Bianchi, Maurici Romieu ; conception et réalisation : Domenge Château-Annaud ; lexicographe : Florença Malcouyre';
-	    break;
-	case 'provencau':
-	    $creditsDialect = 'Crédits -- auteur et linguiste : Bernat Moulin ; conception et réalisation : Domenge Château-Annaud';
-	    break;
-    }	
+    $model = $conjugated["model"];
+    $defModel = $conjugated["libmodel"];
 
     $tokensArray = $this->getTokensArray();
 
@@ -120,22 +100,20 @@ class ConverterLATEX implements IConverter{
     // for each temps
     for ($i=ConjugationBase::IND_PRESENT;$i < ConjugationBase::CONDITIONAL +1 ;$i++){
       $conjugation = $conjugations[$i];
+
       $this->mergeTokensArray($index,$tokensArray,$conjugation);        
+
     } // for
     
-    $tokensArray[]="s/Dialect/$dialect/";
     $tokensArray[]="s/Vèrb/$this->verbName/";
     $tokensArray[]="s/Modèl/Modèl \«$model\»/";
-    $tokensArray[]="s/CREDITS/$creditsDialect/";
 
     $pattern = '/\//';
     $replacement = '\/';
     $defModel = preg_replace($pattern, $replacement, $defModel);
-    $pwd      = preg_replace($pattern, $replacement, $pwd);
-    	
+
     $tokensArray[]="s/DefMdl/$defModel/";
-    $tokensArray[]="s/PWD/$pwd/g";
-    
+
     $out = "";
     
     // the array of array is flatten in one string
@@ -156,6 +134,7 @@ class ConverterLATEX implements IConverter{
 
   private function createPDF(){
 
+
     if (!isset($this->verbName)){
        return "";
     }
@@ -167,7 +146,7 @@ class ConverterLATEX implements IConverter{
 
     $commandLATEX = "/usr/local/bin/pdflatex -synctex=1 -output-directory=$this->workPath -interaction=nonstopmode $this->workPath/$this->verbName.tex";
 
-    $commandMOVE = "mv $this->workPath/$this->verbName.pdf sites/default/files/latex_pdf/.";
+    $commandMOVE = "mv $this->workPath/$this->verbName.pdf sites/default/files/.";
 
     $commandREMOVE = "rm $this->workPath/$this->verbName.*";
 
@@ -183,6 +162,7 @@ class ConverterLATEX implements IConverter{
     // do some housekeeping
     $str = exec($commandREMOVE,$output,$return_var);
 
+
   } // createPDF
 
   public function convertArray(array $list){
@@ -193,6 +173,6 @@ class ConverterLATEX implements IConverter{
     return "";	 
   }
  
-} // class ConverterLATEX
+} // class ConverterJSON
 
 ?>

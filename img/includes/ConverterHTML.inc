@@ -4,9 +4,6 @@ require_once(drupal_get_path('module', 'conjoc').'/conjugador_lib.inc');
 
 class ConverterHTML implements IConverter{
 
-  public function __construct(){
-  } // __construct
-
   protected function getTempses(){
     $arr = array();
     $arr[] = "Present";
@@ -227,58 +224,7 @@ class ConverterHTML implements IConverter{
   public function convertSelect(array $conjugation){
   
   }
-
-  public function convertIndexedData($data){
-    $converter = new ConverterIndexation();
-    $arrPos = $converter->decodePOS($data->pos);
-	
-    // apply the style
-    drupal_add_css(drupal_get_path('module', 'conjoc') . '/css/conjugador.css');
-    $o = '<div class="indexedData">';
-    $o .='<table><tbody>';
-    $o .='<tr><td>conjugation</td><td><span class="indexed_conjugation">' . $data->conjugation . '</span></td></tr>';
-    $o .='<tr><td>infinitive</td><td><span class="indexed_verb">' . $data->verb . '</span></td></tr>';
-    $o .='<tr><td>index</td><td><span class="indexed_row">' . $data->row . '</span></td></tr>';
-    $dialect = $converter->decodeDialect($data->dialect);
-    $o .='<tr><td>dialect</td><td><span class="indexed_dialect">' . $dialect . '</span></td></tr>';
-    $o .='<tr><td>model</td><td><span class="indexed_nummodel">' . $data->nummodel . '</span></td></tr>';
-    $o .='<tr rowspan="2"><td>EAGLES POS</td><td><span class="indexed_POS">' . $data->pos . '</span></td></tr>';
-    $o .= '<tr><td>EAGLES POS decoded</td><td>' . $this->convertPOS($arrPos). '</td></tr>'; 
-    $o .= '</tbody></table>';
-    $o .= '</div>';
-    return $o;
-  }  // convertIndexedData
-
-  private function convertPOS(array $aPos){
-   $type = $aPos['type'];   	  
-   $person = $aPos['person'];
-   $gender = $aPos['gender'];
-   $number = $aPos['number'];
-   $finiteness = $aPos['finiteness'];
-   $tense = $aPos['tense'];
-   $voice = $aPos['voice'];
-   $aspect = $aPos['aspect'];
-   $separability = $aPos['separability'];
-   $reflexivity = $aPos['reflexivity'];
-   $auxiliary = $aPos['auxiliary'];
-   $mood = $aPos['mood'];
-
-    $o = '<div class="decoded_POS">';
-    $o .= '<table border="0"><tbody>';
-    $o .= '<tr><td><strong>type</strong></td><td><span class="POS_type">' . $type . '</span></td></tr>';
-    $o .= '<tr><td><strong>person</strong></td><td><span class="POS_person">' . $person . '</span></td></tr>';
-    $o .= '<tr><td><strong>gender</strong></td><td><span class="POS_gender">' . $gender . '</span></td></tr>';
-    $o .= '<tr><td><strong>number</strong></td><td><span class="POS_number">' . $number . '</span></td></tr>';
-    $o .= '<tr><td><strong>finiteness</strong></td><td><span class="POS_finiteness">' . $finiteness . '</span></td></tr>';
-    $o .= '<tr><td><strong>mood</strong></td><td><span class="POS_mood">' . $mood . '</span></td></tr>';
-    $o .= '<tr><td><strong>tense</strong></td><td><span class="POS_tense">' . $tense . '</span></td></tr>';
-    $o .= '<tr><td><strong>voice</strong></td><td><span class="POS_voice">' . $voice . '</span></td></tr>';
-    $o .= '<tr><td><strong>aspect</strong></td><td><span class="POS_aspect">' . $aspect . '</span></td></tr>';
-    $o .= '<tr><td><strong>separability</strong></td><td><span class="POS_separability">' . $separability . '</span></td></tr>';
-    $o .= '<tr><td><strong>reflexivity</strong></td><td><span class="POS_reflexivity">' . $reflexivity . '</span></td></tr>';
-    $o .= '<tr><td><strong>auxiliary</strong></td><td><span class="POS_auxiliary">' . $auxiliary . '</span></td></tr>';
-    return $o . "</tbody></table></div>";
-  } // convertPOS
+ 
 } // class ConverterHTML
 
 ?>

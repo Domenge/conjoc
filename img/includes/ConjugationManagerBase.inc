@@ -64,7 +64,9 @@ abstract class ConjugationManagerBase{
     if (! empty($this->_baseTablename)){
        $this->_dataProvider = new ConjugationDataProviderDrupal($this->_baseTablename);
     }else{ 
+
     // should never be here
+
       $text = t(":@dialect: is not a supported dialect", array('@dialect' => $dialect));
       drupal_set_message($text, 'error');
 //      die($text);
@@ -175,10 +177,6 @@ abstract class ConjugationManagerBase{
        return drupal_json_output($this->_dataProvider->getIndexationAutoComplete($string));
   } // getIndexationAutoComplete
 
-  public function getIndexationData($conjugation){
-       return $this->_dataProvider->getIndexationData($conjugation);
-  } // getIndexatioData
-
   public function getRandomVerb(){
     return $this->_dataProvider->getRandomVerb();
   } // getRandomVerb()
@@ -194,6 +192,21 @@ abstract class ConjugationManagerBase{
     $indexationConverter = new ConverterIndexation();
     $allVerbs = $this->_dataProvider->getAllVerbs();
     
+/*    	
+Array ( 
+[id] => 11821 
+[name] => abajanir 
+[infinitive] => Array ( [0] => abajanir ) 
+[model] => 200 
+[see_also] => 200 
+[comments] => not yet implemented 
+[libmodel] => conjugason 2 radical consonantic 
+[dialect] => lengadocian 
+[localization] => C 
+[conjugations] => Array ( [0] => Array ( [0] => abajanissi [1] => abajanisses [2] => abajanís [3] => abajanissem [4] => abajanissetz [5] => abajanissen ) [1] => Array ( [0] => abajanivi [1] => abajanivas [2] => abajaniva [3] => abajan­ívam [4] => abajanívatz [5] => abajanivan ) [2] => Array ( [0] => abajanii [1] => abajanís [2] => abajaní [3] => abajanim [4] => abajanitz [5] => abajanín ) [3] => Array ( [0] => abajanirèi [1] => abajaniràs [2] => abajanirà [3] => abajaniram [4] => abajaniratz [5] => abajaniràn ) [4] => Array ( [0] => abajanir ) [5] => Array ( [0] => abajanissent ) [6] => Array ( [0] => abajanit [1] => abajanida ) [7] => Array ( [0] => abajanís [1] => abajanim [2] => abajanitz [3] => abajanescas [4] => abajanescam [5] => abajanescatz ) [8] => Array ( [0] => abajanesqui [1] => abajanescas [2] => abajanesca [3] => abajanescam [4] => abajanescatz [5] => abajanescan ) [9] => Array ( [0] => abajanissi [1] => abajanisses [2] => abajanisse [3] => abajaníssem [4] => abajaníssetz [5] => abajanissen ) [10] => Array ( [0] => abajanirí [1] => abajanirés [2] => abajaniré [3] => abajanirem [4] => abajaniretz [5] => abajanirén ) ) 
+[desinenceLengths] => Array ( [0] => 1,2,1,2,3,2 [1] => 3,4,3,4,5,4 [2] => 3,4,2,4,5,4 [3] => 4,4,3,4,5,4 [4] => 2 [5] => 3 [6] => 1,2,3,2,2,3 [7] => 1,2,1,2,3,2 [8] => 4,5,4,4,6,5 [9] => 5,5,4,5,6,5 ) ) 
+*/
+
     foreach($allVerbs as $aVerb){
         $infinitive = $aVerb['infinitive'];
         $row = $aVerb['row'];

@@ -186,9 +186,19 @@ function ajax_gascon_verb_autocomplete($form, &$form_state) {
   $fileNamePDFToDownload = $drupalLATEXConverter->convertConjugation($conjugated);
 
   $form['exportation']['downloadPDF'] = array(
-    '#markup' => l(t("ficha en format PDF «" . $verb . "»" ) ,$fileNamePDFToDownload) . '<img width="32px" src="/sites/default/files/img/logopdf.png"></img>',
+    '#markup' => l( 
+    t("ficha en format PDF «" . $verb . "»" . '<img width="32px" src="/sites/default/files/img/logopdf.png"></img>'), 
+    $fileNameToDownload, 
+    array(
+    	'html' => TRUE,
+    	'attributes' => array('target'=>'_blank'
+    	)
+    )
+    ),
   );
 
+
+/*
   $form['exportation']['downloadTEI'] = array(
 	'#type' => 'image_button',
     	'#name' => 'TEI card',
@@ -197,13 +207,7 @@ function ajax_gascon_verb_autocomplete($form, &$form_state) {
         '#description' => t('The conjugation in Text Encoding Initiative (TEI).'),
         '#submit' => array('gascon_TEI_submit'),
   );
-
-
-  $form['exportation']['downloadTEI']['conjugation'] = array(
-	'#type' => 'hidden',
-    	'#name' => 'TEI conjugations',
-	'#value' => $conjugated,
-  );
+*/
 
   return $form;
 } // ajax_gascon_verb_autocomplete 
