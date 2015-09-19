@@ -192,8 +192,8 @@ abstract class ConjugationManagerBase{
 
   public function processIndexation(){
     $indexationConverter = new ConverterIndexation();
-    $allVerbs = $this->_dataProvider->getAllVerbs();
-    
+    $allVerbs = $this->_dataProvider->getAllVerbsByIncrement();
+
     foreach($allVerbs as $aVerb){
         $infinitive = $aVerb['infinitive'];
         $row = $aVerb['row'];

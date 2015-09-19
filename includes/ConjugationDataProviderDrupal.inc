@@ -193,6 +193,61 @@ T O  B E  D O N E
   
     return $arrRet;
   } // getAllVerbs()
+
+  public function getAllVerbsByIncrement(){
+
+     $increment = variable_get('conjoc_indexation_increment', 0);
+
+     $results = db_query("SELECT  count(*) div :indexationstep as increments, count(*) as totalVerbs FROM {".
+     $this->getBaseTableName() 
+     . "_verbsmodel} WHERE SUBSTR(nummodel,1,1) = '1'", array('indexationstep'=> ConjugationDataProviderBase::INDEXATION_STEP));
+     $line = $results->fetchObject();
+     $increments = $line->increments;
+     $totalVerbs = $line->totalVerbs;
+
+     if ($increment > ($increments + 1)){
+     	// we are done
+	drupal_set_message("Indexation completed");
+     	variable_set('conjoc_indexation_increment', '0');
+     	variable_set('conjoc_indexation_enabled', FALSE);
+	variable_set('conjoc_indexation_verbstoindex', '0');
+     }
+
+     if ($increment == 0){
+     	// TODO truncate the conjoc_index table
+	db_truncate('conjoc_index')->execute();
+	$clause = " SUBSTR(nummodel,1,1) = '0' OR SUBSTR(nummodel,1,1) = '2' OR SUBSTR(nummodel,1,1) = '3' ORDER BY BINARY verb";
+     }else{
+	$limit = ($increment -1) * (int)ConjugationDataProviderBase::INDEXATION_STEP; 
+	$clause = " SUBSTR(nummodel,1,1) = '1' ORDER BY BINARY verb LIMIT $limit, " . ConjugationDataProviderBase::INDEXATION_STEP;
+     }
+
+     $increment++;
+
+     variable_set('conjoc_indexation_increment', $increment);
+
+     $results = db_query("SELECT * FROM {". $this->getBaseTableName() . "_verbsmodel} WHERE $clause");
+
+     $arrRet = array();  
+
+     while($line = $results->fetchObject()){
+    	$arr = array();
+    	$arr['verb']= $line->verb;
+    	$arr['row']= $line->row;
+    	$arr['infinitive']= $line->infinitive;
+      	$arrRet[] = $arr;
+     } // while
+
+     $verbsIndexed = $increment * (int)ConjugationDataProviderBase::INDEXATION_STEP;
+     $verbsLeft = $totalVerbs - $verbsIndexed;
+     $verbsLeft = $verbsLeft > 0 ? $verbsLeft:0; 
+     variable_set('conjoc_indexation_verbstoindex', $verbsLeft);
+     variable_set('conjoc_indexation_verbsindexed', $verbsIndexed);
+     variable_set('conjoc_indexation_totalIncrements', $increments + 1);
+  
+     return $arrRet;
+
+  } // getAllVerbsByIncrement()
   
   public function insertIndexedVerb(array $fields){
     db_insert('conjoc_index')->fields($fields)->execute();

@@ -47,7 +47,7 @@ $person,$gender,$number,
     $chars = preg_split('//', $pos, -1, PREG_SPLIT_NO_EMPTY);
     $arret = array();
     $arret['type'] = (strtolower($chars[0]) == 'v')?'Verb':'error'; 
-    $arret['person'] = $chars[1]; 
+    $arret['person'] = ($chars[1] == 0)?'N/A':$chars[1];
     // II Gender 1 Masculine 2 Feminine 3 Neuter
     $arret['gender'] = ($chars[2] == 1)?'Masculine':'N/A';
     $arret['gender'] = ($chars[2] == 2)?'Feminine':$arret['gender'];

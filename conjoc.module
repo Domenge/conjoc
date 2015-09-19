@@ -102,7 +102,7 @@ function conjoc_menu() {
     'title' => t("Indexation Lengadocian"),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('indexation_lengadocian_all'),
-    'access arguments' => array('access conjoc'),
+    'access arguments' => array('administer conjoc'),
     'file' => 'conjoc_webForm.inc',
     'weight' => 10,
   );
@@ -186,7 +186,7 @@ function conjoc_menu() {
     'title' => t("Export TEI Lengadocian"),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('tei_export_lengadocian_all'),
-    'access arguments' => array('admin conjoc'),
+    'access arguments' => array('administer conjoc'),
     'file' => 'conjoc_lengadocian_webForm.inc',
     'weight' => 10,
   );
@@ -195,8 +195,15 @@ function conjoc_menu() {
     'title' => t("Indexation Lengadocian"),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('indexation_lengadocian_all'),
-    'access arguments' => array('admin conjoc'),
+    'access arguments' => array('administer conjoc'),
     'file' => 'conjoc_lengadocian_webForm.inc',
+    'weight' => 10,
+  );
+
+  $items['lengadocian/Indexation/byIncrement'] = array(
+    'title' => t("Indexation lengadocian by increment"),
+    'page callback' => 'conjoc_cron',
+    'access arguments' => array('administer conjoc'),
     'weight' => 10,
   );
 
@@ -330,10 +337,99 @@ function conjoc_menu() {
     'access arguments' => array('access conjoc'),
   );
 
+  $items['admin/settings/conjoc'] = array(
+    'title' => t('Conjoc module settings'),
+    'description' => 'Conjoc settings page',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('conjoc_admin'),
+    'access arguments' => array('administer conjoc settings'),
+    'type' => MENU_NORMAL_ITEM,
+   );
+
   return $items;
+} // conjoc_menu
+
+function conjoc_cron() {
+  if (variable_get('conjoc_indexation_enabled', false)){
+     $manager = new ConjugationLengadocianManager();
+     $manager->processIndexation();
+  }
 }
 
+function conjoc_admin() {
+  $form = array();
 
+  $form['conjoc_indexation_enabled'] = array(
+    				     '#type' => 'checkbox',
+    				     '#title' => t('Enable indexation'),
+    				     '#default_value' => variable_get('conjoc_indexation_enabled', false),
+    				     '#description' => t("Enable the indexation sequence. When completed it is set to false"),
+  );
+
+  $form['conjoc_indexation_increment_reset'] = array(
+    				     '#type' => 'checkbox',
+    				     '#title' => t('reset increment'),
+    				     '#default_value' => variable_get('conjoc_indexation_increment_reset', false),
+    				     '#description' => t("Reset the indexation increment to 0"),
+  );
+
+  $form['conjoc_indexation_increment'] = array(
+  				       '#type' => 'textfield', 
+  				       '#title' => t('Increment'), 
+  				       '#default_value' => variable_get('conjoc_indexation_increment', 0), 
+  				       '#size' => 2, 
+  				       '#required' => FALSE,
+  				       '#disabled' => FALSE,
+  );
+
+  $form['conjoc_indexation_totalIncrements'] = array(
+  				       '#type' => 'textfield', 
+  				       '#title' => t('maximum increment'), 
+  				       '#default_value' => variable_get('conjoc_indexation_totalIncrements', 0), 
+  				       '#size' => 2, 
+  				       '#required' => FALSE,
+  				       '#disabled' => TRUE,
+  );
+
+  $form['conjoc_indexation_verbsindexed'] = array(
+  				       '#type' => 'textfield', 
+  				       '#title' => t('# verbs indexed'), 
+  				       '#default_value' => variable_get('conjoc_indexation_verbsindexed', 0), 
+  				       '#size' => 10, 
+  				       '#required' => FALSE,
+  				       '#disabled' => TRUE,
+  );
+
+  $form['conjoc_indexation_verbstoindex'] = array(
+  				       '#type' => 'textfield', 
+  				       '#title' => t('# verbs to index'), 
+  				       '#default_value' => variable_get('conjoc_indexation_verbstoindex', 0), 
+  				       '#size' => 10, 
+  				       '#required' => FALSE,
+  				       '#disabled' => TRUE,
+  );
+
+  return system_settings_form($form);
+}
+
+function conjoc_admin_validate($form, &$form_state) {
+  $newValue     = $form_state['values']['conjoc_indexation_enabled'];
+  $currentValue = variable_get('conjoc_indexation_enabled', false);
+  $increment    = $form_state['values']['conjoc_indexation_increment'];
+
+  if ( $newValue && ($newValue != $currentValue) ){
+     variable_set('conjoc_indexation_increment', '0');
+     drupal_set_message(t("Indexation increment reset $currentValue $newValue"));
+  } // if 
+
+  if (!is_numeric($increment)) {
+    form_set_error('conjoc_indexation_increment', t('You must enter an integer.'));
+  }
+  elseif ($increment < 0) {
+    form_set_error('conjoc_indexation_increment', t('increment must be positive.'));
+  }
+// TO DO validate maximum value
+}
 
 /**
  * Implements hook_permission().
@@ -345,7 +441,7 @@ function conjoc_permission() {
     'access conjoc' => array(
       'title' => t('Access the protected conjoc menu'),
     ),
-    'admin conjoc' => array(
+    'administer conjoc' => array(
       'title' => t('Administer conjoc content'),
     ),
   );

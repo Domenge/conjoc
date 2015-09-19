@@ -375,7 +375,6 @@ function verb_autocomplete_indexation_submit($form, &$form_state){
 }
 
 function process_URL_arguments($content = NULL, $arg1 = NULL, $arg2 = NULL) {
-//  $output = '<div>' . $content . '</div>';
   $o = "$content";
   
   if (!empty($arg1)) {
@@ -390,6 +389,7 @@ function process_URL_arguments($content = NULL, $arg1 = NULL, $arg2 = NULL) {
 	     $o = $converter->convertIndexedData($manager->getIndexationData($content)); 
 	     print $o;
 	     exit();
+	     break;
 	case 'html':
 	     $converter = new ConverterHTML();
 	     $o = $converter->convertIndexedData($manager->getIndexationData($content)); 
@@ -399,11 +399,13 @@ function process_URL_arguments($content = NULL, $arg1 = NULL, $arg2 = NULL) {
 	     $o = $converter->convertIndexedData($manager->getIndexationData($content)); 
 	     print $o;
 	     exit();
+	     break;
 	case 'csv':
 	     $converter = new ConverterCSVwithHeader();
 	     $o = $converter->convertIndexedData($manager->getIndexationData($content));
 	     print $o;
 	     exit();
+	     break;
 	default :
 	     $o = "unknown mode  $content";		     
     }

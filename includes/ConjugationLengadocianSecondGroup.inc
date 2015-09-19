@@ -84,7 +84,13 @@ class ConjugationLengadocianSecondGroup extends ConjugationBase{
     if (preg_match($pattern, $infinitive)){
       $rootSaved = preg_replace('/(.+) (\d{1}$)/', '$1', $infinitive);
     }else{
-      $rootSaved = preg_replace('/(.+)([iï]r)/', '$1', $infinitive);
+      $rootSaved = preg_replace('/(.+)ir/', '$1', $infinitive);
+    }
+
+    $pattern = '/(.+)(ïr)/';
+
+    if (preg_match($pattern, $rootSaved)){
+      $rootSaved = preg_replace($pattern, '$1', $rootSaved);
       drupal_set_message($rootSaved);    
     }
 

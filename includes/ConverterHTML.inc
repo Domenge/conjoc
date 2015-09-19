@@ -229,6 +229,10 @@ class ConverterHTML implements IConverter{
   }
 
   public function convertIndexedData($data){
+    if(empty($data)){
+      drupal_set_message(t("Conjugation not found"), 'error');
+      return "";
+    }
     $converter = new ConverterIndexation();
     $arrPos = $converter->decodePOS($data->pos);
 	

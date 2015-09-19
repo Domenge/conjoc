@@ -1,6 +1,8 @@
 <?php
 
 abstract class ConjugationDataProviderBase{
+  
+  const INDEXATION_STEP = 1000;
 
   protected $_baseTableName;
 
