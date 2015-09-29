@@ -43,6 +43,17 @@ abstract class ConjugationManagerBase{
     return $this->_dialectCode;
   }
 
+  static public function getThisDialectCode($dialect){
+    switch($dialect){
+      case ConjugationManagerBase::LENGADOCIAN:
+        return ConjugationManagerBase::LENGADOCIAN_CODE;
+      case ConjugationManagerBase::GASCON:
+        return ConjugationManagerBase::GASCON_CODE;
+      case ConjugationManagerBase::PROVENCAL:
+        return ConjugationManagerBase::PROVENCAL_CODE;
+    }
+  } // getThisDialectCode
+
   public function setDialect($dialect){
     $dialect = strtolower($dialect);
     $this->_dialect = $dialect;
@@ -321,6 +332,9 @@ abstract class ConjugationManagerBase{
     return "<strong>done</strong>";
 	
   } // processIndexation
+
+  abstract public function getShortLabel();
+  abstract public function getLongLabel();
 	
 } // class ConjugationManagerBase
 

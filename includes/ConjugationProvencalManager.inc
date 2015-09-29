@@ -40,6 +40,13 @@ class ConjugationProvencalManager extends ConjugationManagerBase{
      return $arrRet;
   } // getUsuals 
 
+  public function getShortLabel(){
+  	return "prv";
+  }
+
+  public function getLongLabel(){
+  	return "provencal";
+  }
 
 } // class ConjugationProvencalManager
 

@@ -20,9 +20,11 @@ class ConverterJSON implements IConverter{
 
   public function convertIndexedData($data){
     $converter = new ConverterIndexation();
-
+ 
     $arrPos = $converter->decodePOS($data->pos);
+    $count = 0;
     $arrData = (array)$data;
+
     $arrData['decodedPOS'] = $arrPos;  
     return json_encode($arrData);
   }  // convertIndexedData

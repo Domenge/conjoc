@@ -385,7 +385,7 @@ function process_URL_arguments($content = NULL, $arg1 = NULL, $arg2 = NULL) {
 
     switch($mode){
 	case 'json':
-	     $converter = new ConverterCSV();
+	     $converter = new ConverterJSON();
 	     $o = $converter->convertIndexedData($manager->getIndexationData($content)); 
 	     print $o;
 	     exit();
@@ -401,7 +401,7 @@ function process_URL_arguments($content = NULL, $arg1 = NULL, $arg2 = NULL) {
 	     exit();
 	     break;
 	case 'csv':
-	     $converter = new ConverterCSVwithHeader();
+	     $converter = new ConverterCSV();
 	     $o = $converter->convertIndexedData($manager->getIndexationData($content));
 	     print $o;
 	     exit();

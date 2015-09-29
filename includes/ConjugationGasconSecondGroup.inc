@@ -5,8 +5,39 @@ class ConjugationGasconSecondGroup extends ConjugationBase{
 
   protected function getStandardConjugation(){
     $arr = array();
+    $model = $this->getVerbModel();
+
+  if ($model == '230' || $model == '250'){
+    $arr['00_IndPres|Present']                 =  "i,es,,em,etz,en";
+    $arr['01_IndImp|Imperfach']                =  "ivi,ivas,iva,ivam,ivatz,ivan";
+    $arr['02_IndPret|Preterit']                =  "ii,is,i,im,itz,in";
+    $arr['03_IndFutur|Futur']                  =  "iret,iràs,irà,iram,iratz,iràn";
+    $arr['04_Infinitiu|Infinitiu']             =  "ir";
+    $arr['05_Gerondiu|Gerondiu']               =  "issent";
+    $arr['06_PartPassat|Participi passat']     =  "it,ida";
+    $arr['07_Imperatiu|Imperatiu']             =  "is,im,itz,escas,escam,escatz";
+    $arr['08_SubPres|Subjontiu present']       =  "esqui,escas,esca,escam,escatz,escan";
+    $arr['09_SubImp|Subjontiu imperfach']      =  "issi,isses,isse,íssem,íssetz,issen";
+    $arr['10_Conditional|Conditional']         =  "iri,irés,iré,irem,iretz,irén";
+  return $arr;
+  }
+  if ($model == '210' || $model == '211' || $model == '212' || $model == '213'){
+    $arr['00_IndPres|Present']                 =  "ïssi,ïsses,ís,ïssèm,ïssètz,ïsson";
+    $arr['01_IndImp|Imperfach']                =  "ïssiái,ïssiás,ïssiá,ïssiam,ïssiatz,ïssián";
+    $arr['02_IndPret|Preterit']                =  "ïguèri,ïguères,ïguèt,ïguèrem,ïguèretz,ïguèron";
+    $arr['03_IndFutur|Futur']                  =  "ïrai,ïràs,ïrà,ïrem,ïretz,ïràn";
+    $arr['04_Infinitiu|Infinitiu']             =  "ïr";
+    $arr['05_Gerondiu|Gerondiu']               =  "ïssent";
+    $arr['06_PartPassat|Participi passat']     =  "ït,ida";
+    $arr['07_Imperatiu|Imperatiu']             =  "ís,ïscam,ïssetz,ïscas,ïscam,ïscatz";
+    $arr['08_SubPres|Subjontiu present']       =  "ïsca,ïscas,ïsca,ïscam,ïscatz,ïscan";
+    $arr['09_SubImp|Subjontiu imperfach']      =  "ïguèsse,ïguèsses,ïguèsse,ïguèssem,ïguèssetz,ïguèsson";
+    $arr['10_Conditional|Conditional']         =  "ïriái,ïriás,ïriá,ïriam,ïriatz,ïrián";
+//  return $arr;
+  }
+
     $arr['00_IndPres|Present']                 =  "issi,isses,ís,issem,issetz,issen";
-    $arr['01_IndImp|Imperfach']                =  "ivi,ivas,iva,­ívam,ívatz,ivan";
+    $arr['01_IndImp|Imperfach']                =  "ivi,ivas,iva,ívam,ívatz,ivan";
     $arr['02_IndPret|Preterit']                =  "ii,ís,í,im,itz,ín";
     $arr['03_IndFutur|Futur']                  =  "irèi,iràs,irà,iram,iratz,iràn";
     $arr['04_Infinitiu|Infinitiu']             =  "ir";
@@ -17,7 +48,7 @@ class ConjugationGasconSecondGroup extends ConjugationBase{
     $arr['09_SubImp|Subjontiu imperfach']      =  "issi,isses,isse,íssem,íssetz,issen";
     $arr['10_Conditional|Condicional']         =  "irí,irés,iré,irem,iretz,irén";    
     return $arr;
-  } // setStandardConjugation
+  } // getStandardConjugation
 
   protected function fixRadical($radical,$desinence){
     return $radical;

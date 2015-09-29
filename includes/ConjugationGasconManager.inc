@@ -41,6 +41,13 @@ class ConjugationGasconManager extends ConjugationManagerBase{
      return $arrRet;
   } // getUsualVerbs 
 
+  public function getShortLabel(){
+  	return "gsc";
+  }
+
+  public function getLongLabel(){
+  	return "gascon";
+  }
 	
 } // class ConjugationGasconManager
 

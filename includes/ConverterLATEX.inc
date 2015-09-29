@@ -85,11 +85,13 @@ class ConverterLATEX implements IConverter{
 
     $pwd = dirname(__FILE__);
     $pwd = preg_replace('/(.*)includes/', '${1}cache', $pwd);
+    $dialect      = $conjugated["dialect"];
+    $dialectCode  = ConjugationManagerBase::getThisDialectCode($dialect);
 
     $this->verbName = preg_replace('/ /', '_', $conjugated["name"]);
     $this->workPath = drupal_get_path('module', 'conjoc'). "/cache";
     $this->templateTEX = drupal_get_path('module', 'conjoc'). "/templates/conjugation.tex";
-    $this->fullFileName = "sites/default/files/latex_pdf/$this->verbName.pdf";
+    $this->fullFileName = "sites/default/files/latex_pdf/$dialectCode/$this->verbName.pdf";
 
     // do some caching 
     // if the file already exists, returns its name
@@ -99,7 +101,6 @@ class ConverterLATEX implements IConverter{
 
     $conjugations = $conjugated["conjugations"];
     $model        = $conjugated["model"];
-    $dialect      = $conjugated["dialect"];
     $defModel     = $conjugated["libmodel"];
 
     switch($dialect){
@@ -147,14 +148,14 @@ class ConverterLATEX implements IConverter{
     fwrite($handle, $out);
     fclose($handle);
  
-    $this->createPDF();
+    $this->createPDF($dialectCode);
     
    return $this->fullFileName;
         
   } // convertConjugation
 
 
-  private function createPDF(){
+  private function createPDF($dialectCode){
 
     if (!isset($this->verbName)){
        return "";
@@ -167,7 +168,7 @@ class ConverterLATEX implements IConverter{
 
     $commandLATEX = "/usr/local/bin/pdflatex -synctex=1 -output-directory=$this->workPath -interaction=nonstopmode $this->workPath/$this->verbName.tex";
 
-    $commandMOVE = "mv $this->workPath/$this->verbName.pdf sites/default/files/latex_pdf/.";
+    $commandMOVE = "mv $this->workPath/$this->verbName.pdf sites/default/files/latex_pdf/$dialectCode/.";
 
     $commandREMOVE = "rm $this->workPath/$this->verbName.*";
 
@@ -176,7 +177,7 @@ class ConverterLATEX implements IConverter{
 //    drupal_set_message("createPDF SED passed $commandSED");
 
     $str = shell_exec($commandLATEX);
-//    drupal_set_message("createPDF LATEX passed $commandLATEX .$str.");
+//    drupal_set_message("createPDF LATEX passed $commandLATEX");
 
     $str = exec($commandMOVE,$output,$return_var);
 

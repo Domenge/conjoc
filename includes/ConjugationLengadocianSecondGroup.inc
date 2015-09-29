@@ -48,7 +48,7 @@ class ConjugationLengadocianSecondGroup extends ConjugationBase{
   $arr['09_SubImp|Subjontiu imperfach']      =  "iguèsse,iguèsses,iguèsse,iguèssem,iguèssetz,iguèsson";
   $arr['10_Conditional|Conditional']         =  "iriái,iriás,iriá,iriam,iriatz,irián";
   return $arr;
-  } // setStandardConjugation
+  } // getStandardConjugation
 
   protected function getDesinenceLengthArray(){
 
@@ -91,7 +91,6 @@ class ConjugationLengadocianSecondGroup extends ConjugationBase{
 
     if (preg_match($pattern, $rootSaved)){
       $rootSaved = preg_replace($pattern, '$1', $rootSaved);
-      drupal_set_message($rootSaved);    
     }
 
 

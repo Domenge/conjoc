@@ -76,7 +76,6 @@ T O  B E  D O N E
       $query = db_select("$tableName",'vm');
 
       $tableName = $this->getBaseTableName() . "_model"; 
-
       $query->join("$tableName", 'm', 'vm.nummodel=m.nummodel');
       $query->groupby('vm.verb');
       $query->fields('vm', array('id','verb', 'nummodel'));

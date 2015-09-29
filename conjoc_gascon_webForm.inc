@@ -188,7 +188,7 @@ function ajax_gascon_verb_autocomplete($form, &$form_state) {
   $form['exportation']['downloadPDF'] = array(
     '#markup' => l( 
     t("ficha en format PDF «" . $verb . "»" . '<img width="32px" src="/sites/default/files/img/logopdf.png"></img>'), 
-    $fileNameToDownload, 
+    $fileNamePDFToDownload, 
     array(
     	'html' => TRUE,
     	'attributes' => array('target'=>'_blank'
@@ -231,7 +231,6 @@ function gascon_TEI_submit($form, &$form_state){
  *   The string that will be searched.
  */
 function ajax_gascon_verb_autocomplete_callback($string = "") {
-drupal_set_message('ajax_gascon_verb_autocomplete_callback');
   $gasconManager = new ConjugationGasconManager();
   $gasconManager->getVerbAutoComplete($string);
 }

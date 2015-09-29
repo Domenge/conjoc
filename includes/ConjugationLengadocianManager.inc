@@ -44,6 +44,14 @@ class ConjugationLengadocianManager extends ConjugationManagerBase{
   	return $this->getProvider()->getVerbFAR($verb);
   }
 
+  public function getShortLabel(){
+  	return "lng";
+  }
+
+  public function getLongLabel(){
+  	return "lengadocian";
+  }
+
 } // class ConjugationLengadocianManager
 
 ?>

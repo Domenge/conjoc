@@ -4,46 +4,91 @@
 class ConjugationLengadocianThirdGroup extends ConjugationBase{
 
   protected function getStandardConjugation(){
-  $arr = array();
-  $arr['00'] =  "i,es,,èm,ètz,on";
-  $arr['01'] =  "iái,iás,iá,iam,iatz,ián";
-  $arr['02'] =  "èri,ères,èt,èrem,èretz,èron";
-  $arr['03'] =  "rai,ràs,rà,rem,retz,ràn";
-  $arr['04'] =  "";
-  $arr['05'] =  "ent";
-  $arr['06'] =  "ut,uda";
-  $arr['07'] =  ",am,ètz,as,am,atz";
-  $arr['08'] =  "a,as,a,am,atz,an";
-  $arr['09'] =  "èsse,èsses,èsse,èssem,èssetz,èsson";
-  $arr['10'] =  "riái,riás,riá,riam,riatz,rián";
+  	    $arr = array();
+  	    $arr['00'] =  "i,es,,èm,ètz,on";
+  	    $arr['01'] =  "iái,iás,iá,iam,iatz,ián";
+  	    $arr['02'] =  "èri,ères,èt,èrem,èretz,èron";
+  	    $arr['03'] =  "rai,ràs,rà,rem,retz,ràn";
+  	    $arr['04'] =  "";
+  	    $arr['05'] =  "ent";
+  	    $arr['06'] =  "ut,uda";
+  	    $arr['07'] =  ",am,ètz,as,am,atz";
+  	    $arr['08'] =  "a,as,a,am,atz,an";
+  	    $arr['09'] =  "èsse,èsses,èsse,èssem,èssetz,èsson";
+  	    $arr['10'] =  "riái,riás,riá,riam,riatz,rián";
 
-  return $arr;
+  	    return $arr;
   } // getStandardConjugation
+
+  private function getMixedConjugation($model){
+  	  $arr = $this->getStandardConjugation($model);
+/*************************** F I X    M E *************************************/
+  	  $results = db_query("SELECT * FROM {sauzet_model} where nummodel='$model' limit 1");
+  	  $line = $results->fetchObject();
+  	  $label = $line->label_conjugation;
+  	  $conjugations= $line->conjugations;
+
+  	  $tempses = explode('|', $conjugations);
+
+  	  // for each conjugation
+  	  $arrTemps = array();
+
+  	  foreach($tempses as $temps){
+    	    $arrConjugations = explode(':', $temps);
+    	    $index = $arrConjugations[0];
+    	    $conjugationStr = (isset($arrConjugations[1]))?$arrConjugations[1]:"";
+ 
+	    if ($conjugationStr){
+      	      $arr[$index]= $conjugationStr; 
+    	    } // if
+          } // foreach 
+
+     return $arr;
+  } // getMixedConjugation($model)
 
   public function display(){
     return "ConjugationLengadocianThirdGroup $this->_name " . $this->conjugate;
   } // display
   
   protected function getConjugationArray(){
+
     $infinitive = $this->getVerb();
+    $vowelGrave = $this->isVowelDetected($infinitive);
+    $tonic = $this->isTonicDetected($infinitive);
+    $model = $this->getVerbModel();
+    $arr = $this->getMixedConjugation($model);
 
-    $pattern = '/ \d{1}$/';
-
-    if (preg_match($pattern, $infinitive)){
-      $rootSaved = preg_replace('/(.+)(ar \d{1}$)/', '$1', $infinitive);
-    }else{
-      $rootSaved = substr($infinitive,0,-2);
-    }
-        
+    $patterns = array();
+    $patterns[1] = '/er$/';
+    $patterns[0] = '/re$/';
+    $replacements = array();
+    $replacements[1] = '';
+    $replacements[0] = '';
+    $rootTruncated = preg_replace($patterns, $replacements, $infinitive);
     $conjugations = array();
 
+    $rootTruncated = $this->neutralizeTonic($rootTruncated,$tonic);
+
     // for each temps
-    foreach($this->getStandardConjugation() as $lib=>$desinence){
+    foreach($arr as $lib=>$desinence){
       $desinences = explode(',', $desinence);
       $i=0;
       $tempsConjugated = array();
 
       foreach ($desinences as $elmnt){
+         $rootDotLess = $rootTruncated;
+	 // if there are dots in the desinence they are interpreted as backspaces
+      	 if (substr_count($elmnt, '.')){
+       	    $rootDotLess = substr($rootTruncated, 0, -1*(int)substr_count($elmnt, '.'));
+	 }
+      	 $elmnt = str_replace ( '.' , '', $elmnt );
+      
+	 if ($this->mustNeutralizeVowel($lib,$i)){
+           $rootSaved = $this->neutralizeVowel($rootDotLess,$vowelGrave);
+      	 }else{
+	   $rootSaved = $rootDotLess;
+      	 }
+
         $root = $this->fixRadical($rootSaved,$elmnt);
         $elmnt = $this->fixDesinence($elmnt);
         $tempsConjugated[] = $root.$elmnt; 

@@ -23,20 +23,19 @@ class ConjugationGasconFirstGroup extends ConjugationBase{
   } // setStandardConjugation
 
   protected function fixRadical($radical,$desinence){
-    $radical = $this->phonologicFixes($radical);
+    //$radical = $this->phonologicFixes($radical);
     // present indicative and present subjunctive
     $desinences = array('i','as','','a','an','e','es','en','ias','ia','ian');
   
     if(in_array($desinence,$desinences)){
       switch ($this->getVerbModel()){
-        case '106 a' : $pattern = '/(.+?)a(.+?)$/'; $replacement = '${1}à${2}'; break;
-          //      case '106 b' : $pattern = '/(.+?)e(.+?)$/'; $replacement = '${1}é${2}'; break;
-        //      case '106 c' :
-        case '106 d' : $pattern = '/(.+?)i(.+?)$/'; $replacement = '${1}í${2}'; break;
-        case '106 e' : $pattern = '/(.+?)u(.+?)$/'; $replacement = '${1}ú${2}'; break;
+        case '106 a' : $pattern = '/(.+)a(.+?)$/'; $replacement = '${1}à${2}'; break;
+        case '106 b' : $pattern = '/(.+)e(.+?)$/'; $replacement = '${1}é${2}'; break;
+        case '106 c' : $pattern = '/(.+)o(.+?)$/'; $replacement = '${1}ó${2}'; break;
+        case '106 d' : $pattern = '/(.+)i(.+?)$/'; $replacement = '${1}í${2}'; break;
+        case '106 e' : $pattern = '/(.+)u(.+?)$/'; $replacement = '${1}ú${2}'; break;
         case '107 b' : 
           if (in_array($desinence,array('e','es','en'))){
-            //drupal_set_message("$desinence"); 
             $pattern = '/(.*?)e(.+?)$/'; $replacement = '${1}è${2}';}
           else{
             $pattern = '//'; $replacement = '';}
@@ -47,6 +46,7 @@ class ConjugationGasconFirstGroup extends ConjugationBase{
         case '113'   :
         case '114'   :
         case '115'   :
+        case '116'   :
           $pattern = '/(.+)e(.+?)$/'; $replacement = '${1}è${2}'; break;
         case '120'   :
         case '121'   :
@@ -54,8 +54,9 @@ class ConjugationGasconFirstGroup extends ConjugationBase{
         case '123'   :
         case '124'   :
         case '125'   :
+        case '126'   :
         case '126 a' :
-        case '126 b' :
+	case '126 b' :
         case '150'   :
         case '154'   :
           $pattern = '/(.+)o(.+?)$/'; $replacement = '${1}ò${2}'; break;
@@ -85,6 +86,11 @@ class ConjugationGasconFirstGroup extends ConjugationBase{
 
     if(in_array($desinence,$desinences)){
       switch ($this->getVerbModel()){
+        case '105 a' :   // Attention crear,  crei becomes creï
+        case '105 b' :   // Attention tuar,  tui becomes tuï
+        case '105 c' :   // Attention entinoar,  entinoi becomes entinoï
+        case '105 e' :   // Attention tuar,  tui becomes tuï
+          $desinence = ($desinence=='i' ? 'ï':$desinence); break;
         case '107 a' :   // Attention dar,  di becomes dau
           $desinence = ($desinence=='i' ? 'au':$desinence); break;
         case '107 b' :   // Attention estar,  estid becomes estau
@@ -106,7 +112,7 @@ class ConjugationGasconFirstGroup extends ConjugationBase{
     if (preg_match($pattern, $infinitive)){
       $rootSaved = preg_replace('/(.+)(ar \d{1}$)/', '$1', $infinitive);
     }else{
-      $rootSaved = substr($infinitive,0,-2);
+      $rootSaved = preg_replace('/(.+)(ar)/', '$1', $infinitive);
     }
         
     $conjugations = array();
@@ -120,7 +126,9 @@ class ConjugationGasconFirstGroup extends ConjugationBase{
       foreach ($desinences as $elmnt){
         $root = $this->fixRadical($rootSaved,$elmnt);
         $elmnt = $this->fixDesinence($elmnt);
-        $tempsConjugated[] = $root.$elmnt; 
+        $conj = $this->phonologicFixes($root.'-'.$elmnt);
+        $conj = preg_replace('/-/', '', $conj);
+        $tempsConjugated[] = $conj; 
       } // for desinences
       $conjugations[] = $tempsConjugated;
     } // foreach temps

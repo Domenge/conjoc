@@ -19,39 +19,30 @@ class ConverterCSV implements IConverter{
   }
 
   public function convertIndexedData($data){
-     $converter = new ConverterIndexation();
+    $converter = new ConverterIndexation();
+    $o = '"id";"verb";"row";"dialect";"nummodel";"conjugation";"pos";"decodedPOS";"type";"person";"gender";"number";"finiteness";"mood";"tense";"voice";"status";"aspect";"separability";"reflexivity";"auxiliary"';
+    $o .= "<br>\n";
+    $arrPos = $converter->decodePOS($data->pos);
+    if(empty($data->id)){
+        $o .= '"error";"error";"error";"error";"error";"error";"error";"error";"';
+    }else{
+        $o .= "\"$data->id\";\"$data->verb\";\"$data->row\";\"$data->dialect\";\"$data->nummodel\";\"$data->conjugation\";\"$data->pos\";\"decodedPOS\";\"";
+}
+    $o .= $arrPos['type'] . '";"'; 
+    $o .= $arrPos['person'] . '";"'; 
+    $o .= $arrPos['gender'] . '";"'; 
+    $o .= $arrPos['number'] . '";"'; 
+    $o .= $arrPos['finiteness'] . '";"'; 
+    $o .= $arrPos['mood'] . '";"';
+    $o .= $arrPos['tense'] . '";"'; 
+    $o .= $arrPos['voice'] . '";"';
+    $o .= $arrPos['status'] . '";"'; 
+    $o .= $arrPos['aspect'] . '";"';
+    $o .= $arrPos['separability'] . '";"';
+    $o .= $arrPos['reflexivity'] . '";"';
+    $o .= $arrPos['auxiliary'] . '";"';
 
-     if(empty($data)){
-	$arrPos = array();
-	$arrPos['type'] = 'error';
-	$arrPos['person'] = 'N/A';
-	$arrPos['gender'] = 'N/A';
-	$arrPos['number'] = 'N/A';
-	$arrPos['finiteness'] = 'N/A';
-	$arrPos['mood'] = 'N/A';
-	$arrPos['tense'] = 'N/A';
-	$arrPos['voice'] = 'N/A';
-	$arrPos['status'] = 'N/A';
-	$arrPos['aspect'] = 'N/A';
-	$arrPos['separability'] = 'N/A';
-	$arrPos['reflexivity'] = 'N/A';
-	$arrPos['auxiliary'] = 'N/A';
-
-    	$arrData = array();
-	$arrData['id'] = 'error';
-	$arrData['verb'] = 'error';
-	$arrData['row'] = 'error';
-	$arrData['dialect'] = 'error';
-	$arrData['nummodel'] = 'error';
-	$arrData['conjugation'] = 'error';
-	$arrData['pos'] = 'error';
-	$arrData['decodePOS'] = 'error';
-     }else{
-	$arrPos = $converter->decodePOS($data->pos);
-    	$arrData = (array)$data;
- 	}
-    $arrData['decodedPOS'] = $arrPos;  
-    return json_encode($arrData);
+    return utf8_decode($o);
   }  // convertIndexedData
  
 } // class ConverterCSV
