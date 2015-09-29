@@ -9,7 +9,7 @@ ex :
   $gasconManager = new ConjugationGasconManager();
   $drupalHTMLConverter = new ConverterHTML();
 ...
-  // to inject the HTML code produces by the conjugation
+  // to inject the HTML code produced by the conjugation
   // line 748
     '#markup' => $drupalHTMLConverter->convertArray($gasconManager->getUsualVerbs()),
 ...
