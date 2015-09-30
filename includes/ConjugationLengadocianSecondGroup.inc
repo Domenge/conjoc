@@ -7,7 +7,7 @@ class ConjugationLengadocianSecondGroup extends ConjugationBase{
   $arr = array();
   $model = $this->getVerbModel();
    
-  if ($model == '230'){
+  if ($model == '230' || $model == '250'){
     $arr['00_IndPres|Present']                 =  "i,es,,èm,sètz,on";
     $arr['01_IndImp|Imperfach']                =  "iái,iás,iá,iam,iatz,ián";
     $arr['02_IndPret|Preterit']                =  "iguèri,iguères,iguèt,iguèrem,iguèretz,iguèron";

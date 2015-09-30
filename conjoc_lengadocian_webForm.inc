@@ -292,32 +292,38 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
   );
 
   $conjugated = $lengadocianManager->conjugate();
-  $fileNameToDownload = $drupalLATEXConverter->convertConjugation($conjugated);
+  // If there's an error
+  if (! empty($conjugated)){
+     $fileNameToDownload = $drupalLATEXConverter->convertConjugation($conjugated);
 
-  $form['verb_conjugated']['conjugation'] = array(
-    '#markup' => '<div>'. $drupalHTMLConverter->convertConjugation($conjugated) .'</div>',
-  );
+     $form['verb_conjugated']['conjugation'] = array(
+     '#markup' => '<div>'. $drupalHTMLConverter->convertConjugation($conjugated) .'</div>',
+     );
   
-  $form['exportation'] = array(
-  '#type' => 'fieldset',
-  '#title' => t('Exportation of the verb conjugation'),
-  '#weight' => 4,
-  '#collapsible' => TRUE,
-  '#collapsed' => TRUE,
-  );
+     $form['exportation'] = array(
+  	'#type' => 'fieldset',
+  	'#title' => t('Exportation of the verb conjugation'),
+  	'#weight' => 4,
+  	'#collapsible' => TRUE,
+  	'#collapsed' => TRUE,
+     );
 
-  $form['exportation']['downloadPDF'] = array(
-    '#markup' => l( 
-    t("ficha en format PDF «" . $verb . "»" . '<img width="32px" src="/sites/default/files/img/logopdf.png"></img>'), 
-    $fileNameToDownload, 
-    array(
-    	'html' => TRUE,
-    	'attributes' => array('target'=>'_blank'
+     $form['exportation']['downloadPDF'] = array(
+    	'#markup' => l( 
+    	t("ficha en format PDF «" . $verb . "»" . '<img width="32px" src="/sites/default/files/img/logopdf.png"></img>'), 
+    	$fileNameToDownload, 
+    	array(
+		'html' => TRUE,
+    		'attributes' => array('target'=>'_blank'
     	)
-    )
-    ),
-  );
-
+    	)
+    	),
+  	);
+   }else{ // if
+     $form['verb_conjugated']['conjugation'] = array(
+        '#markup' => '<div>' . t("Error") . '</div>',
+     );   	  
+   }
 /*
   $form['exportation']['submit_TEI'] = array(
 	'#type' => 'image_button',

@@ -51,6 +51,12 @@ abstract class ConjugationManagerBase{
         return ConjugationManagerBase::GASCON_CODE;
       case ConjugationManagerBase::PROVENCAL:
         return ConjugationManagerBase::PROVENCAL_CODE;
+      case ConjugationManagerBase::VIVAROALPENC:
+        return ConjugationManagerBase::VIVAROALPENC_CODE;
+      case ConjugationManagerBase::AUVERNHAT:
+        return ConjugationManagerBase::AUVERNHAT_CODE;
+      case ConjugationManagerBase::LEMOSIN:
+        return ConjugationManagerBase::LEMOSIN_CODE;
     }
   } // getThisDialectCode
 
@@ -92,7 +98,23 @@ abstract class ConjugationManagerBase{
 
   public function setVerb($verb){
     $this->_verb = $verb;
-    $line  = $this->_dataProvider->getVerb($verb); 
+    $line  = $this->_dataProvider->getVerb($verb);
+
+    if (empty($line)){
+       drupal_set_message(t("the verb [$verb] don't exist."),'ERROR');
+       $this->setVerbModel('');
+       $this->_seeAlso = '';
+       $this->_alias = '';
+       $this->_idVerb = 0;
+
+       $this->_localization = '';
+       $this->_comments  = 'not yet implemented';
+       $this->_libModel  = '';
+       $this->_verbPrime = '';
+       $this->_conjugations = '';
+
+       return;
+    } 
 
     $this->setVerbModel($line->nummodel);
 
@@ -100,7 +122,7 @@ abstract class ConjugationManagerBase{
     $this->_alias = $line->alias;
     $this->_idVerb = $line->id;
 
-    $modelObj  = $this->_dataProvider->getVerbModel($line->nummodel); 
+    $modelObj  = $this->_dataProvider->getVerbModelObject($line->nummodel); 
 
     $this->_localization = 'c';
     $this->_comments  = 'not yet implemented';
@@ -118,6 +140,10 @@ abstract class ConjugationManagerBase{
 
   public function getVerbModel(){
     return $this->_model;
+  }
+
+  public function getVerbModelObject($nummodel){
+    return $this->_dataProvider->getVerbModelObject($nummodel);
   }
 
   public function getGroup(){

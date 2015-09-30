@@ -170,34 +170,40 @@ function ajax_gascon_verb_autocomplete($form, &$form_state) {
   );
 
   $conjugated = $gasconManager->conjugate();
+  // If there's an error
+  if (! empty($conjugated)){
 
-  $form['gasc_verb_conjugated']['conjugation'] = array(  
-    '#markup' => '<div>'. $drupalHTMLConverter->convertConjugation($conjugated) .'</div>',
-  );
+     $form['gasc_verb_conjugated']['conjugation'] = array(  
+     '#markup' => '<div>'. $drupalHTMLConverter->convertConjugation($conjugated) .'</div>',
+     );
   
-  $form['exportation'] = array(
-  '#type' => 'fieldset',
-  '#title' => t('Exportation'),
-  '#weight' => 6,
-  '#collapsible' => TRUE,
-  '#collapsed' => TRUE,
-  );
+     $form['exportation'] = array(
+     '#type' => 'fieldset',
+     '#title' => t('Exportation'),
+     '#weight' => 6,
+     '#collapsible' => TRUE,
+     '#collapsed' => TRUE,
+     );
 
-  $fileNamePDFToDownload = $drupalLATEXConverter->convertConjugation($conjugated);
+     $fileNamePDFToDownload = $drupalLATEXConverter->convertConjugation($conjugated);
 
-  $form['exportation']['downloadPDF'] = array(
-    '#markup' => l( 
-    t("ficha en format PDF «" . $verb . "»" . '<img width="32px" src="/sites/default/files/img/logopdf.png"></img>'), 
-    $fileNamePDFToDownload, 
-    array(
+     $form['exportation']['downloadPDF'] = array(
+     '#markup' => l( 
+     t("ficha en format PDF «" . $verb . "»" . '<img width="32px" src="/sites/default/files/img/logopdf.png"></img>'), 
+     $fileNamePDFToDownload, 
+     array(
     	'html' => TRUE,
     	'attributes' => array('target'=>'_blank'
     	)
-    )
-    ),
-  );
+    	)
+     ),
+     );
 
-
+   }else{ // if
+     $form['gasc_verb_conjugated']['conjugation'] = array(
+     '#markup' => '<div>' . t("Error") . '</div>',
+     );
+   }
 /*
   $form['exportation']['downloadTEI'] = array(
 	'#type' => 'image_button',

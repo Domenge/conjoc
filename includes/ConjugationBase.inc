@@ -227,9 +227,15 @@ abstract class ConjugationBase implements iDisplayable{
   } // phonologicFixes
 
   public function conjugate(){
+    $arr = array();
+
+    if ($this->getVerbId() == 0){
+       return $arr;
+    }
+
     $conjugations = $this->getConjugationArray();
 
-    $arr = array();
+
     $arr["id"]               = $this->getVerbId();
     $arr["name"]             = $this->getVerb();
     $arr["infinitive"]       = $conjugations[ConjugationBase::INFINITIVE];
@@ -266,6 +272,8 @@ abstract class ConjugationBase implements iDisplayable{
   public function getGroup(){return $this->_manager->getGroup();}
   public function getVerb(){return $this->_manager->getVerb();}
   public function getVerbModel(){return $this->_manager->getVerbModel();}
+  public function getVerbModelObject($nummodel){return $this->_manager->getVerbModelObject($nummodel);}
+
   public function getlibModel(){return $this->_manager->getLibModel();}
   public function getComments(){return $this->_manager->getComments();}
   public function getManager(){return $this->_manager;}

@@ -30,10 +30,7 @@ class ConjugationGasconThirdGroup extends ConjugationBase{
   private function getMixedConjugation($model){
   	  $arr = $this->getStandardConjugation($model);
 
-/********** F I X  M E *******************************************/
-
-  	  $results = db_query("SELECT * FROM {gascon_model} where nummodel='$model' limit 1");
-  	  $line = $results->fetchObject();
+	  $line = $this->getVerbModelObject($model);
   	  $label = $line->label_conjugation;
   	  $conjugations= $line->conjugations;
 

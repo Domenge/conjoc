@@ -17,7 +17,7 @@ abstract class ConjugationDataProviderBase{
 
   abstract public function getVerb($verb);
   abstract public function getVerbById($id);
-  abstract public function getVerbModel($numModel);
+  abstract public function getVerbModelObject($numModel);
   abstract public function getTop20();
   abstract public function getOthersInModel($verb);
   abstract public function getCountOthersInModel($verb);

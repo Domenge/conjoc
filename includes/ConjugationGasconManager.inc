@@ -30,7 +30,7 @@ class ConjugationGasconManager extends ConjugationManagerBase{
      $arrRet['èsser'] = 'gascon/verb_autocomplete/usuals/èsser';
      $arrRet['aver'] = 'gascon/verb_autocomplete/usuals/aver';
      $arrRet['anar'] = 'gascon/verb_autocomplete/usuals/anar';
-     $arrRet['far'] = 'gascon/verb_autocomplete/usuals/far';
+     $arrRet['far'] = 'gascon/verb_autocomplete/usuals/har';
      $arrRet['venir'] = 'gascon/verb_autocomplete/usuals/venir';
      $arrRet['cantar'] = 'gascon/verb_autocomplete/usuals/cantar';
      $arrRet['poder'] = 'gascon/verb_autocomplete/usuals/poder';
@@ -47,6 +47,10 @@ class ConjugationGasconManager extends ConjugationManagerBase{
 
   public function getLongLabel(){
   	return "gascon";
+  }
+
+  public function getVerbHAR($verb){
+  	return $this->getProvider()->getVerbHAR($verb);
   }
 	
 } // class ConjugationGasconManager

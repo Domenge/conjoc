@@ -11,12 +11,12 @@ class ConjugationGasconSecondGroup extends ConjugationBase{
     $arr['00_IndPres|Present']                 =  "i,es,,em,etz,en";
     $arr['01_IndImp|Imperfach']                =  "ivi,ivas,iva,ivam,ivatz,ivan";
     $arr['02_IndPret|Preterit']                =  "ii,is,i,im,itz,in";
-    $arr['03_IndFutur|Futur']                  =  "iret,iràs,irà,iram,iratz,iràn";
+    $arr['03_IndFutur|Futur']                  =  "irei,iràs,irà,iram,iratz,iràn";
     $arr['04_Infinitiu|Infinitiu']             =  "ir";
-    $arr['05_Gerondiu|Gerondiu']               =  "issent";
+    $arr['05_Gerondiu|Gerondiu']               =  "ent";
     $arr['06_PartPassat|Participi passat']     =  "it,ida";
-    $arr['07_Imperatiu|Imperatiu']             =  "is,im,itz,escas,escam,escatz";
-    $arr['08_SubPres|Subjontiu present']       =  "esqui,escas,esca,escam,escatz,escan";
+    $arr['07_Imperatiu|Imperatiu']             =  ",im,itz,ias,iam,iatz";
+    $arr['08_SubPres|Subjontiu present']       =  "i,ias,ia,iam,iatz,ian";
     $arr['09_SubImp|Subjontiu imperfach']      =  "issi,isses,isse,íssem,íssetz,issen";
     $arr['10_Conditional|Conditional']         =  "iri,irés,iré,irem,iretz,irén";
   return $arr;

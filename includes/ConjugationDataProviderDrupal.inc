@@ -12,10 +12,10 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
     return $results->fetchObject();
   } // getVerbById
 
-  public function getVerbModel($numModel){
+  public function getVerbModelObject($numModel){
     $results = db_query("SELECT * FROM {" . $this->getBaseTableName() . "_model} WHERE nummodel=:numModel",array(':numModel'=>$numModel));
     return $results->fetchObject();
-  } // getVerbModel
+  } // getVerbModelObject
 
   public function getTop20(){
   	$results = db_query("SELECT COUNT(*) as cpter, group_concat(cast(idverb as char)) as concat FROM {" . $this->getBaseTableName() . "_access} GROUP BY idverb ORDER BY cpter DESC LIMIT 20");
@@ -129,6 +129,15 @@ T O  B E  D O N E
     $line = $results->fetchObject();
     return $line->verbtrimmed;  
   }
+
+  public function getVerbHAR($verb){
+  // returns the prefix of the verb build on semiauxiliary HAR gascon
+    $results = db_query("SELECT SUBSTR( verb, 1, position( 'har' IN verb ) -1 ) as verbtrimmed FROM {".
+    $this->getBaseTableName() 
+    . "_verbsmodel} where verb = :verb", array(':verb'=>$verb));
+    $line = $results->fetchObject();
+    return $line->verbtrimmed;  
+  } // getVerbHAR
   
   public function getIndexationAutoComplete($conjugation){
      $matches = array();

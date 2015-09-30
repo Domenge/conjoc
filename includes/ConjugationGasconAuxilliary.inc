@@ -13,7 +13,7 @@ class ConjugationGasconAuxilliary extends ConjugationBase{
     // is added to all the conjugations
     $rootVerb = '';
     if ($this->getVerbModel() == '004'){
-      $rootVerb = $this->getManager()->getVerbFar($infinitive);
+      $rootVerb = $this->getManager()->getVerbHar($infinitive);
     } //far
                 
     $conjugations = explode('|', $this->getConjugations());
