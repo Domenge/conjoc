@@ -178,6 +178,10 @@ abstract class ConjugationManagerBase{
     return $this->_conjugations;
   }
 
+  public function getDictionaryDefinition($infinitive){
+      return $this->_dataProvider->getDictionaryDefinition($infinitive);
+  }
+ 
   public function getProvider(){
     return $this->_dataProvider;
   }

@@ -419,3 +419,30 @@ function process_URL_arguments($content = NULL, $arg1 = NULL, $arg2 = NULL) {
 
   return $o;
 }
+
+/**
+ * Page callback for use with most of the menu entries.
+ *
+ * The arguments it receives determine what it outputs.
+ *
+ * @param string $content
+ *   The base content to output.
+ * @param string $arg1
+ *   First additional argument from the path used to access the menu
+ * @param string $arg2
+ *   Second additional argument.
+ */
+function _lengadocian_menu_page($content = NULL, $arg1 = NULL, $arg2 = NULL) {
+
+  if (!empty($content)) {
+    $form_state = array();
+
+    $args = func_get_args();
+    $form_state['build_info']['args'] = $args;
+    $form_state['values']['verb_search']['verb'] = $content;
+    $form_state['values']['action'] = 'force';
+    return drupal_build_form('ajax_lengadocian_verb_autocomplete', $form_state);
+  }
+
+  return drupal_set_message(t('Conjoc content is void.'), 'error');
+}

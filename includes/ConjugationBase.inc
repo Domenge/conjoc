@@ -248,6 +248,7 @@ abstract class ConjugationBase implements iDisplayable{
     $arr["comments"]         = $this->getComments();
     $arr["conjugations"]     = $conjugations;
     $arr["desinenceLengths"] = $this->getDesinenceLengthArray();
+    $arr["dictionaryDefinition"] = $this->getDictionaryDefinition();
   
     return $arr;
   }
@@ -283,6 +284,11 @@ abstract class ConjugationBase implements iDisplayable{
   public function getSeeAlso(){return $this->_manager->getSeeAlso();}
   public function getDialect(){return $this->_manager->getDialect();}
   public function getConjugations(){return $this->_manager->getConjugations();}
+  public function getDictionaryDefinition(){
+      $conjugations = $this->getConjugationArray();
+      $infinitive = $conjugations[ConjugationBase::INFINITIVE];
+      return $this->_manager->getDictionaryDefinition($infinitive);
+  }
 
   abstract public function display();
   abstract protected function getConjugationArray();

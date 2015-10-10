@@ -25,6 +25,22 @@
     color: #666666; font-style: italic; text-decoration: none;
 }
 
+.dictionaryDefinition{
+    color: #666666; font-style: italic; text-decoration: none;
+}
+
+.infinitive{
+    color: #000000; font-style: normal;font-weight: bold; text-decoration: none;
+}
+
+.catgram{
+    color: #CC3300; font-style: normal; text-decoration: none;
+}
+
+.creditDefinition{
+    color: #000000; font-size: 0.875em; font-style: normal; text-decoration: none;
+}
+
 .label_mode{
     color: green; font-weight: bold; text-decoration: none;
 }

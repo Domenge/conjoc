@@ -84,10 +84,10 @@ class ConverterHTML implements IConverter{
         $o .= "<span class=\"label_verb\">$model</span> <span class=\"label_verb\">$libmodel</span>";
     }
 
-    $creditDefinition = "sorça : Tot En Un, lexic Occitan-Francés, Joan-Claudi SÈRRAS. IEO Edicions ";
+    $creditDefinition = "sorca : Tot En Un, lexic Occitan-Frances, Joan-Claudi Serras. IEO Edicions ";
  
     if (!empty($dictionaryDefinitions)){
-        $o .= '<br><div class="dictionaryDefinitions">';
+        $o .= '<div class="dictionaryDefinitions">';
         foreach($dictionaryDefinitions as $elmnt){
             $o .= '<div class="dictionaryDefinition"><span class="infinitive">' . 
                 $infinitive . 
