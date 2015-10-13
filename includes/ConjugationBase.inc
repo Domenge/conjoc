@@ -16,7 +16,7 @@ abstract class ConjugationBase implements iDisplayable{
   const IND_PRESENT = 0;
   const IND_IMPERFECT = 1;
   const IND_PRETERIT = 2;
-  const IND_FUTUR = 3;
+  const IND_FUTURE = 3;
   const INFINITIVE = 4;
   const GERUND = 5;
   const PAST_PARTICIPLE = 6;
@@ -42,30 +42,6 @@ abstract class ConjugationBase implements iDisplayable{
 
   const LAST_NORMAL_TEMPS = ConjugationBase::CONDITIONAL;
 
-/*
-{
-    "id": 3443,
-    "name": "portar",
-    "infinitive": "portar",
-    "model": "120",
-    "libmodel": "Modèl : conjugason 1 alternança ò/o",
-    "dialect": "lengadocian",
-    "comments": "",
-    "see_also": "",
-    "conjugations": [
-        "pòrti,pòrtas,pòrta,portam,portatz,pòrtan",
-        "portavi,portavas,portava,portavam,portavatz,pòrtavan",
-        "portèri,portères,portèt,portèrem,portèretz,portèron",
-        "portarai,portaras,portara,portarem,portaretz,portaràn",
-        "portar",
-        "en portant",
-        "pòrta,portem,portètz,pòrtes pas,portem pas,portetz pas",
-        "pòrte,pòrtes,pòrte,portem,portetz,pòrten",
-        "portèsse,portèsses,pòrtesse,pòrtessem,pòrtessetz,pòrtesson",
-        "portariai, portarias,portariá,portariam,portariatz,portarián"
-    ]
-}
-*/
   public function __construct(ConjugationManagerBase $manager){
     $this->_manager= $manager;
   } // __construct
@@ -262,7 +238,7 @@ abstract class ConjugationBase implements iDisplayable{
   } // fixDesinence
 
   protected function getDesinenceLengthArray(){
-    return array();
+      return array(); // empty by default
   } // fixDesinence
 
   protected function getStandardConjugation(){

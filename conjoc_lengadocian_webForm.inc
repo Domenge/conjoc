@@ -138,8 +138,8 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
   $action = (!empty($form_state['values']['action']))?$form_state['values']['action']:'';
 
   $lengadocianManager   = new ConjugationLengadocianManager();
-  $drupalHTMLConverter  = new ConverterHTML();
-  $drupalLATEXConverter = new ConverterLATEX();
+  $converterHTML  = new ConverterHTML();
+  $converterLATEX = new ConverterLATEX();
   
   $verb   = (!empty($form_state['values']['verb_search']['verb']))?
   	$form_state['values']['verb_search']['verb']:
@@ -190,7 +190,7 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
   );
 
   $form['verbs_usuals']['info'] = array(
-    '#markup' => $drupalHTMLConverter->convertArray($lengadocianManager->getUsualVerbs()),
+    '#markup' => $converterHTML->convertArray($lengadocianManager->getUsualVerbs()),
     '#weight' => 1,
   );
 
@@ -198,7 +198,7 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
     T O P 2 0   V E R B S
   */
 
-
+/*
   $form['TOP20_verbs'] = array(
   '#type' => 'fieldset',
   '#title' => t('Top 20 verbs'),
@@ -224,6 +224,7 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
     '#type' => 'submit',
     '#value' => t('Submit to be translated'),    
   );
+*/
 
   /*
     S I N G L E   V E R B S
@@ -238,7 +239,7 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
   );
 
   $form['single_verbs']['info'] = array(
-  '#markup' => $drupalHTMLConverter->convertArray($lengadocianManager->getSingleVerbs()),
+  '#markup' => $converterHTML->convertArray($lengadocianManager->getSingleVerbs()),
   );
 
   /*
@@ -294,10 +295,10 @@ function ajax_lengadocian_verb_autocomplete($form, &$form_state) {
   $conjugated = $lengadocianManager->conjugate();
   // If there's an error
   if (! empty($conjugated)){
-     $fileNameToDownload = $drupalLATEXConverter->convertConjugation($conjugated);
+      $fileNameToDownload = $converterLATEX->convertConjugation($conjugated);
 
      $form['verb_conjugated']['conjugation'] = array(
-     '#markup' => '<div>'. $drupalHTMLConverter->convertConjugation($conjugated) .'</div>',
+     '#markup' => '<div>'. $converterHTML->convertConjugation($conjugated) .'</div>',
      );
   
      $form['exportation'] = array(

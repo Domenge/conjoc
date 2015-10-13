@@ -133,16 +133,17 @@ class ConjugationLengadocianFirstGroup extends ConjugationBase{
   protected function getDesinenceLengthArray(){
 
     $desinenceLengths = array();
-    $desinenceLengths[]="1,2,1,2,3,2";
-    $desinenceLengths[]="3,4,3,4,5,4";
-    $desinenceLengths[]="3,4,2,4,5,4";
-    $desinenceLengths[]="4,4,3,4,5,4";
-    $desinenceLengths[]="2";
-    $desinenceLengths[]="3";
-    $desinenceLengths[]="1,2,3,2,2,3";
-    $desinenceLengths[]="1,2,1,2,3,2";
-    $desinenceLengths[]="4,5,4,4,6,5";
-    $desinenceLengths[]="5,5,4,5,6,5";
+    $desinenceLengths[ConjugationBase::IND_PRESENT]="1,2,1,2,3,2";
+    $desinenceLengths[ConjugationBase::IND_IMPERFECT]="3,4,3,4,5,4";
+    $desinenceLengths[ConjugationBase::IND_PRETERIT]="3,4,2,4,5,4";
+    $desinenceLengths[ConjugationBase::IND_FUTURE]="4,4,3,4,5,4";
+    $desinenceLengths[ConjugationBase::INFINITIVE]="2";
+    $desinenceLengths[ConjugationBase::GERUND]="3";
+    $desinenceLengths[ConjugationBase::PAST_PARTICIPLE]="2,3";
+    $desinenceLengths[ConjugationBase::IMPERATIVE]="1,2,1,2,3,2";
+    $desinenceLengths[ConjugationBase::SUBJ_PRESENT]="4,5,4,4,6,5";
+    $desinenceLengths[ConjugationBase::SUBJ_IMPERFECT]="5,5,4,5,6,5";
+    $desinenceLengths[ConjugationBase::CONDITIONAL]="4,4,3,4,5,4";
     return $desinenceLengths;
 
   }

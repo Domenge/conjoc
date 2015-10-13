@@ -201,9 +201,9 @@ abstract class ConjugationManagerBase{
   public function getSingleVerbs(){
     $arrRet = array();
     $singleVerbs = $this->_dataProvider->getSingleVerbs();
-
+    $dialect = $this->getDialect();
     foreach ($singleVerbs as $verb){
-      $arrRet[$verb] = "gascon/verb_autocomplete/usuals/$verb";
+      $arrRet[$verb] = "$dialect/verb_autocomplete/usuals/$verb";
     }
     return $arrRet;
   } // getSingleVerbs
