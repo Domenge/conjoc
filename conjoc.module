@@ -39,6 +39,7 @@ function conjoc_menu() {
   */
 
   // Search page w/ajax autocomplete
+/*
   $items['conjoc/verb_autocomplete'] = array(
     'title' => t("Old Conjugador occitan dialecte Lengadocian"),
     'page callback' => 'drupal_get_form',
@@ -63,7 +64,7 @@ function conjoc_menu() {
     'file' => 'conjoc_webForm.inc',
     'type' => MENU_CALLBACK,
   );
-
+*/
   $items['conjoc/verb_autocomplete/better_see'] = array(
     'title' => t("Conjugador occitan"),
     'page callback' => '_conjoc_menu_page',
@@ -87,6 +88,7 @@ function conjoc_menu() {
     'file' => 'conjoc_webForm.inc',
     'type' => MENU_CALLBACK,
   );
+
 /*
   $items['conjoc/TEI/exportLengadocian'] = array(
     'title' => t("Export TEI Lengadocian"),
@@ -96,17 +98,18 @@ function conjoc_menu() {
     'file' => 'conjoc_webForm.inc',
     'weight' => 10,
   );
-*/
+
 
   $items['conjoc/Indexation/allLengadocian'] = array(
     'title' => t("Indexation Lengadocian"),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('indexation_lengadocian_all'),
-    'access arguments' => array('administer conjoc'),
+//    'access arguments' => array('administer conjoc'),
+    'access arguments' => array('no access'),
     'file' => 'conjoc_webForm.inc',
     'weight' => 10,
   );
-
+*/
   /*
     LENGADOCIAN
   */
@@ -191,6 +194,7 @@ function conjoc_menu() {
     'weight' => 10,
   );
 
+/*
   $items['lengadocian/Indexation/allLengadocian'] = array(
     'title' => t("Indexation Lengadocian"),
     'page callback' => 'drupal_get_form',
@@ -206,6 +210,7 @@ function conjoc_menu() {
     'access arguments' => array('administer conjoc'),
     'weight' => 10,
   );
+*/
 
   $items['lengadocian/Indexation/searchform'] = array(
     'title' => t("Indexation search form"),
@@ -299,12 +304,13 @@ function conjoc_menu() {
   /*
     D E B U G
   */
-
+/*$
   $items['conjoc/debug'] = array(
     'title' => t("Conjugador occitan dialecte debug"),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('ajax_debug_verb_autocomplete'),
-    'access arguments' => array('access conjoc'),
+//    'access arguments' => array('access conjoc'),
+    'access arguments' => array('no access'),
     'file' => 'conjoc_debug_webForm.inc',
     'weight' => 10,
   );
@@ -313,21 +319,23 @@ function conjoc_menu() {
     'page callback' => 'ajax_debug_verb_autocomplete_callback',
     'file' => 'conjoc_debug_webForm.inc',
     'type' => MENU_CALLBACK,
-    'access arguments' => array('access conjoc'),
+//    'access arguments' => array('access conjoc'),
+    'access arguments' => array('no access'),
+
   );
 
   $items['conjoc/verb_autocomplete_debug_submit'] = array(
     'page callback' => 'ajax_debug_verb_autocomplete_submit',
     'file' => 'conjoc_debug_webForm.inc',
     'type' => MENU_CALLBACK,
-    'access arguments' => array('access conjoc'),
+//    'access arguments' => array('access conjoc'),
+    'access arguments' => array('no access'),
   );
 
   $items['conjoc/debug_submit'] = array(
     'page callback' => 'ajax_debug_verb_autocomplete_submit',
     'file' => 'conjoc_debug_webForm.inc',
     'type' => MENU_CALLBACK,
-    'access arguments' => array('access conjoc'),
   );
 
   $items['conjoc/debug_TEI_submit'] = array(
@@ -336,6 +344,10 @@ function conjoc_menu() {
     'type' => MENU_CALLBACK,
     'access arguments' => array('access conjoc'),
   );
+*/
+  /*
+    F I N  D E B U G
+  */
 
   $items['admin/settings/conjoc'] = array(
     'title' => t('Conjoc module settings'),
@@ -353,57 +365,112 @@ function conjoc_cron() {
   if (variable_get('conjoc_indexation_enabled', false)){
      $manager = new ConjugationLengadocianManager();
      $manager->processIndexation();
+     $manager = new ConjugationGasconManager();
+     $manager->processIndexation();
   }
 }
 
 function conjoc_admin() {
   $form = array();
 
-  $form['conjoc_indexation_enabled'] = array(
+  $form['conjoc_indexation_Lengadocian_enabled'] = array(
     				     '#type' => 'checkbox',
-    				     '#title' => t('Enable indexation'),
-    				     '#default_value' => variable_get('conjoc_indexation_enabled', false),
-    				     '#description' => t("Enable the indexation sequence. When completed it is set to false"),
+    				     '#title' => t('Enable indexation Lengadocian'),
+    				     '#default_value' => variable_get('conjoc_indexation_Lengadocian_enabled', false),
+    				     '#description' => t("Enable the indexation sequence for lengadocian dialect. When completed it is set to false"),
   );
 
-  $form['conjoc_indexation_increment_reset'] = array(
+  $form['conjoc_indexation_Lengadocian_reset'] = array(
     				     '#type' => 'checkbox',
-    				     '#title' => t('reset increment'),
-    				     '#default_value' => variable_get('conjoc_indexation_increment_reset', false),
-    				     '#description' => t("Reset the indexation increment to 0"),
+    				     '#title' => t('reset increment for Lengadocian indexation'),
+    				     '#default_value' => variable_get('conjoc_indexation_Lengadocian_reset', false),
+    				     '#description' => t("Reset the lengadocian indexation increment to 0"),
   );
 
-  $form['conjoc_indexation_increment'] = array(
+  $form['conjoc_indexation_Lengadocian_increment'] = array(
   				       '#type' => 'textfield', 
-  				       '#title' => t('Increment'), 
-  				       '#default_value' => variable_get('conjoc_indexation_increment', 0), 
+  				       '#title' => t('Lengadocian Increment'), 
+  				       '#default_value' => variable_get('conjoc_indexation_Lengadocian', 0), 
   				       '#size' => 2, 
   				       '#required' => FALSE,
   				       '#disabled' => FALSE,
   );
 
-  $form['conjoc_indexation_totalIncrements'] = array(
+  $form['conjoc_indexation_Lengadocian_totalIncrements'] = array(
   				       '#type' => 'textfield', 
-  				       '#title' => t('maximum increment'), 
-  				       '#default_value' => variable_get('conjoc_indexation_totalIncrements', 0), 
+  				       '#title' => t('Lengadocian total increments'), 
+  				       '#default_value' => variable_get('conjoc_indexation_Lengadocian_totalIncrements', 0), 
   				       '#size' => 2, 
   				       '#required' => FALSE,
   				       '#disabled' => TRUE,
   );
 
-  $form['conjoc_indexation_verbsindexed'] = array(
+  $form['conjoc_indexation_Lengadocian_verbsindexed'] = array(
   				       '#type' => 'textfield', 
-  				       '#title' => t('# verbs indexed'), 
-  				       '#default_value' => variable_get('conjoc_indexation_verbsindexed', 0), 
+  				       '#title' => t('# Lengadocian verbs indexed'), 
+  				       '#default_value' => variable_get('conjoc_indexation_Lengadocian_verbsindexed', 0), 
   				       '#size' => 10, 
   				       '#required' => FALSE,
   				       '#disabled' => TRUE,
   );
 
-  $form['conjoc_indexation_verbstoindex'] = array(
+  $form['conjoc_indexation_Lengadocian_verbstoindex'] = array(
   				       '#type' => 'textfield', 
-  				       '#title' => t('# verbs to index'), 
-  				       '#default_value' => variable_get('conjoc_indexation_verbstoindex', 0), 
+  				       '#title' => t('# Lengadocian verbs left to index'), 
+  				       '#default_value' => variable_get('conjoc_indexation_Lengadocian_verbstoindex', 0), 
+  				       '#size' => 10, 
+  				       '#required' => FALSE,
+  				       '#disabled' => TRUE,
+  );
+
+
+/*G A S C O N*/
+
+  $form['conjoc_indexation_Gascon_enabled'] = array(
+    				     '#type' => 'checkbox',
+    				     '#title' => t('Enable indexation Gascon'),
+    				     '#default_value' => variable_get('conjoc_indexation_Gascon_enabled', false),
+    				     '#description' => t("Enable the indexation sequence for gascon dialect. When completed it is set to false"),
+  );
+
+  $form['conjoc_indexation_Gascon_reset'] = array(
+    				     '#type' => 'checkbox',
+    				     '#title' => t('reset increment for Gascon indexation'),
+    				     '#default_value' => variable_get('conjoc_indexation_Gascon_reset', false),
+    				     '#description' => t("Reset the gascon indexation increment to 0"),
+  );
+
+  $form['conjoc_indexation_Gascon_increment'] = array(
+  				       '#type' => 'textfield', 
+  				       '#title' => t('Gascon Increment'), 
+  				       '#default_value' => variable_get('conjoc_indexation_Gascon', 0), 
+  				       '#size' => 2, 
+  				       '#required' => FALSE,
+  				       '#disabled' => FALSE,
+  );
+
+  $form['conjoc_indexation_Gascon_totalIncrements'] = array(
+  				       '#type' => 'textfield', 
+  				       '#title' => t('Gascon total increments'), 
+  				       '#default_value' => variable_get('conjoc_indexation_Gascon_totalIncrements', 0), 
+  				       '#size' => 2, 
+  				       '#required' => FALSE,
+  				       '#disabled' => TRUE,
+  );
+
+  $form['conjoc_indexation_Gascon_verbsindexed'] = array(
+  				       '#type' => 'textfield', 
+  				       '#title' => t('# Gascon verbs indexed'), 
+  				       '#default_value' => variable_get('conjoc_indexation_Gascon_verbsindexed', 0), 
+  				       '#size' => 10, 
+  				       '#required' => FALSE,
+  				       '#disabled' => TRUE,
+  );
+
+  $form['conjoc_indexation_Gascon_verbstoindex'] = array(
+  				       '#type' => 'textfield', 
+  				       '#title' => t('# Gascon verbs left to index'), 
+  				       '#default_value' => variable_get('conjoc_indexation_Gascon_verbstoindex', 0), 
   				       '#size' => 10, 
   				       '#required' => FALSE,
   				       '#disabled' => TRUE,

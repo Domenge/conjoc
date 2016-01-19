@@ -10,7 +10,7 @@
     font-family:"Arial", Times, sans;
 }
 
-.desinence{color:#000000;font-weight:bold; text-decoration:none; padding:2px;}
+.desinence{color:#000000;font-weight:bold; text-decoration:none; padding:1px;}
 .radical{color:navy;font-weight:normal; text-decoration:none;}
 
 .indicative,.impersonal_forms,.subjunctive,.imperative,.conditional

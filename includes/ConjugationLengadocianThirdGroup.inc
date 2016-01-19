@@ -57,13 +57,29 @@ class ConjugationLengadocianThirdGroup extends ConjugationBase{
         $model = $this->getVerbModel();
         $arr = $this->getMixedConjugation($model);
 
+        $pattern = '/ \d{1}$/';
+
+        if (preg_match($pattern, $infinitive)){
+            $rootSaved = preg_replace('/(.+)(er \d{1}$)/', '$1', $infinitive);
+            $rootSaved = preg_replace('/(.+)(re \d{1}$)/', '$1', $infinitive);
+            $rootSaved = preg_replace('/(.+)(ir \d{1}$)/', '$1', $infinitive);
+            $rootSaved = preg_replace('/(.+)(ne \d{1}$)/', '$1', $infinitive);
+        }else{
+            $rootSaved = preg_replace('/(.+)(er)/', '$1', $infinitive);
+            $rootSaved = preg_replace('/(.+)(re \d{1}$)/', '$1', $infinitive);
+            $rootSaved = preg_replace('/(.+)(ir \d{1}$)/', '$1', $infinitive);
+            $rootSaved = preg_replace('/(.+)(ne \d{1}$)/', '$1', $infinitive);
+        }
+
         $patterns = array();
+        $patterns[2] = '/ir$/';
         $patterns[1] = '/er$/';
         $patterns[0] = '/re$/';
         $replacements = array();
-        $replacements[1] = '';
         $replacements[0] = '';
-        $rootTruncated = preg_replace($patterns, $replacements, $infinitive);
+        $replacements[1] = '';
+        $replacements[2] = '';
+        $rootTruncated = preg_replace($patterns, $replacements, $rootSaved);
         $conjugations = array();
 
         $rootTruncated = $this->neutralizeTonic($rootTruncated,$tonic);
@@ -99,7 +115,16 @@ class ConjugationLengadocianThirdGroup extends ConjugationBase{
 
                 $root = $this->fixRadical($rootSaved,$elmnt);
                 $elmnt = $this->fixDesinence($elmnt);
-                $tempsConjugated[] = $root.$elmnt; 
+                $conj = $this->phonologicFixes($root.'-'.$elmnt);
+                $conj = preg_replace('/-/', '', $conj);
+                // impersonal verbs
+                if($model=='390' && ($rootSaved == 'cal' || $rootSaved == 'fal')){
+                    $conjSaved = $conj;
+                    $conj=($i==2)?$conj:"";
+                    $conj=($j == ConjugationBase::GERUND || $j == ConjugationBase::PAST_PARTICIPLE)?$conjSaved:$conj;
+                    $conj=($j == ConjugationBase::IMPERATIVE)?"":$conj;
+                }
+                $tempsConjugated[] = $conj; 
                 $i++;
             } // for desinences
             if ($j == ConjugationBase::INFINITIVE){ //
@@ -114,26 +139,95 @@ class ConjugationLengadocianThirdGroup extends ConjugationBase{
     } // getConjugationArray
   
     protected function fixRadical($radical,$desinence){
+        $model = $this->getVerbModel();
+
+//        $desinences = array('i','as','','a','on','an','e','es','en','ias','ia','ian');
+  
+        switch ($model){
+        case '373'   :
+            $pattern = '/(.*)ne$/'; $replacement = '${1}'; 
+            $radical =  preg_replace($pattern, $replacement, $radical);
+            break;
+        // radical w/à : replacement of the a acute heritated from radical
+        case '350'   :
+        case '351'   :
+        case '380'   :
+        case '381'   :
+        case '385'   :
+            $pattern = '/(.*)à(.*?)$/'; $replacement = '${1}a${2}'; 
+            $radical =  preg_replace($pattern, $replacement, $radical);
+            break;
+        } // switch
+
         return $radical;
+        
     } // fixRadical
   
     protected function fixDesinence($desinence){
         return $desinence;
     } // fixDesinence
 
-    public function getDesinenceLengthArray(){
+    protected function getDesinenceLengthArray(){
+
+        $model = $this->getVerbModel();
+
         $desinenceLengths = array();
-        $desinenceLengths[]="1,2,1,2,3,2";
-        $desinenceLengths[]="3,4,3,4,5,4";
-        $desinenceLengths[]="3,4,2,4,5,4";
-        $desinenceLengths[]="4,4,3,4,5,4";
-        $desinenceLengths[]="2";
-        $desinenceLengths[]="3";
-        $desinenceLengths[]="1,2,3,2,2,3";
-        $desinenceLengths[]="1,2,1,2,3,2";
-        $desinenceLengths[]="4,5,4,4,6,5";
-        $desinenceLengths[]="5,5,4,5,6,5";
+        $desinenceLengths[ConjugationBase::IND_PRESENT]="1,2,0,2,3,2";
+        $desinenceLengths[ConjugationBase::IND_IMPERFECT]="4,4,3,3,4,4";
+        $desinenceLengths[ConjugationBase::IND_PRETERIT]="4,5,3,5,6,5";
+        $desinenceLengths[ConjugationBase::IND_FUTURE]="3,4,3,3,4,4";
+        $desinenceLengths[ConjugationBase::INFINITIVE]="2";
+        $desinenceLengths[ConjugationBase::GERUND]="3";
+        $desinenceLengths[ConjugationBase::PAST_PARTICIPLE]="2,3";
+        $desinenceLengths[ConjugationBase::IMPERATIVE]="0,2,4,2,2,3";
+        $desinenceLengths[ConjugationBase::SUBJ_PRESENT]="1,2,1,2,3,2";
+        $desinenceLengths[ConjugationBase::SUBJ_IMPERFECT]="5,6,5,6,7,6";
+        $desinenceLengths[ConjugationBase::CONDITIONAL]="5,5,4,4,5,5";
+
+        if ($model == '373'){
+            // prendre
+            $desinenceLengths[ConjugationBase::IND_PRETERIT]="6,7,5,7,8,7";
+            $desinenceLengths[ConjugationBase::PAST_PARTICIPLE]="1,2";
+            $desinenceLengths[ConjugationBase::IMPERATIVE]="0,3,4,3,3,4";
+            $desinenceLengths[ConjugationBase::SUBJ_PRESENT]="2,3,2,3,4,3";
+            $desinenceLengths[ConjugationBase::SUBJ_IMPERFECT]="7,8,7,8,9,8";
+            $desinenceLengths[ConjugationBase::CONDITIONAL]="6,6,5,5,6,6";
+
+        }
+
+        if ($model == '303'){
+            // mettre
+            $desinenceLengths[ConjugationBase::PAST_PARTICIPLE]="3,2";
+        }
+        if ($model == '313'){
+            // escodre
+            $desinenceLengths[ConjugationBase::PAST_PARTICIPLE]="3,3";
+        }
+        if ($model == '325'){
+            // encendre
+            $desinenceLengths[ConjugationBase::PAST_PARTICIPLE]="3,3";
+        }
+        if ($model == '336'){
+            // conclure
+            $desinenceLengths[ConjugationBase::PAST_PARTICIPLE]="3,3";
+        }
+        if ($model == '345'){
+            // coire
+            $desinenceLengths[ConjugationBase::PAST_PARTICIPLE]="4,5";
+        }
+        if ($model == '355'){
+            // sorzer
+            $desinenceLengths[ConjugationBase::PAST_PARTICIPLE]="1,2";
+        }
+        if ($model == '373'){
+            // prene
+            $desinenceLengths[ConjugationBase::INFINITIVE]="1";
+            $desinenceLengths[ConjugationBase::PAST_PARTICIPLE]="3,3";
+            $desinenceLengths[ConjugationBase::IND_FUTURE]="4,5,4,4,5,5";
+        }
+
         return $desinenceLengths;
+
     } // getDesinenceLengthArray
   
 } // class ConjugationLengadocianThirdGroup

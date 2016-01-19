@@ -48,15 +48,15 @@ abstract class ConjugationBase implements iDisplayable{
 
 
   protected function isVowelDetected($root){
-    $pattern = '/.+?è.*?/';
+    $pattern = '/.*?è.*?/';
     if (preg_match($pattern, $root)){
       return 'è';
     }
-    $pattern = '/.+?ò.*?/';
+    $pattern = '/.*?ò.*?/';
     if (preg_match($pattern, $root)){
       return 'ò';
     }
-    $pattern = '/.+?à.*?/';
+    $pattern = '/.*?à.*?/';
     if (preg_match($pattern, $root)){
       return 'à';
     }
@@ -80,6 +80,10 @@ abstract class ConjugationBase implements iDisplayable{
     if (preg_match($pattern, $root)){
       return 'ú';
     }
+    $pattern = '/.*?í.*?/';
+    if (preg_match($pattern, $root)){
+      return 'í';
+    }
   } // isTonicDetected
 
   protected function neutralizeVowel($infinitive,$vowelGrave){
@@ -93,6 +97,15 @@ abstract class ConjugationBase implements iDisplayable{
       case 'ò' :	
         $pattern = '/(.*?)ò(.*?)/'; $replacement = '${1}o${2}';
         return preg_replace($pattern, $replacement, $infinitive);
+      case 'ò' :	
+        $pattern = '/(.*?)ò(.*?)/'; $replacement = '${1}o${2}';
+        return preg_replace($pattern, $replacement, $infinitive);
+      case 'ò' :	
+        $pattern = '/(.*?)ò(.*?)/'; $replacement = '${1}o${2}';
+        return preg_replace($pattern, $replacement, $infinitive);
+      case 'ò' :	
+        $pattern = '/(.*?)ò(.*?)/'; $replacement = '${1}o${2}';
+        return preg_replace($pattern, $replacement, $infinitive);
     }
     return $infinitive;
   } // neutralizeVowel
@@ -100,6 +113,9 @@ abstract class ConjugationBase implements iDisplayable{
   protected function neutralizeTonic($infinitive,$tonic){
   
     switch($tonic){
+      case 'á' : 
+        $pattern = '/(.*?)á(.*?)/'; $replacement = '${1}a${2}';
+        return preg_replace($pattern, $replacement, $infinitive);
       case 'é' : 
         $pattern = '/(.*?)é(.*?)/'; $replacement = '${1}e${2}';
         return preg_replace($pattern, $replacement, $infinitive);
@@ -132,7 +148,6 @@ abstract class ConjugationBase implements iDisplayable{
 
   protected function phonologicFixes($string){
     // Corrections
-
     if (preg_match("/j-[ieè]/", $string )) {
       // j to g
       $patterns = array();
@@ -174,7 +189,8 @@ abstract class ConjugationBase implements iDisplayable{
     }
     // Corrections
 
-    if (preg_match("/g-[ieè]/", $string )) {
+
+    if (preg_match("/g-[ieèo]/", $string ) && $this->getVerbModel() == '104') {
       // g to gu
       $patterns = array();
       $patterns[0] = '/g-i/';
@@ -187,7 +203,7 @@ abstract class ConjugationBase implements iDisplayable{
       return preg_replace($patterns, $replacements, $string);
     }
 
-    if (preg_match("/g-[ieè]/", $string )) {
+    if (preg_match("/gu-[ieè]/", $string )) {
       // gu[ieè] to g[ieè]
       $patterns = array();
       $patterns[0] = '/gu-i/';

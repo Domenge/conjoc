@@ -61,9 +61,8 @@ class ConverterHTML implements IConverter{
         $o .= '<div class="verb">';
         if ($see){
             $o .= t("remandament") . ' <span class="see_also">' . l("$see", "$dialect/verb_autocomplete/better_see/$see") . "</span><br><br>";
-        }else{
-            $o .= "<span class=\"label_verb\">$model</span> <span class=\"label_verb\">$libmodel</span>";
         }
+        $o .= "<span class=\"label_verb\">$model</span> <span class=\"label_verb\">$libmodel</span>";
 
         $creditDefinition = "sorça : Tot En Un, lexic Occitan-Francés, Joan-Claudi SÈRRAS. IEO Edicions ";
  
@@ -104,7 +103,7 @@ class ConverterHTML implements IConverter{
             case ConjugationBase::INFINITIVE  : $mode = 'Formas impersonalas'; $ModesArray['Formas impersonalas']= array(); $o = "\n</div><br>\n<div class=\"impersonal_forms\"><span class=\"label_mode\">Formas impersonalas</span><br>\n"; break;
             case ConjugationBase::IMPERATIVE  : $mode = 'Imperatiu'; $ModesArray['Imperatiu']= array(); $o = "\n</div><br>\n<div class=\"imperative\"><span class=\"label_mode\">Imperatiu</span><br>\n"; break;
             case ConjugationBase::SUBJ_PRESENT: $mode = 'Subjontiu'; $ModesArray['Subjontiu']= array(); $o = "\n</div><br>\n<div class=\"subjunctive\"><span class=\"label_mode\">Subjontiu</span><br>\n"; break;
-            case ConjugationBase::CONDITIONAL : $mode = 'Conditional'; $ModesArray['Conditional']= array(); $o = "\n</div><br>\n<div class=\"conditional\"><span class=\"label_mode\">Condicional</span><br>\n"; break;
+            case ConjugationBase::CONDITIONAL : $mode = 'Condicional'; $ModesArray['Condicional']= array(); $o = "\n</div><br>\n<div class=\"conditional\"><span class=\"label_mode\">Condicional</span><br>\n"; break;
             }
 
       
@@ -123,8 +122,8 @@ class ConverterHTML implements IConverter{
             case "Subjontiu" :
                 $ModesArray['Subjontiu'][] = $conjugation; 
                 break; 
-            case "Conditional" :
-                $ModesArray['Conditional'][] = $conjugation; 
+            case "Condicional" :
+                $ModesArray['Condicional'][] = $conjugation; 
                 break; 
             } // switch
         } // for
@@ -152,17 +151,18 @@ class ConverterHTML implements IConverter{
         $preterit  = $ary[2];
         $future    = $ary[3];
       
+        $replace = '<span class="radical">${1}</span><span class="desinence">${2}</span>';
+
         $out .= "<tr><th></th><th>Present</th><th>Imperfach</th><th>Preterit</th><th>Futur</th></tr>";
 	
         for($i=0;$i<6;$i++){
-            $pattern = '/^(\w*?)(\w{'.$dLengthsPresent[$i].'})$/';
-            $replace = '<span class="radical">${1}</span><span class="desinence">${2}</span>';
-            $pres = preg_replace($pattern,$replace,$present[$i]);
-            $pattern = '/^(\w*?)(\w{'.$dLengthsImperfect[$i].'})$/';
+            $pattern = '/^(.*?)(.{'.$dLengthsPresent[$i].'})$/';
+            $pres = utf8_encode(preg_replace($pattern,$replace,utf8_decode($present[$i])));
+            $pattern = '/^(.*?)(.{'.$dLengthsImperfect[$i].'})$/';
             $imp = preg_replace($pattern,$replace,$imperfect[$i]);
-            $pattern = '/^(\w*?)(\w{'.$dLengthsPreterit[$i].'})$/';
+            $pattern = '/^(.*?)(.{'.$dLengthsPreterit[$i].'})$/';
             $pret = preg_replace($pattern,$replace,$preterit[$i]);
-            $pattern = '/^(\w*?)(\w{'.$dLengthsFuture[$i].'})$/';
+            $pattern = '/^(.*?)(.{'.$dLengthsFuture[$i].'})$/';
             $fut = preg_replace($pattern,$replace,$future[$i]);
 
             $out .= "<tr><td><i>$persons[$i]</i></td><td>$pres</td><td>$imp</td><td>$pret</td><td>$fut</td></tr>";
@@ -180,8 +180,7 @@ class ConverterHTML implements IConverter{
         $infinitive = $ary[0];
 
         $dLengthsInfinitive = explode(',', $desinenceLengths[ConjugationBase::INFINITIVE]); 
-        $pattern = '/^(\w*?)(\w{'.$dLengthsInfinitive[0].'})$/';
-        $replace = '<span class="radical">${1}</span><span class="desinence">${2}</span>';
+        $pattern = '/^(.*?)(.{'.$dLengthsInfinitive[0].'})$/';
         $inf = preg_replace($pattern,$replace,$infinitive[0]);
         $out .= "<tr><td>$inf</td></tr>";
         $out .= "</tbody></table>";
@@ -190,19 +189,19 @@ class ConverterHTML implements IConverter{
         $out .= '<tr><th>Participi passat</th></tr>';
         $past_particle = $ary[2];
         $dLengthsPastParticiple = explode(',', $desinenceLengths[ConjugationBase::PAST_PARTICIPLE]); 
-        $pattern = '/^(\w*?)(\w{'.$dLengthsPastParticiple[0].'})$/';
-        $replace = '<span class="radical">${1}</span><span class="desinence">${2}</span>';
-        $past = preg_replace($pattern,$replace,$past_particle[0]);
-//  IMPERATIVE SUBJ_PRESENT SUBJ_IMPERFECT CONDITIONAL
-        $out .= "<tr><td>$past</td></tr>";
+        $pattern = '/^(.*?)(.{'.$dLengthsPastParticiple[0].'})$/';
+        $pastM = preg_replace($pattern,$replace,$past_particle[0]);
+        $pattern = '/^(.*?)(.{'.$dLengthsPastParticiple[1].'})$/';
+        $pastF = preg_replace($pattern,$replace,$past_particle[1]);
+
+        $out .= "<tr><td>$pastM, $pastF</td></tr>";
         $out .= "</tbody></table>";
 
         $out .= "<table><tbody>";
         $out .= '<tr><th>Gerondiu</th></tr>';
         $gerund = $ary[1];
         $dLengthsGerund = explode(',', $desinenceLengths[ConjugationBase::GERUND]); 
-        $pattern = '/^(\w*?)(\w{'.$dLengthsGerund[0].'})$/';
-        $replace = '<span class="radical">${1}</span><span class="desinence">${2}</span>';
+        $pattern = '/^(.*?)(.{'.$dLengthsGerund[0].'})$/';
         $ger = preg_replace($pattern,$replace,$gerund[0]);
         $out .= "<tr><td>en $ger</td></tr>";
         $out .= "</tbody></table>";
@@ -219,7 +218,17 @@ class ConverterHTML implements IConverter{
     
         for($j=0;$j<3;$j++){
             $p = $j + 3;
-            $out .= "<tr><td>$imperative[$j] !</td><td>$imperative[$p] pas !</td></tr>";
+            $dLengthsImperative = explode(',', $desinenceLengths[ConjugationBase::IMPERATIVE]); 
+            $pattern = '/^(.*?)(.{'.$dLengthsImperative[$j].'})$/';
+            $impPos = preg_replace($pattern,$replace,$imperative[$j]);
+            $pattern = '/^(.*?)(.{'.$dLengthsImperative[$p].'})$/';
+            $impNeg = preg_replace($pattern,$replace,$imperative[$p]);
+            // special case for impersonal verbs imperative
+            if((empty($impPos)||$impPos =='<span class="radical"></span><span class="desinence"></span>') && empty($impNeg)){
+                $out .= "<tr><td></td><td></td></tr>";
+            }else{
+                $out .= "<tr><td>$impPos !</td><td>$impNeg pas !</td></tr>";
+            } // if
         }
     
         $out .= "</tbody></table></div>";
@@ -233,21 +242,32 @@ class ConverterHTML implements IConverter{
         $subjunctive_past    = $ary[1];
     
         for($j=0;$j<6;$j++){
-            $out .= "<tr><td><i>$persons[$j]</i></td><td>$subjunctive_present[$j]</td><td>$subjunctive_past[$j]</td></tr>";
+            $dLengthsSubjPres = explode(',', $desinenceLengths[ConjugationBase::SUBJ_PRESENT]); 
+            $pattern = '/^(.*?)(.{'.$dLengthsSubjPres[$j].'})$/';
+            $subjPres = preg_replace($pattern,$replace,$subjunctive_present[$j]);
+            $dLengthsSubjImp = explode(',', $desinenceLengths[ConjugationBase::SUBJ_IMPERFECT]); 
+            $pattern = '/^(.*?)(.{'.$dLengthsSubjImp[$j].'})$/';
+            $subjPast = preg_replace($pattern,$replace,$subjunctive_past[$j]);
+
+            $out .= "<tr><td><i>$persons[$j]</i></td><td>$subjPres</td><td>$subjPast</td></tr>";
         }
     
         $out .= "</tbody></table></div>";
 
 
         // CONDITIONAL
-        $ary = $ModesArray['Conditional'];   
+        $ary = $ModesArray['Condicional'];   
         $out .= '<div class="conditional"><table><tbody>';
-        $out .= "<tr><th  colspan='23'>Conditional</th></tr><tr>";    
+        $out .= "<tr><th  colspan='23'>Condicional</th></tr><tr>";    
         $out .= '<tr><th></th><th>Present</th></tr>';
         $conditional = $ary[0];
     
         for($j=0;$j<6;$j++){
-            $out .= "<tr><td><i>$persons[$j]</i></td><td>$conditional[$j]</td></tr>";
+            $dLengthsConditional = explode(',', $desinenceLengths[ConjugationBase::CONDITIONAL]); 
+            $pattern = '/^(.*?)(.{'.$dLengthsConditional[$j].'})$/';
+            $cond = preg_replace($pattern,$replace,$conditional[$j]);
+
+            $out .= "<tr><td><i>$persons[$j]</i></td><td>$cond</td></tr>";
         }
     
         $out .= "</tbody></table></div>";

@@ -1,55 +1,55 @@
-s/prsS1/arròg (s')i/
-s/prsS2/arròg (s')as/
-s/prsS3/arròg (s')a/
-s/prsP1/arrog (s')am/
-s/prsP2/arrog (s')atz/
-s/prsP3/arròg (s')an/
-s/imfS1/arrog (s')avi/
-s/imfS2/arrog (s')avas/
-s/imfS3/arrog (s')ava/
-s/imfP1/arrog (s')àvem/
-s/imfP2/arrog (s')àvetz/
-s/imfP3/arrog (s')avan/
-s/prtS1/arrog (s')èri/
-s/prtS2/arrog (s')ères/
-s/prtS3/arrog (s')èt/
-s/prtP1/arrog (s')èrem/
-s/prtP2/arrog (s')èretz/
-s/prtP3/arrog (s')èron/
-s/ftrS1/arrog (s')arai/
-s/ftrS2/arrog (s')aràs/
-s/ftrS3/arrog (s')arà/
-s/ftrP1/arrog (s')arem/
-s/ftrP2/arrog (s')aretz/
-s/ftrP3/arrog (s')aràn/
-s/infFI/arrog (s')ar/
-s/gerFI/arrog (s')ant/
-s/pamFI/arrog (s')at/
-s/pafFI/arrog (s')ada/
-s/impS2/arròg (s')a/
-s/impP1/arrog (s')em/
-s/impP2/arrog (s')atz/
-s/imnS2/arròg (s')es/
-s/imnP1/arrog (s')em/
-s/imnP2/arrog (s')etz/
-s/supS1/arròg (s')e/
-s/supS2/arròg (s')es/
-s/supS3/arròg (s')e/
-s/supP1/arrog (s')em/
-s/supP2/arrog (s')etz/
-s/supP3/arròg (s')en/
-s/suiS1/arrog (s')èsse/
-s/suiS2/arrog (s')èsses/
-s/suiS3/arrog (s')èsse/
-s/suiP1/arrog (s')èssem/
-s/suiP2/arrog (s')èssetz/
-s/suiP3/arrog (s')èsson/
-s/cndS1/arrog (s')ariái/
-s/cndS2/arrog (s')ariás/
-s/cndS3/arrog (s')ariá/
-s/cndP1/arrog (s')ariam/
-s/cndP2/arrog (s')ariatz/
-s/cndP3/arrog (s')arián/
+s/prsS1/arrògui/
+s/prsS2/arrògas/
+s/prsS3/arròga/
+s/prsP1/arrogam/
+s/prsP2/arrogatz/
+s/prsP3/arrògan/
+s/imfS1/arrogavi/
+s/imfS2/arrogavas/
+s/imfS3/arrogava/
+s/imfP1/arrogàvem/
+s/imfP2/arrogàvetz/
+s/imfP3/arrogavan/
+s/prtS1/arroguèri/
+s/prtS2/arroguères/
+s/prtS3/arroguèt/
+s/prtP1/arroguèrem/
+s/prtP2/arroguèretz/
+s/prtP3/arroguèron/
+s/ftrS1/arrogarai/
+s/ftrS2/arrogaràs/
+s/ftrS3/arrogarà/
+s/ftrP1/arrogarem/
+s/ftrP2/arrogaretz/
+s/ftrP3/arrogaràn/
+s/infFI/arrogar/
+s/gerFI/arrogant/
+s/pamFI/arrogat/
+s/pafFI/arrogada/
+s/impS2/arròga/
+s/impP1/arroguem/
+s/impP2/arrogatz/
+s/imnS2/arrògues/
+s/imnP1/arroguem/
+s/imnP2/arroguetz/
+s/supS1/arrògue/
+s/supS2/arrògues/
+s/supS3/arrògue/
+s/supP1/arroguem/
+s/supP2/arroguetz/
+s/supP3/arròguen/
+s/suiS1/arroguèsse/
+s/suiS2/arroguèsses/
+s/suiS3/arroguèsse/
+s/suiP1/arroguèssem/
+s/suiP2/arroguèssetz/
+s/suiP3/arroguèsson/
+s/cndS1/arrogariái/
+s/cndS2/arrogariás/
+s/cndS3/arrogariá/
+s/cndP1/arrogariam/
+s/cndP2/arrogariatz/
+s/cndP3/arrogarián/
 s/Dialect/lengadocian/
 s/Vèrb/arrogar_(s')/
 s/Modèl/Modèl \«124\»/
