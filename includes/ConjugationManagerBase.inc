@@ -290,7 +290,7 @@ abstract class ConjugationManagerBase{
 	     case ConjugationBase::IND_PRESENT : 
 	     case ConjugationBase::IND_IMPERFECT : 
 	     case ConjugationBase::IND_PRETERIT : 
-	     case ConjugationBase::IND_FUTUR :
+	     case ConjugationBase::IND_FUTURE :
 	     	$mood = '1'; 
 	     	break;
              case ConjugationBase::INFINITIVE  : $mood = '5'; break;

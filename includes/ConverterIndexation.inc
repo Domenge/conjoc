@@ -121,7 +121,7 @@ $person,$gender,$number,
     $codeRet = ($code == ConjugationBase::IND_PRESENT)?1:$codeRet;
     $codeRet = ($code == ConjugationBase::IND_IMPERFECT)?2:$codeRet;
     $codeRet = ($code == ConjugationBase::IND_PRETERIT)?4:$codeRet;
-    $codeRet = ($code == ConjugationBase::IND_FUTUR)?3:$codeRet;
+    $codeRet = ($code == ConjugationBase::IND_FUTURE)?3:$codeRet;
     $codeRet = ($code == ConjugationBase::PAST_PARTICIPLE)?4:$codeRet;
     $codeRet = ($code == ConjugationBase::IMPERATIVE)?1:$codeRet;
     $codeRet = ($code == ConjugationBase::SUBJ_PRESENT)?1:$codeRet;

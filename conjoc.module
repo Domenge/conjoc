@@ -203,6 +203,7 @@ function conjoc_menu() {
     'file' => 'conjoc_lengadocian_webForm.inc',
     'weight' => 10,
   );
+*/
 
   $items['lengadocian/Indexation/byIncrement'] = array(
     'title' => t("Indexation lengadocian by increment"),
@@ -210,7 +211,7 @@ function conjoc_menu() {
     'access arguments' => array('administer conjoc'),
     'weight' => 10,
   );
-*/
+
 
   $items['lengadocian/Indexation/searchform'] = array(
     'title' => t("Indexation search form"),
@@ -362,9 +363,11 @@ function conjoc_menu() {
 } // conjoc_menu
 
 function conjoc_cron() {
-  if (variable_get('conjoc_indexation_enabled', false)){
+  if (variable_get('conjoc_indexation_Lengadocian_enabled', false)){
      $manager = new ConjugationLengadocianManager();
      $manager->processIndexation();
+  }
+  if (variable_get('conjoc_indexation_Gascon_enabled', false)){
      $manager = new ConjugationGasconManager();
      $manager->processIndexation();
   }
@@ -480,20 +483,36 @@ function conjoc_admin() {
 }
 
 function conjoc_admin_validate($form, &$form_state) {
-  $newValue     = $form_state['values']['conjoc_indexation_enabled'];
-  $currentValue = variable_get('conjoc_indexation_enabled', false);
-  $increment    = $form_state['values']['conjoc_indexation_increment'];
+  $newValue     = $form_state['values']['conjoc_indexation_Lengadocian_enabled'];
+  $currentValue = variable_get('conjoc_indexation_Lengadocian_enabled', false);
+  $increment    = $form_state['values']['conjoc_indexation_Lengadocian_increment'];
 
   if ( $newValue && ($newValue != $currentValue) ){
-     variable_set('conjoc_indexation_increment', '0');
+     variable_set('conjoc_indexation_Lengadocian_increment', '0');
      drupal_set_message(t("Indexation increment reset $currentValue $newValue"));
   } // if 
 
   if (!is_numeric($increment)) {
-    form_set_error('conjoc_indexation_increment', t('You must enter an integer.'));
+    form_set_error('conjoc_indexation_Lengadocian_increment', t('You must enter an integer.'));
   }
   elseif ($increment < 0) {
-    form_set_error('conjoc_indexation_increment', t('increment must be positive.'));
+    form_set_error('conjoc_indexation_Lengadocian_increment', t('increment must be positive.'));
+  }
+
+  $newValue     = $form_state['values']['conjoc_indexation_Gascon_enabled'];
+  $currentValue = variable_get('conjoc_indexation_Gascon_enabled', false);
+  $increment    = $form_state['values']['conjoc_indexation_Gascon_increment'];
+
+  if ( $newValue && ($newValue != $currentValue) ){
+     variable_set('conjoc_indexation_Gascon_increment', '0');
+     drupal_set_message(t("Indexation increment reset $currentValue $newValue"));
+  } // if 
+
+  if (!is_numeric($increment)) {
+    form_set_error('conjoc_indexation_Gascon_increment', t('You must enter an integer.'));
+  }
+  elseif ($increment < 0) {
+    form_set_error('conjoc_indexation_Gascon_increment', t('increment must be positive.'));
   }
 // TO DO validate maximum value
 }

@@ -89,6 +89,7 @@ class ConverterHTML implements IConverter{
     } // convertConjugation
   
     private function formatConjugation($conjugated){
+        $dialect = $conjugated["dialect"];
         $conjugations = $conjugated["conjugations"];
         $desinenceLengths = $conjugated["desinenceLengths"];
 
@@ -227,7 +228,8 @@ class ConverterHTML implements IConverter{
             if((empty($impPos)||$impPos =='<span class="radical"></span><span class="desinence"></span>') && empty($impNeg)){
                 $out .= "<tr><td></td><td></td></tr>";
             }else{
-                $out .= "<tr><td>$impPos !</td><td>$impNeg pas !</td></tr>";
+                $neg = $dialect=='lengadocian'?'':'ne '; // in Gascon the completed negative form id NE imperative PAS
+                $out .= "<tr><td>$impPos !</td><td>$neg$impNeg pas !</td></tr>";
             } // if
         }
     

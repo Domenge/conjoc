@@ -206,6 +206,7 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
     public function getAllVerbsByIncrement(){
 
         /*L E N G A D O C I A N*/
+//        dpm(variable_get('conjoc_indexation_Lengadocian_enabled', FALSE));
         if(variable_get('conjoc_indexation_Lengadocian_enabled', FALSE)){
             $increment =  variable_get('conjoc_indexation_Lengadocian_increment', 0);
 
@@ -215,7 +216,7 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
             $line = $results->fetchObject();
             $increments = $line->increments;
             $totalVerbs = $line->totalVerbs;
-
+            dpm("$increments, $totalVerbs");
             if ($increment > ($increments + 1)){
                 // we are done
                 drupal_set_message("Indexation completed");
@@ -226,7 +227,7 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
 
             if ($increment == 0){
                 // TODO truncate the conjoc_index table
-                db_truncate('conjoc_index')->execute();
+//                db_truncate('conjoc_index')->execute();
                 $clause = " SUBSTR(nummodel,1,1) = '0' OR SUBSTR(nummodel,1,1) = '2' OR SUBSTR(nummodel,1,1) = '3' ORDER BY BINARY verb";
             }else{
                 $limit = ($increment -1) * (int)ConjugationDataProviderBase::INDEXATION_STEP; 
@@ -236,7 +237,7 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
             $increment++;
 
             variable_set('conjoc_indexation_Lengadocian_increment', $increment);
-
+            dpm($clause);
             $results = db_query("SELECT * FROM {". $this->getBaseTableName() . "_verbsmodel} WHERE $clause");
 
             $arrRet = array();  
@@ -280,7 +281,7 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
 
             if ($increment == 0){
                 // TODO truncate the conjoc_index table
-                db_truncate('conjoc_index')->execute();
+//                db_truncate('conjoc_index')->execute();
                 $clause = " SUBSTR(nummodel,1,1) = '0' OR SUBSTR(nummodel,1,1) = '2' OR SUBSTR(nummodel,1,1) = '3' ORDER BY BINARY verb";
             }else{
                 $limit = ($increment -1) * (int)ConjugationDataProviderBase::INDEXATION_STEP; 
