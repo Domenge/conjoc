@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="osca-font duberta">
+    <link rel="icon" href="./img/logo.png">
+
+    <title>lengadocian</title>
+
+    <script src="./jquery/external/jquery/jquery.js"></script>
+    <script src="./selectize/dist/js/standalone/selectize.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/stylesheet.css">
+
+    <script src="js/index.js"></script>
+    
+    <!-- Custom styles for this template -->
+    <!--
+	<link href="./css/starter-template.css" rel="stylesheet">
+	-->
+    <link rel="stylesheet" href="./css/conjugador.css">
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <!--
+	N A V I G A T I O N
+      -->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Lengadocian</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Accuèlh</a></li>
+<!--            <li><a href="signin.html">S'identificar</a></li> -->
+            <li class="active"><a href="#">Lengadocian</a></li>
+            <li><a href="gascon.html">Gascon</a></li>
+            <li><a href="dokuwiki/doku.php">Wiki</a></li>
+            <li><a href="dokuwiki/doku.php?id=discussion:start">Fòrom</a></li>
+            <li><a href="about.html">Qual sèm</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+      <!-- 
+	   J U M B O T R O N 
+	-->
+      <div class="jumbotron">
+	<div class="container">
+          <h1>Conjugason <small>lengadociana</small></h1>
+          <p>Lo conjugador lengadocian segon lo livre de Patric Sauzet <a href="http://ideco-dif.com/ieo_edicions/pedagogia/conjugaison_occitane/" target="_blank">&laquo;Conjugaison occitane&raquo; <em>IEO edicions</em>.<img src="/img/couverture_1381.jpg" width="64px"></a></p>
+	</div><!--container-->
+      </div> <!--jumbotron-->
+      
+      <div class="col-xs-12 col-sm-9">
+        <p class="pull-right visible-xs">
+          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+        </p>
+	<!-- 
+	     C O N J U G A D O R 
+	  -->
+	<div class="row">
+	<?php
+	   $verb = isset($_GET['verb_selected'])?$_GET['verb_selected']:"";
+	?>
+	  <form method="GET">
+	    <div class="control-group">
+	      <label for="select-verb-lengadocian">Vèrb:</label>
+	      <select id="select-verb-lengadocian" class="select-verb-class" name="verb_selected" placeholder="picatz lo vèrb de cercar...">
+		<option value=""><?php echo $verb; ?></option>
+              </select>
+	    </div>
+	  </form>
+
+	<?php
+	   function __autoload($class_name) {
+	     include "php/includes/". $class_name . '.inc';
+	   }
+
+	   $manager   = new ConjugationLengadocianManager();
+	   $converterHTML  = new ConverterHTML();
+	   $converterLATEX = new ConverterLATEX();
+	   $verb = strlen("$verb") != 0?$_GET['verb_selected']:$manager->getRandomVerb();
+ 	   $manager->setVerb($verb);
+           $conjugated = $manager->conjugate();
+	   $row = $conjugated['row'];
+	
+	   $sibling_count = $manager->getCountOthersInModel($verb);
+	   $manager->processIndexationOnce(array(
+	           'infinitive'=>$conjugated['infinitive'],
+	           'row'=>$conjugated['row'],
+	           'verb'=>$conjugated['name'])
+	   );
+	
+	   // a PDF file
+	   if (! empty($conjugated)){
+	       $fileNameToDownload = $converterLATEX->convertConjugation($conjugated);
+	   }
+	   // other formats
+           $indexedData = $manager->getIndexationData($verb);
+
+	
+//	   $converter = new ConverterJSON();
+//           $json = $converter->convertIndexedData($indexedData); 	   
+//OK           print ($json);
+//	   $converter = new ConverterHTML();
+//           $html = $converter->convertIndexedData($indexedData); 	   
+//OK	print ($html);
+//	   $converter = new ConverterXML();
+//           $xml = $converter->convertIndexedData($indexedData); 	   
+//pas OK print ($xml);
+//	   $converter = new ConverterCSV();
+//           $csv = $converter->convertIndexedData($indexedData); 	   
+//OK print ($csv);
+
+	  $converter = new ConverterHTML();
+           $o = $converter->convertConjugation($conjugated); 	   
+	   print $o;
+
+	?>
+	
+      </div> <!--/row-->
+      </div> <!--/col-xs-12 col-sm-9-->
+
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+	<div class="list-group">
+          <a target="_blank" href="  <?php echo $fileNameToDownload; ?> " class="list-group-item"><img src="./img/logopdf.png" width="48px">ficha PDF</a>
+          <a target="_blank" href="php/teixml.php?dialect=LNG&verb=<?php echo $verb;?>" class="list-group-item"><img src="./img/logoxml.png" width="48px">ficha TEI/XML</a>
+          <div class="list-group-item"><button id="hide-desinences" type="button" class="btn btn-default btn-sm glyphicon glyphicon-eye-open" data-toggle="button"> atudar</button></div>
+	</div>
+        <div class="list-group-item">	
+	  <form method="GET">
+	    <div class="control-group">
+		<?php
+		   if ($sibling_count < 50){
+	             echo '<label for="select-verb-lengadocian">Vèrbs fraires <span class="badge">'.$sibling_count. "</span> :</label>\n";
+		     echo '<select id="verbs-fraires-l" class="select-verb-class" name="verb_selected" placeholder="picatz lo vèrb de cercar...">'."\n";
+		     $siblings = $manager->getOthersInModel($verb);
+		     foreach($siblings as $elmnt){
+		          echo "<option value=\"$elmnt\">$elmnt</option>\n";
+		     } 
+		     echo '</select>'."\n";
+		   }else{
+	             echo '<label for="select-verb-lengadocian" data-toggle="tt_sibling_count" data-placement="bottom" title="Se i a tròp de vèrbs fraires la tièra es pas mostrada. Sonque la cardinalitat.">Vèrbs fraires del meteis modèl : <span class="badge">'. $sibling_count . '</span></label>' . "\n";
+		   }
+	      ?>
+	    </div>
+
+	  </form>
+	  </div> <!--/list-group-item-->
+
+        <div class="list-group-item">	
+	  <p><img src="./img/by-sa.png" height="31" width="81"> 2016 Òsca.</p>
+	</div> <!--/list-group-item-->
+	
+</div> <!--/sidebar-->
+      </div>  <!--/sidebar-->
+      <footer>
+	<p><img src="./img/by-sa.png" height="31" width="81"> 2016 Òsca.</p>
+      </footer>
+    </div> <!-- /container -->
+<script src="./js/select-verb.js"></script>
+<script src="./js/local.js"></script>
+
+</body>
+</html>
