@@ -1,6 +1,6 @@
 <?php
   $o = "";
-  $cnx = new mysqli("localhost","conjocuser","ADLcWBDV4zkdmnf0","conjoc");
+  $cnx = new mysqli("localhost","conjocuser","mypasswd","conjoc");
   if (!$cnx->set_charset("utf8")) {
     printf("Error loading character set utf8: %s\n", $cnx->error);
     exit();
