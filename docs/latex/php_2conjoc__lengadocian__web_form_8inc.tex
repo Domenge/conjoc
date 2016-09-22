@@ -1,0 +1,139 @@
+\hypertarget{php_2conjoc__lengadocian__web_form_8inc}{}\section{Référence du fichier php/conjoc\+\_\+lengadocian\+\_\+web\+Form.inc}
+\label{php_2conjoc__lengadocian__web_form_8inc}\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{php_2conjoc__lengadocian__web_form_8inc_a9c7725a828c1a44761bc51fe7a346215}{tei\+\_\+export\+\_\+lengadocian\+\_\+all} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{php_2conjoc__lengadocian__web_form_8inc_a465cce16b0d09f364ccb546c46c82306}{indexation\+\_\+lengadocian\+\_\+all} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{php_2conjoc__lengadocian__web_form_8inc_a3f7b0b4a8f4301190850532d5488c54a}{indexation\+\_\+searchform} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{php_2conjoc__lengadocian__web_form_8inc_a95265729a90a0b79d7d98483fce78880}{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{php_2conjoc__lengadocian__web_form_8inc_a2206d720f533b7b1afa6ac0568e740ef}{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+submit} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{php_2conjoc__lengadocian__web_form_8inc_a26cea88ddc504d14492fa9fd58a060b4}{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+callback} (\$string=\char`\"{}\char`\"{})
+\item 
+\hyperlink{php_2conjoc__lengadocian__web_form_8inc_a704a4de756f6a38064970e97d4a2bc6c}{lengadocian\+\_\+\+T\+E\+I\+\_\+submit} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{php_2conjoc__lengadocian__web_form_8inc_ad10d751f3d75ba568eb1f41bd43fcc94}{conjoc\+\_\+form\+\_\+submit} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{php_2conjoc__lengadocian__web_form_8inc_a378d4601a46c698692d26cb301470598}{verb\+\_\+autocomplete\+\_\+indexation\+\_\+callback} (\$string=\char`\"{}\char`\"{})
+\item 
+\hyperlink{php_2conjoc__lengadocian__web_form_8inc_a5e7b0be9cab73b5b2be66499afd0edc5}{verb\+\_\+autocomplete\+\_\+indexation\+\_\+submit} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{php_2conjoc__lengadocian__web_form_8inc_afecc813b5558b906fe6cc9adb1419c35}{process\+\_\+\+U\+R\+L\+\_\+arguments} (\$content=N\+U\+LL, \$arg1=N\+U\+LL, \$arg2=N\+U\+LL)
+\item 
+\hyperlink{php_2conjoc__lengadocian__web_form_8inc_a4ffe99e612db8d794975a33aefb781f7}{\+\_\+lengadocian\+\_\+menu\+\_\+page} (\$content=N\+U\+LL, \$arg1=N\+U\+LL, \$arg2=N\+U\+LL)
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+conjoc\+\_\+lengadocian\+\_\+verb\+Form.\+inc
+
+Demonstrates usage of the Form A\+PI\textquotesingle{}s autocomplete features.
+
+This file provides three examples in increasing complexity\+:
+\begin{DoxyItemize}
+\item A simple username autocomplete (usernames are unique, so little effort is required)
+\item A node title autocomplete (titles are not unique, so we have to find the nid and stash it in the field)
+\item A username autocomplete that updates a node title autocomplete with a changed \#autocomplete\+\_\+path so that the \#autocomplete\+\_\+path can have context (the username to use in the search). 
+\end{DoxyItemize}
+
+\subsection{Documentation des fonctions}
+\hypertarget{php_2conjoc__lengadocian__web_form_8inc_a4ffe99e612db8d794975a33aefb781f7}{}\label{php_2conjoc__lengadocian__web_form_8inc_a4ffe99e612db8d794975a33aefb781f7} 
+\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}!\+\_\+lengadocian\+\_\+menu\+\_\+page@{\+\_\+lengadocian\+\_\+menu\+\_\+page}}
+\index{\+\_\+lengadocian\+\_\+menu\+\_\+page@{\+\_\+lengadocian\+\_\+menu\+\_\+page}!php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{\+\_\+lengadocian\+\_\+menu\+\_\+page()}{\_lengadocian\_menu\_page()}}
+{\footnotesize\ttfamily \+\_\+lengadocian\+\_\+menu\+\_\+page (\begin{DoxyParamCaption}\item[{}]{\$content = {\ttfamily NULL},  }\item[{}]{\$arg1 = {\ttfamily NULL},  }\item[{}]{\$arg2 = {\ttfamily NULL} }\end{DoxyParamCaption})}
+
+Page callback for use with most of the menu entries.
+
+The arguments it receives determine what it outputs.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$content} & The base content to output. \\
+\hline
+string & {\em \$arg1} & First additional argument from the path used to access the menu \\
+\hline
+string & {\em \$arg2} & Second additional argument. \\
+\hline
+\end{DoxyParams}
+\hypertarget{php_2conjoc__lengadocian__web_form_8inc_a95265729a90a0b79d7d98483fce78880}{}\label{php_2conjoc__lengadocian__web_form_8inc_a95265729a90a0b79d7d98483fce78880} 
+\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}!ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete@{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete}}
+\index{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete@{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete}!php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete()}{ajax\_lengadocian\_verb\_autocomplete()}}
+{\footnotesize\ttfamily ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+
+\hypertarget{php_2conjoc__lengadocian__web_form_8inc_a26cea88ddc504d14492fa9fd58a060b4}{}\label{php_2conjoc__lengadocian__web_form_8inc_a26cea88ddc504d14492fa9fd58a060b4} 
+\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}!ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+callback@{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+callback}}
+\index{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+callback@{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+callback}!php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+callback()}{ajax\_lengadocian\_verb\_autocomplete\_callback()}}
+{\footnotesize\ttfamily ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{\$string = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$string} & The string that will be searched. \\
+\hline
+\end{DoxyParams}
+\hypertarget{php_2conjoc__lengadocian__web_form_8inc_a2206d720f533b7b1afa6ac0568e740ef}{}\label{php_2conjoc__lengadocian__web_form_8inc_a2206d720f533b7b1afa6ac0568e740ef} 
+\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}!ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+submit@{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+submit}}
+\index{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+submit@{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+submit}!php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+submit()}{ajax\_lengadocian\_verb\_autocomplete\_submit()}}
+{\footnotesize\ttfamily ajax\+\_\+lengadocian\+\_\+verb\+\_\+autocomplete\+\_\+submit (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+
+\hypertarget{php_2conjoc__lengadocian__web_form_8inc_ad10d751f3d75ba568eb1f41bd43fcc94}{}\label{php_2conjoc__lengadocian__web_form_8inc_ad10d751f3d75ba568eb1f41bd43fcc94} 
+\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}!conjoc\+\_\+form\+\_\+submit@{conjoc\+\_\+form\+\_\+submit}}
+\index{conjoc\+\_\+form\+\_\+submit@{conjoc\+\_\+form\+\_\+submit}!php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{conjoc\+\_\+form\+\_\+submit()}{conjoc\_form\_submit()}}
+{\footnotesize\ttfamily conjoc\+\_\+form\+\_\+submit (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+
+\hypertarget{php_2conjoc__lengadocian__web_form_8inc_a465cce16b0d09f364ccb546c46c82306}{}\label{php_2conjoc__lengadocian__web_form_8inc_a465cce16b0d09f364ccb546c46c82306} 
+\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}!indexation\+\_\+lengadocian\+\_\+all@{indexation\+\_\+lengadocian\+\_\+all}}
+\index{indexation\+\_\+lengadocian\+\_\+all@{indexation\+\_\+lengadocian\+\_\+all}!php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{indexation\+\_\+lengadocian\+\_\+all()}{indexation\_lengadocian\_all()}}
+{\footnotesize\ttfamily indexation\+\_\+lengadocian\+\_\+all (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+
+\hypertarget{php_2conjoc__lengadocian__web_form_8inc_a3f7b0b4a8f4301190850532d5488c54a}{}\label{php_2conjoc__lengadocian__web_form_8inc_a3f7b0b4a8f4301190850532d5488c54a} 
+\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}!indexation\+\_\+searchform@{indexation\+\_\+searchform}}
+\index{indexation\+\_\+searchform@{indexation\+\_\+searchform}!php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{indexation\+\_\+searchform()}{indexation\_searchform()}}
+{\footnotesize\ttfamily indexation\+\_\+searchform (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+
+\hypertarget{php_2conjoc__lengadocian__web_form_8inc_a704a4de756f6a38064970e97d4a2bc6c}{}\label{php_2conjoc__lengadocian__web_form_8inc_a704a4de756f6a38064970e97d4a2bc6c} 
+\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}!lengadocian\+\_\+\+T\+E\+I\+\_\+submit@{lengadocian\+\_\+\+T\+E\+I\+\_\+submit}}
+\index{lengadocian\+\_\+\+T\+E\+I\+\_\+submit@{lengadocian\+\_\+\+T\+E\+I\+\_\+submit}!php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{lengadocian\+\_\+\+T\+E\+I\+\_\+submit()}{lengadocian\_TEI\_submit()}}
+{\footnotesize\ttfamily lengadocian\+\_\+\+T\+E\+I\+\_\+submit (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+
+\hypertarget{php_2conjoc__lengadocian__web_form_8inc_afecc813b5558b906fe6cc9adb1419c35}{}\label{php_2conjoc__lengadocian__web_form_8inc_afecc813b5558b906fe6cc9adb1419c35} 
+\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}!process\+\_\+\+U\+R\+L\+\_\+arguments@{process\+\_\+\+U\+R\+L\+\_\+arguments}}
+\index{process\+\_\+\+U\+R\+L\+\_\+arguments@{process\+\_\+\+U\+R\+L\+\_\+arguments}!php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{process\+\_\+\+U\+R\+L\+\_\+arguments()}{process\_URL\_arguments()}}
+{\footnotesize\ttfamily process\+\_\+\+U\+R\+L\+\_\+arguments (\begin{DoxyParamCaption}\item[{}]{\$content = {\ttfamily NULL},  }\item[{}]{\$arg1 = {\ttfamily NULL},  }\item[{}]{\$arg2 = {\ttfamily NULL} }\end{DoxyParamCaption})}
+
+\hypertarget{php_2conjoc__lengadocian__web_form_8inc_a9c7725a828c1a44761bc51fe7a346215}{}\label{php_2conjoc__lengadocian__web_form_8inc_a9c7725a828c1a44761bc51fe7a346215} 
+\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}!tei\+\_\+export\+\_\+lengadocian\+\_\+all@{tei\+\_\+export\+\_\+lengadocian\+\_\+all}}
+\index{tei\+\_\+export\+\_\+lengadocian\+\_\+all@{tei\+\_\+export\+\_\+lengadocian\+\_\+all}!php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{tei\+\_\+export\+\_\+lengadocian\+\_\+all()}{tei\_export\_lengadocian\_all()}}
+{\footnotesize\ttfamily tei\+\_\+export\+\_\+lengadocian\+\_\+all (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+
+L\+E\+N\+G\+A\+D\+O\+C\+I\+AN \hypertarget{php_2conjoc__lengadocian__web_form_8inc_a378d4601a46c698692d26cb301470598}{}\label{php_2conjoc__lengadocian__web_form_8inc_a378d4601a46c698692d26cb301470598} 
+\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}!verb\+\_\+autocomplete\+\_\+indexation\+\_\+callback@{verb\+\_\+autocomplete\+\_\+indexation\+\_\+callback}}
+\index{verb\+\_\+autocomplete\+\_\+indexation\+\_\+callback@{verb\+\_\+autocomplete\+\_\+indexation\+\_\+callback}!php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{verb\+\_\+autocomplete\+\_\+indexation\+\_\+callback()}{verb\_autocomplete\_indexation\_callback()}}
+{\footnotesize\ttfamily verb\+\_\+autocomplete\+\_\+indexation\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{\$string = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$string} & The string that will be searched. \\
+\hline
+\end{DoxyParams}
+\hypertarget{php_2conjoc__lengadocian__web_form_8inc_a5e7b0be9cab73b5b2be66499afd0edc5}{}\label{php_2conjoc__lengadocian__web_form_8inc_a5e7b0be9cab73b5b2be66499afd0edc5} 
+\index{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}!verb\+\_\+autocomplete\+\_\+indexation\+\_\+submit@{verb\+\_\+autocomplete\+\_\+indexation\+\_\+submit}}
+\index{verb\+\_\+autocomplete\+\_\+indexation\+\_\+submit@{verb\+\_\+autocomplete\+\_\+indexation\+\_\+submit}!php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc@{php/conjoc\+\_\+lengadocian\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{verb\+\_\+autocomplete\+\_\+indexation\+\_\+submit()}{verb\_autocomplete\_indexation\_submit()}}
+{\footnotesize\ttfamily verb\+\_\+autocomplete\+\_\+indexation\+\_\+submit (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+

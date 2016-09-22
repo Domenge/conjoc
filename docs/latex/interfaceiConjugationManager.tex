@@ -1,0 +1,106 @@
+\hypertarget{interfaceiConjugationManager}{}\section{Référence de l\textquotesingle{}interface i\+Conjugation\+Manager}
+\label{interfaceiConjugationManager}\index{i\+Conjugation\+Manager@{i\+Conjugation\+Manager}}
+Graphe d\textquotesingle{}héritage de i\+Conjugation\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.654028cm]{interfaceiConjugationManager}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{interfaceiConjugationManager_a2e955e8c88d45869683005343cbfac60}{get\+Random\+Verb} ()
+\item 
+\hyperlink{interfaceiConjugationManager_a2a7ed39313c1c92ef5c01c88895de36e}{get\+Usual\+Verbs} ()
+\item 
+\hyperlink{interfaceiConjugationManager_afba24324d7c48d3ab00ffba63cbc1b9e}{conjugate} ()
+\begin{DoxyCompactList}\small\item\em immediatly called after setting a verb. \end{DoxyCompactList}\item 
+\hyperlink{interfaceiConjugationManager_a1b56822fc7f5f7b7b9c0b0c406993b3c}{set\+Verb} (\$verb)
+\item 
+\hyperlink{interfaceiConjugationManager_a0273fc00cbbf9e83823d571e3e2c8945}{get\+Top20} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{interfaceiConjugationManager_afba24324d7c48d3ab00ffba63cbc1b9e}{}\label{interfaceiConjugationManager_afba24324d7c48d3ab00ffba63cbc1b9e} 
+\index{i\+Conjugation\+Manager@{i\+Conjugation\+Manager}!conjugate@{conjugate}}
+\index{conjugate@{conjugate}!i\+Conjugation\+Manager@{i\+Conjugation\+Manager}}
+\subsubsection{\texorpdfstring{conjugate()}{conjugate()}}
+{\footnotesize\ttfamily i\+Conjugation\+Manager\+::conjugate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+immediatly called after setting a verb. 
+
+\begin{DoxySeeAlso}{Voir également}
+\hyperlink{interfaceiConjugationManager_a1b56822fc7f5f7b7b9c0b0c406993b3c}{set\+Verb}(\$verb) 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Renvoie}
+a Conjugation object of an already set verb. 
+\end{DoxyReturn}
+
+
+Implémenté dans \hyperlink{classConjugationManagerBase_a20e28aa17935e10b1a763b39a3c4fdf3}{Conjugation\+Manager\+Base}.
+
+\hypertarget{interfaceiConjugationManager_a2e955e8c88d45869683005343cbfac60}{}\label{interfaceiConjugationManager_a2e955e8c88d45869683005343cbfac60} 
+\index{i\+Conjugation\+Manager@{i\+Conjugation\+Manager}!get\+Random\+Verb@{get\+Random\+Verb}}
+\index{get\+Random\+Verb@{get\+Random\+Verb}!i\+Conjugation\+Manager@{i\+Conjugation\+Manager}}
+\subsubsection{\texorpdfstring{get\+Random\+Verb()}{getRandomVerb()}}
+{\footnotesize\ttfamily i\+Conjugation\+Manager\+::get\+Random\+Verb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+a string, a verb at random in its infinitive mood. 
+\end{DoxyReturn}
+
+
+Implémenté dans \hyperlink{classConjugationManagerBase_ac2e82ace9b19d7b014908ec275b552bc}{Conjugation\+Manager\+Base}.
+
+\hypertarget{interfaceiConjugationManager_a0273fc00cbbf9e83823d571e3e2c8945}{}\label{interfaceiConjugationManager_a0273fc00cbbf9e83823d571e3e2c8945} 
+\index{i\+Conjugation\+Manager@{i\+Conjugation\+Manager}!get\+Top20@{get\+Top20}}
+\index{get\+Top20@{get\+Top20}!i\+Conjugation\+Manager@{i\+Conjugation\+Manager}}
+\subsubsection{\texorpdfstring{get\+Top20()}{getTop20()}}
+{\footnotesize\ttfamily i\+Conjugation\+Manager\+::get\+Top20 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+an array of 20 of the most asked verbs 
+\end{DoxyReturn}
+
+
+Implémenté dans \hyperlink{classConjugationManagerBase_a63728ecfb3a2eb259accf59dd79e9c26}{Conjugation\+Manager\+Base}.
+
+\hypertarget{interfaceiConjugationManager_a2a7ed39313c1c92ef5c01c88895de36e}{}\label{interfaceiConjugationManager_a2a7ed39313c1c92ef5c01c88895de36e} 
+\index{i\+Conjugation\+Manager@{i\+Conjugation\+Manager}!get\+Usual\+Verbs@{get\+Usual\+Verbs}}
+\index{get\+Usual\+Verbs@{get\+Usual\+Verbs}!i\+Conjugation\+Manager@{i\+Conjugation\+Manager}}
+\subsubsection{\texorpdfstring{get\+Usual\+Verbs()}{getUsualVerbs()}}
+{\footnotesize\ttfamily i\+Conjugation\+Manager\+::get\+Usual\+Verbs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+an short array of verbs usually asked for. 
+\end{DoxyReturn}
+
+
+Implémenté dans \hyperlink{classConjugationManagerBase_a1dff05e951fe4453247a97f5aff5bc83}{Conjugation\+Manager\+Base}, \hyperlink{classConjugationGasconManager_a4117ecff48a5baa29d894f6174d88983}{Conjugation\+Gascon\+Manager}, \hyperlink{classConjugationLengadocianManager_a1ec18e3663eae35578b4f1967e4d981d}{Conjugation\+Lengadocian\+Manager}, et \hyperlink{classConjugationProvencalManager_ab54b1aaa7e39d3f31d416640322eae5a}{Conjugation\+Provencal\+Manager}.
+
+\hypertarget{interfaceiConjugationManager_a1b56822fc7f5f7b7b9c0b0c406993b3c}{}\label{interfaceiConjugationManager_a1b56822fc7f5f7b7b9c0b0c406993b3c} 
+\index{i\+Conjugation\+Manager@{i\+Conjugation\+Manager}!set\+Verb@{set\+Verb}}
+\index{set\+Verb@{set\+Verb}!i\+Conjugation\+Manager@{i\+Conjugation\+Manager}}
+\subsubsection{\texorpdfstring{set\+Verb()}{setVerb()}}
+{\footnotesize\ttfamily i\+Conjugation\+Manager\+::set\+Verb (\begin{DoxyParamCaption}\item[{}]{\$verb }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em string,the} & verb to conjugate in its indicative mood. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+nothing 
+\end{DoxyReturn}
+
+
+Implémenté dans \hyperlink{classConjugationManagerBase_a36a53a9f0bc2114a5429bcf9e3cd351e}{Conjugation\+Manager\+Base}.
+
+
+
+La documentation de cette interface a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+php/includes/\hyperlink{iConjugationManager_8inc}{i\+Conjugation\+Manager.\+inc}\end{DoxyCompactItemize}

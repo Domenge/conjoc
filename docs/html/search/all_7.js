@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['iconjugation',['iConjugation',['../interfaceiConjugation.html',1,'']]],
+  ['iconjugationdataprovider',['IConjugationDataProvider',['../interfaceIConjugationDataProvider.html',1,'']]],
+  ['iconjugationmanager',['iConjugationManager',['../interfaceiConjugationManager.html',1,'']]],
+  ['iconjugationmanager_2einc',['iConjugationManager.inc',['../iConjugationManager_8inc.html',1,'']]],
+  ['iconverter',['IConverter',['../interfaceIConverter.html',1,'']]],
+  ['idisplayable',['iDisplayable',['../interfaceiDisplayable.html',1,'']]],
+  ['idisplayable_2einc',['iDisplayable.inc',['../iDisplayable_8inc.html',1,'']]],
+  ['imperative',['IMPERATIVE',['../classConjugationBase.html#ae4ec99d52ae2e6edd912cf67e78442bb',1,'ConjugationBase']]],
+  ['ind_5ffuture',['IND_FUTURE',['../classConjugationBase.html#ac25ac0244050e86a405bbf6fa9043a3e',1,'ConjugationBase']]],
+  ['ind_5fimperfect',['IND_IMPERFECT',['../classConjugationBase.html#aff9c382a23aa5533dfed3be1f01a6b2f',1,'ConjugationBase']]],
+  ['ind_5fpresent',['IND_PRESENT',['../classConjugationBase.html#a4b8516bbdb1525fc811738abeed0e1ff',1,'ConjugationBase']]],
+  ['ind_5fpreterit',['IND_PRETERIT',['../classConjugationBase.html#a479f338d318e0c399b20e66ecd7a03ad',1,'ConjugationBase']]],
+  ['infinitive',['INFINITIVE',['../classConjugationBase.html#abfe86b2588be8dc7fc44f29a4dae0641',1,'ConjugationBase']]],
+  ['insertindexedverb',['insertIndexedVerb',['../classConjugationDataProviderBase.html#af619b3848a7928bc7e8f649de46e9686',1,'ConjugationDataProviderBase']]],
+  ['istonicdetected',['isTonicDetected',['../classConjugationBase.html#a5fd0cc4d15523febc5eabfc41d8bdb21',1,'ConjugationBase']]],
+  ['isvoweldetected',['isVowelDetected',['../classConjugationBase.html#af8a92808eec27a866fe83fe64ba10784',1,'ConjugationBase']]]
+];

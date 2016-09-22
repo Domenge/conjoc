@@ -1,0 +1,51 @@
+\hypertarget{lengadocian_8php}{}\section{Référence du fichier php/lengadocian.php}
+\label{lengadocian_8php}\index{php/lengadocian.\+php@{php/lengadocian.\+php}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{lengadocian_8php_ac6c49291f92291a3cece8066d68e5f5e}{\$o} = \char`\"{}\char`\"{}
+\item 
+\hyperlink{lengadocian_8php_a1cab333b177ae7c120b4c2674b30ce86}{\$cnx} = new mysqli(\char`\"{}localhost\char`\"{},\char`\"{}conjocuser\char`\"{},\char`\"{}A\+D\+Lc\+W\+B\+D\+V4zkdmnf0\char`\"{},\char`\"{}conjoc\char`\"{})
+\item 
+if(! \$cnx-\/$>$set\+\_\+charset(\char`\"{}utf8\char`\"{})) \hyperlink{lengadocian_8php_ae4d000304c9bd9dfa55a5ffd8b738e88}{else}
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentation des variables}
+\hypertarget{lengadocian_8php_a1cab333b177ae7c120b4c2674b30ce86}{}\label{lengadocian_8php_a1cab333b177ae7c120b4c2674b30ce86} 
+\index{lengadocian.\+php@{lengadocian.\+php}!\$cnx@{\$cnx}}
+\index{\$cnx@{\$cnx}!lengadocian.\+php@{lengadocian.\+php}}
+\subsubsection{\texorpdfstring{\$cnx}{$cnx}}
+{\footnotesize\ttfamily \$cnx = new mysqli(\char`\"{}localhost\char`\"{},\char`\"{}conjocuser\char`\"{},\char`\"{}A\+D\+Lc\+W\+B\+D\+V4zkdmnf0\char`\"{},\char`\"{}conjoc\char`\"{})}
+
+\hypertarget{lengadocian_8php_ac6c49291f92291a3cece8066d68e5f5e}{}\label{lengadocian_8php_ac6c49291f92291a3cece8066d68e5f5e} 
+\index{lengadocian.\+php@{lengadocian.\+php}!\$o@{\$o}}
+\index{\$o@{\$o}!lengadocian.\+php@{lengadocian.\+php}}
+\subsubsection{\texorpdfstring{\$o}{$o}}
+{\footnotesize\ttfamily \$o = \char`\"{}\char`\"{}}
+
+\hypertarget{lengadocian_8php_ae4d000304c9bd9dfa55a5ffd8b738e88}{}\label{lengadocian_8php_ae4d000304c9bd9dfa55a5ffd8b738e88} 
+\index{lengadocian.\+php@{lengadocian.\+php}!else@{else}}
+\index{else@{else}!lengadocian.\+php@{lengadocian.\+php}}
+\subsubsection{\texorpdfstring{else}{else}}
+{\footnotesize\ttfamily if (! \$cnx-\/$>$set\+\_\+charset(\char`\"{}utf8\char`\"{})) else}
+
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}
+\{
+  
+  \}
+
+  \textcolor{keywordflow}{if}(isset($\_GET[\textcolor{stringliteral}{'action'}]) && $\_GET[\textcolor{stringliteral}{'action'}] == \textcolor{stringliteral}{'verbs\_siblings'})\{
+    \hyperlink{gascon_8php_af59a5f7cd609e592c41dc3643efd3c98}{$query} = isset($\_GET[\textcolor{stringliteral}{'verb'}])?$\_GET[\textcolor{stringliteral}{'verb'}]:\textcolor{stringliteral}{''};
+    \hyperlink{gascon_8php_af59a5f7cd609e592c41dc3643efd3c98}{$query} .= \textcolor{charliteral}{'%'};    
+    \hyperlink{autocomplete_lengadocian_8php_a112ef069ddc0454086e3d1e6d8d55d07}{$result} = \hyperlink{lengadocian_8php_a1cab333b177ae7c120b4c2674b30ce86}{$cnx}->query(\textcolor{stringliteral}{"SELECT s2.verb FROM `sauzet\_verbsmodel` as s1,`sauzet\_verbsmodel` as
+       s2 WHERE s1.verb = '$query' and s1.nummodel = s2.nummodel and s2.verb <> '$query'"});
+  \}\textcolor{keywordflow}{else}\{
+    \hyperlink{gascon_8php_af59a5f7cd609e592c41dc3643efd3c98}{$query} = isset($\_GET[\textcolor{stringliteral}{'verb'}])?$\_GET[\textcolor{stringliteral}{'verb'}]:\textcolor{stringliteral}{''};
+    \hyperlink{gascon_8php_af59a5f7cd609e592c41dc3643efd3c98}{$query} .= \textcolor{charliteral}{'%'};    
+    \hyperlink{autocomplete_lengadocian_8php_a112ef069ddc0454086e3d1e6d8d55d07}{$result} = \hyperlink{lengadocian_8php_a1cab333b177ae7c120b4c2674b30ce86}{$cnx}->query(\textcolor{stringliteral}{"SELECT verb FROM sauzet\_verbsmodel where verb like '$query'"});
+  \}
+  
+  \hyperlink{gascon_8php_a9254e826af88c3356ce25f1a75db4213}{$ary} = array()
+\end{DoxyCode}

@@ -1,0 +1,6 @@
+<map id="ConjugationManagerBase" name="ConjugationManagerBase">
+<area shape="rect" id="node3" href="$class_conjugation_gascon_manager.html" title="ConjugationGasconManager" alt="" coords="5,155,208,181"/>
+<area shape="rect" id="node4" href="$class_conjugation_lengadocian_manager.html" title="ConjugationLengadocianManager" alt="" coords="233,155,469,181"/>
+<area shape="rect" id="node5" href="$class_conjugation_provencal_manager.html" title="ConjugationProvencalManager" alt="" coords="493,155,710,181"/>
+<area shape="rect" id="node2" href="$interfacei_conjugation_manager.html" title="iConjugationManager" alt="" coords="272,5,429,32"/>
+</map>
