@@ -24,8 +24,7 @@ interface iConjugationManager{
   */
   public function conjugate();
   /**
-    \param string, the verb to conjugate in its indicative mood.
-    \return nothing
+    \param $verb the verb to conjugate in its indicative mood.
   */
   public function setVerb($verb);
   /**

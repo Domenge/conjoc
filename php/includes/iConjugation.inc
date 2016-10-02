@@ -16,19 +16,22 @@ interface iConjugation{
   /**
     \return a string, the verbal group
   */
-  public function getGroup();
-  public  function getVerb();
-  /**
+  public function getGroup();  /**< \return the group of the verb*/
+
+    public  function getVerb(); /**< \return the infinitive*/
+
+    /**
     \return a string, the verb model (a standardized form i.e "105 d")
   */
-  public function getVerbModel();
-  public function getVerbModelObject($nummodel);
+  public function getVerbModel(); 
+  public function getVerbModelObject($nummodel);  /**< \param $nummodel the model code \return what ?*/ 
 
   /**
     \return a string, the label of the model (i.e "conjugason 1 non alternanta, iat Espii, espia, espiam, espièi, espiat")
   */
   public function getlibModel();
-  public function getComments();
+    
+    public function getComments(); /**< \return a comment from the model*/
   /**
     \return the manager \todo (not supposed to be public)
   */

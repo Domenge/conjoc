@@ -31,6 +31,9 @@ class ConverterCSV implements iConverter{
     return "";
   } // convertArray
 
+  /**
+  * \return empty string
+  */
   public function convertSelect(array $conjugation){
     return "";	 
   }

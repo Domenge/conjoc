@@ -49,7 +49,7 @@ class ConjugationGasconThirdGroup extends ConjugationBase{
   
     /**
     * \brief sometimes a desinence can be altered this function does the change
-    * \param $radical a string the radical to be altered
+    * \param $desinence a string the desinence to be altered
     * \return the desinence
     */
     protected function fixDesinence($desinence){

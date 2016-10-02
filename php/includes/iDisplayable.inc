@@ -8,8 +8,7 @@
  *
  * \details   declares a contract .
  */
-       
 interface iDisplayable{
-  public function display();
+    public function display(); /**< must implement display*/
 } // interface iDisplayable 
 ?>

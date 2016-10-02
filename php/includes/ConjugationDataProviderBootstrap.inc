@@ -200,7 +200,7 @@ class ConjugationDataProviderBootstrap extends ConjugationDataProviderBase{
 /**
  * \brief  for each string go get the list of infinitive verbs beginning with the string
  * \details 
- * \param  $verb the infinitive of the current verb 
+ * \param  $string the infinitive of the current verb 
  * \return  an array of matches
  */
     public function getVerbAutoComplete($string){
