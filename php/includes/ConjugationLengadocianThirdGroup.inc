@@ -1,8 +1,17 @@
 <?php
-
-
+/**
+ * \file      ConjugationGasconThirdGroup.inc
+ * \author    Domenge Château-Annaud
+ * \version   1.0
+ * \date      May 2016
+ * \brief     worker class for conjugating the third group of lengadocian verbs
+*/
 class ConjugationLengadocianThirdGroup extends ConjugationBase{
 
+    /**
+    * \brief returns an array w/ the conjugations of the current verb, acts as a helper for getConjugationArray()
+    * \return an array w/ the desinences commonly used
+    */
     protected function getStandardConjugation(){
   	    $arr = array();
   	    $arr['00'] =  "i,es,,èm,ètz,on";
@@ -20,6 +29,11 @@ class ConjugationLengadocianThirdGroup extends ConjugationBase{
   	    return $arr;
     } // getStandardConjugation
 
+/**
+* \brief this is a function that mixes a standard conjugation and the processed one
+* \param $model a string of the model code
+* \return an array of conjugations
+/*
     private function getMixedConjugation($model){
         $arr = $this->getStandardConjugation($model);
         $line = $this->getVerbModelObject($model);
@@ -45,10 +59,17 @@ class ConjugationLengadocianThirdGroup extends ConjugationBase{
         return $arr;
     } // getMixedConjugation($model)
 
+    /**
+    * \brief a placeholder for the conjugate function
+    */
     public function display(){
         return "ConjugationLengadocianThirdGroup $this->_name " . $this->conjugate;
     } // display
   
+    /**
+    * \brief the most important function, returns the data for conjugating the current verb
+    * \return an array
+    */
     protected function getConjugationArray(){
 
         $infinitive = $this->getVerb();
@@ -137,7 +158,13 @@ class ConjugationLengadocianThirdGroup extends ConjugationBase{
 
         return $conjugations;
     } // getConjugationArray
-  
+
+    /**
+    * \brief does some changes inside the radical if needed for a some desinence and according to the verb model
+    * \param $radical a string the radical to be altered
+    * \param $desinence a string the current desinence
+    * \return the radical
+    */
     protected function fixRadical($radical,$desinence){
         $model = $this->getVerbModel();
 
@@ -163,10 +190,19 @@ class ConjugationLengadocianThirdGroup extends ConjugationBase{
         
     } // fixRadical
   
+    /**
+    * \brief sometimes a desinence can be altered this function does the change
+    * \param $radical a string the radical to be altered
+    * \return the desinence
+    */
     protected function fixDesinence($desinence){
         return $desinence;
     } // fixDesinence
 
+    /**
+    * \brief returns an array w/ the length of each size of the desinence  for each tense for each person
+    * \return an associative array of integers
+    */
     protected function getDesinenceLengthArray(){
 
         $model = $this->getVerbModel();

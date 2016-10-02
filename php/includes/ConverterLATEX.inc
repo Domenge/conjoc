@@ -14,10 +14,16 @@ class ConverterLATEX implements iConverter{
   private $fullFileName = '';
   private $templateTEX = '';
   const FILECACHING = FALSE;
-
+  /**
+  * \brief a Ctor
+  * \return the object
+  */
   public function __construct(){
   } // __construct
 
+  /**
+  * \return an array with the tokens to be replaced into the template file
+  */
   protected function getTokensArray(){
 
   $arr = array();
@@ -75,7 +81,13 @@ class ConverterLATEX implements iConverter{
   $arr[]='cndP3';
   return $arr;
   } // getTokensArray 
-	
+
+  /**
+  * \brief merger for two arrays
+  * \param $index
+  * \param $tokens
+  * \param $conjugationArr
+  */
   protected function mergeTokensArray(&$index,&$tokens,$conjugationArr){
 
     // we are forging a sed command based on the substitution of a token and the real conjugation
@@ -88,6 +100,11 @@ class ConverterLATEX implements iConverter{
     
   } // mergeTokensArray
 
+  /**
+  * \details this function is highly dependant of the environment, its gets a template file, creates a TEX file, does some processing and compiles the TEX file to produce a LaTeX/PDF file of the current conjugation
+  * \param $conjugated an array
+  * \return the full name of the PDF file
+  */
   public function convertConjugation(array $conjugated){
 
     $pwd = dirname(__FILE__);
@@ -144,8 +161,6 @@ class ConverterLATEX implements iConverter{
     $replacement = '';
     $defModel = preg_replace($pattern, $replacement, $defModel);
 
-//dpm($defModel);
-//    $defModel="";
     $tokensArray[]="s/DefMdl/$defModel/";
     $tokensArray[]="s/PWD/$pwd/g";
     
@@ -166,7 +181,10 @@ class ConverterLATEX implements iConverter{
         
   } // convertConjugation
 
-
+  /**
+  * \brief calls the unix commands in order to create a LaTeX/PDF file 
+  * \param $dialectCode a string
+  */
   private function createPDF($dialectCode){
 
     if (!isset($this->verbName)){
@@ -200,10 +218,20 @@ class ConverterLATEX implements iConverter{
 //echo $commandMOVE ."<br>";
   } // createPDF
 
+  /**
+  * \brief not implemented
+  * \param $list
+  * \return an empty string
+  */
   public function convertArray(array $list){
     return "";
   } // convertArray
 
+  /**
+  * \brief does nothing
+  * \param $conjugation
+  * \return an empty string
+  */
   public function convertSelect(array $conjugation){
     return "";	 
   }

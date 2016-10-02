@@ -241,7 +241,9 @@ $person,$gender,$number, $finiteness,$mood,$tense,
     $finiteness = 0;
     $status = 1;
     
-    // Indicative
+    /**
+    * I N D I C A T I V E
+    */
     $ary = $ConjugationArray['Indicative'];
 
 //    $tenses = array("present","imperfect","preterit","future");
@@ -262,7 +264,9 @@ $person,$gender,$number, $finiteness,$mood,$tense,
 
     } // for
 
-    // CONDITIONAL
+    /**
+    * C O N D I T I O N A L
+    */
     $ary = $ConjugationArray['Conditional'];
 
     $mood = 4;
@@ -276,7 +280,9 @@ $person,$gender,$number, $finiteness,$mood,$tense,
 	$orth = $conj[$i];
     } // for
 
-    // INFINITIVE, GERUND & PARTICIPLE
+    /**
+    * I N F I N I T I V E  ,  G E R U N D  &  P A R T I C I P L E
+    */
     $ary = $ConjugationArray['Impersonal forms'];   
 
     $mood = 5; // 'infinitive';
@@ -311,7 +317,9 @@ $person,$gender,$number, $finiteness,$mood,$tense,
     } // for
 
     
-    // SUBJUNCTIVE
+    /**
+    * S U B J U N C T I V E
+    */
     $ary = $ConjugationArray['Subjunctive'];   
 
     $tenses = array("present","imperfect");

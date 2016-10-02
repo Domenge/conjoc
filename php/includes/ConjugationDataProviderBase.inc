@@ -4,7 +4,7 @@
  * \author    Domenge Château-Annaud
  * \version   1.0
  * \date      May 2016
- * \brief     Base class for worker class ConjugationDataProvider
+ * \brief     Base class for worker classes ConjugationDataProviderXXXX
  *
  * \details   this hierarchy of classes implements the data access layer in order to isolate the data persistance.
  */
@@ -13,8 +13,15 @@ abstract class ConjugationDataProviderBase implements iConjugationDataProvider{
   
   const INDEXATION_STEP = 1000;
 
-  protected $_baseTableName;
+  protected $_baseTableName; /**< the only attribute*/
 
+/**
+ * \brief      the Ctor
+ * \details    
+ *                  
+ * \param      $baseTableName string the name of the table is known at higther level. 
+ * \return     the object
+ */
   public function __construct($baseTableName){
   	 $this->_baseTableName = $baseTableName;
   } // __construct

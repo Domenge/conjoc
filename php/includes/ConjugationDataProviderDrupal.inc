@@ -1,22 +1,57 @@
 <?php
-
+/**
+ * \file      ConjugationDataProviderDrupal.inc
+ * \author    Domenge Château-Annaud
+ * \version   1.0
+ * \date      May 2016
+ * \brief     worker classe for Drupal environment
+ *
+ * \details   
+ */      
 class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
 
+/**
+ * \brief      go get the verb from the verb w/ its model table
+ * \details     
+ *                  
+ * \param      $verb infinitive of the verb
+ * \return     an object on containing a verb.
+ */
     public function getVerb($verb){
         $results = db_query("SELECT * FROM {" . $this->getBaseTableName() . "_verbsmodel} WHERE verb =:verb",array(':verb'=>$verb));
         return $results->fetchObject();
     } // getVerb
 
+/**
+ * \brief      go get the verb from the verb w/ its model table
+ * \details     
+ *                  
+ * \param      $id id of the verb
+ * \return     an object on containing the verb.
+ */
     public function getVerbById($id){
         $results = db_query("SELECT * FROM {" . $this->getBaseTableName() . "_verbsmodel} WHERE id =:id",array(':id'=>$id));
         return $results->fetchObject();
     } // getVerbById
 
+/**
+ * \brief      go get the verb model by its number 
+ * \details     
+ *                  
+ * \param      $numModel
+ * \return     an object on containing the model of a verb.
+ */
     public function getVerbModelObject($numModel){
         $results = db_query("SELECT * FROM {" . $this->getBaseTableName() . "_model} WHERE nummodel=:numModel",array(':numModel'=>$numModel));
         return $results->fetchObject();
     } // getVerbModelObject
 
+/**
+ * \brief      go get the list of verb models
+ * \details     
+ * \todo	  
+ * \return     an empty array
+ */
     public function getVerbsModels(){
         $results = db_query("SELECT * FROM {" . $this->getBaseTableName() . "_model} ORDER by nummodel ASC");
         $arrRet = array();
@@ -28,26 +63,39 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
         return $arrRet;
     } // getVerbsModels
 
+/**
+ * \brief      go get the 20 verbs most wanted
+ * \details     
+ *                  
+ * \return     an array of infinitives
+ */
     public function getTop20(){
         $results = db_query("SELECT COUNT(*) as cpter, group_concat(cast(idverb as char)) as concat FROM {" . $this->getBaseTableName() . "_access} GROUP BY idverb ORDER BY cpter DESC LIMIT 20");
         $arrRet = array();
-/*
-  T O  B E  D O N E
-  T O  B E  D O N E
-  T O  B E  D O N E
-
-  while($line = $results->fetchObject()){
-  $arr = explode(',', $line->concat);
-  $id = $arr[0];
-  $id = isset($id)?$id:0;
-  $resInner  = db_query("SELECT verb FROM {". $this->getBaseTableName() . "_verbsmodel} WHERE id =:id LIMIT 1",array(':id'=>$id));
-  $lineInner = $resInner->fetchObject();
-  $arrRet[0] = $lineInner->verb;
-  } // while
+/**
+* \todo getTop20 not really implementes
+*  T O  B E  D O N E
+*  T O  B E  D O N E
+*  T O  B E  D O N E
+*
+*  while($line = $results->fetchObject()){
+*  $arr = explode(',', $line->concat);
+*  $id = $arr[0];
+*  $id = isset($id)?$id:0;
+*  $resInner  = db_query("SELECT verb FROM {". $this->getBaseTableName() . "_verbsmodel} WHERE id =:id LIMIT 1",array(':id'=>$id));
+*  $lineInner = $resInner->fetchObject();
+*  $arrRet[0] = $lineInner->verb;
+*  } // while
 */
         return $arrRet;
     } // getTop20
 
+/**
+ * \brief get the ids of the verbs w/ the same model except the current one 
+ * \details     
+ * \param  $verb the infinitive of the current verb 
+ * \return     an array containing the ids of the verbs w/ the same models except the current verb 
+ */
     public function getOthersInModel($verb){
 
         $count = $this->getCountOthersInModel($verb);
@@ -67,6 +115,12 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
         return $arrRet;
     } // getOthersInModel
 
+/**
+ * \brief  returns how many other verbs with the same model  
+ * \details 
+ * \param  $verb the infinitive of the current verb 
+ * \return  a counter
+ */
     public function getCountOthersInModel($verb){
         $resultsCount = db_query("SELECT count(*) as cptr FROM " .
         $this->getBaseTableName() . 
@@ -78,6 +132,12 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
         return $line->cptr;
     } // getCountOthersInModel
 
+/**
+ * \brief  for each string go get the list of infinitive verbs beginning with the string
+ * \details 
+ * \param  $verb the infinitive of the current verb 
+ * \return  an array of matches
+ */
     public function getVerbAutoComplete($string){
         $matches = array();
 
@@ -105,6 +165,11 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
         return $matches;
     } // getVerbAutoComplete
 
+/**
+ * \brief  gets an infinitive at random
+ * \details 
+ * \return  an infinitive at random
+ */
     public function getRandomVerb(){
         $results = db_query("SELECT * FROM {" . $this->getBaseTableName() . "_verbsmodel} ORDER BY RAND() LIMIT 1");
         $line = $results->fetchObject();
@@ -113,6 +178,11 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
 
     } // getRandomVerb()
 
+/**
+ * \brief  gets an list of single infinitive in their model
+ * \details 
+ * \return  an array of infinitives
+ */
     public function getSingleVerbs(){
         $results = db_query("SELECT COUNT(*) as cpter, group_concat(verb) as concat FROM {". 
         $this->getBaseTableName() 
@@ -133,6 +203,12 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
         return $arrRet;
     } // getSingleVerbs()
 
+/**
+ * \brief  returns the prefix of the verb build on semiauxiliary FAR
+ * \details
+ * \param  $verb the infinitive
+ * \return  a string
+ */
     public function getVerbFAR($verb){
         // returns the prefix of the verb build on semiauxiliary FAR
         $results = db_query("SELECT SUBSTR( verb, 1, position( 'far' IN verb ) -1 ) as verbtrimmed FROM {".
@@ -142,6 +218,12 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
         return $line->verbtrimmed;  
     }
 
+/**
+ * \brief  returns the prefix of the verb build on semiauxiliary HAR
+ * \details
+ * \param  $verb the infinitive
+ * \return  a string
+ */
     public function getVerbHAR($verb){
         // returns the prefix of the verb build on semiauxiliary HAR gascon
         $results = db_query("SELECT SUBSTR( verb, 1, position( 'har' IN verb ) -1 ) as verbtrimmed FROM {".
@@ -150,7 +232,13 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
         $line = $results->fetchObject();
         return $line->verbtrimmed;  
     } // getVerbHAR
-  
+
+/**
+ * \brief returns a list of indexed conjugations beginning w/ the string
+ * \details 
+ * \param  $conjugation a sting
+ * \return  an array of matches
+ */
     public function getIndexationAutoComplete($conjugation){
         $matches = array();
         if ($conjugation) {
@@ -163,6 +251,12 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
         return $matches;     
     } // getIndexationAutoComplete
 
+/**
+ * \brief returns the data of an indexed conjugation
+ * \details 
+ * \param  $conjugation a sting
+ * \return  an array of matches
+ */
     public function getIndexationData($conjugation){
         if ($conjugation) {
             $results = db_query("SELECT * FROM {conjoc_index} where conjugation = :conjugation", array(':conjugation'=> $conjugation));
@@ -173,6 +267,11 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
         return array();     
     } // getIndexationData
 
+/**
+ * \brief returns a list of infinitives that are prefixed with an index ex : "acochar 1" and "acochar 2" 
+ * \details 
+ * \return  an array of matches
+ */
     public function getAllDuplicatedVerbs(){
 
         $results = db_query("SELECT DISTINCT left(verb,locate(' ', verb)) as element FROM  {". 
@@ -191,6 +290,11 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
 /*
  */
 
+/**
+ * \brief returns a list of all infinitives. This is used for doing a massive indexation
+ * \details not to be used in production
+ * \return  an array of matches
+ */
     public function getAllVerbs(){
         $results = db_query("SELECT * FROM {". 
         $this->getBaseTableName() 
@@ -214,6 +318,11 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
         return $arrRet;
     } // getAllVerbs()
 
+/**
+* \details returns a list of infinitives by increments or steps and manages a counter to
+* save the progression 
+* \return an array of infinitives
+*/
     public function getAllVerbsByIncrement(){
 
         /*L E N G A D O C I A N*/
@@ -325,11 +434,18 @@ class ConjugationDataProviderDrupal extends ConjugationDataProviderBase{
             return $arrRet;
         }
     } // getAllVerbsByIncrement()
-  
+    /**
+    * \brief inserts data for the indexation of a conjugation
+    */
     public function insertIndexedVerb(array $fields){
         db_insert('conjoc_index')->fields($fields)->execute();
     } // insertIndexedVerb
 
+    /**
+    * \details returns the definition/french translation of a verb at the infinitive 
+    * \param $infinitive a string
+    * \return a string with the definition from a dictionary
+    */
     public function getDictionaryDefinition($infinitive){
         $results = db_query("SELECT * FROM totenun_OF_index as tofi INNER JOIN totenun_OF as tof WHERE id = idtotenunOF and tofi.term = :infinitive", array(':infinitive'=> $infinitive));
 

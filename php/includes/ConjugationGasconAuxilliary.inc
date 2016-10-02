@@ -1,10 +1,27 @@
 <?php
+/**
+ * \file      ConjugationGasconAuxilliary.inc
+ * \author    Domenge Château-Annaud
+ * \version   1.0
+ * \date      May 2016
+ * \brief     worker class for conjugating all the auxilliary gascon verbs
+ *
+ * \details   mainly all the logic to conjugate verbs is in the database
+*/
 class ConjugationGasconAuxilliary extends ConjugationBase{
 
+  /**
+  * \brief does nothing
+  * \return an empty array
+  */
   public function display(){
     return array();
   } // display
 
+  /**
+  * \brief returns the data for conjugating the current verb incidently the semi-auxilliary HAR and all its derivated have a special treatment
+  * \return an array
+  */
   public function getConjugationArray(){
     $infinitive = $this->getVerb();
     	
@@ -33,6 +50,10 @@ class ConjugationGasconAuxilliary extends ConjugationBase{
     return $retconjugations;
   } // getConjugationArray
 
+  /**
+  * \brief returns an array w/ the length of each size of the desinence  for each tense for each person
+  * \return an associative array of integers
+  */
   protected function getDesinenceLengthArray(){
 
         $model = $this->getVerbModel();

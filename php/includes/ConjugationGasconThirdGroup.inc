@@ -1,14 +1,26 @@
 <?php
-
-
+/**
+ * \file      ConjugationGasconThirdGroup.inc
+ * \author    Domenge Château-Annaud
+ * \version   1.0
+ * \date      May 2016
+ * \brief     worker class for conjugating the third group of gascon verbs
+*/
 class ConjugationGasconThirdGroup extends ConjugationBase{
-
+    /**
+    * \brief this is a try to implement a special behaviour of monosyllabic verbs in gascon
+    * \return an array of infinitives
+    */
     protected function getVerbsMonoSyllabics(){
         $arr = array();
         $arr[] =  "bater";
         return $arr;
     } // getVerbsMonoSylabics
 
+    /**
+    * \brief returns an array w/ the conjugations of the current verb, acts as a helper for getConjugationArray()
+    * \return an array w/ the desinences commonly used
+    */
     protected function getStandardConjugation(){
         $arr = array();
         $arr['00'] =  "i,es,,em,etz,en";
@@ -25,18 +37,39 @@ class ConjugationGasconThirdGroup extends ConjugationBase{
         return $arr;
     } // getStandardConjugation
 
-    protected function fixRadical($radical,$desinence){
+    /**
+    * \brief does some changes inside the radical if needed for a some desinence and according to the verb model
+    * \param $radical a string the radical to be altered
+    * \param $desinence a string the current desinence
+    * \return the radical
+    */
+   protected function fixRadical($radical,$desinence){
         return $radical;
     } // fixRadical
   
+    /**
+    * \brief sometimes a desinence can be altered this function does the change
+    * \param $radical a string the radical to be altered
+    * \return the desinence
+    */
     protected function fixDesinence($desinence){
         return $desinence;
     } // fixDesinence
 
+    /**
+    * \param $temps the tense
+    * \param $person
+    * \return a boolean
+    */ 
     protected function mustNeutralizeVowel($temps,$person){
         return true;
     } // mustNeutralizeVowel
 
+    /**
+    * \brief this function mixes the standard conjugation and the processed one
+    * \param $model the model
+    * \return an array
+    */
     private function getMixedConjugation($model){
         $arr = $this->getStandardConjugation($model);
 
@@ -62,7 +95,11 @@ class ConjugationGasconThirdGroup extends ConjugationBase{
         return $arr;
     } // getMixedConjugation($model)
 
-    protected function getConjugationArray(){
+   /**
+   * \brief the most important function, returns the data for conjugating the current verb
+   * \return an array
+   */
+   protected function getConjugationArray(){
 
         $infinitive = $this->getVerb();
         $vowelGrave = $this->isVowelDetected($infinitive);
@@ -139,6 +176,10 @@ class ConjugationGasconThirdGroup extends ConjugationBase{
         return $conjugations;
     } // getConjugationArray
 
+    /**
+    * \brief returns an array w/ the length of each size of the desinence  for each tense for each person
+    * \return an associative array of integers
+    */
     protected function getDesinenceLengthArray(){
 
         $model = $this->getVerbModel();
@@ -185,6 +226,9 @@ class ConjugationGasconThirdGroup extends ConjugationBase{
     } // getDesinenceLengthArray
 
 
+    /**
+    * \brief a placeholder for the conjugate function
+    */
     public function display(){
         return "ConjugationGasconThirdGroup $this->_name " . $this->conjugate;
     } // display

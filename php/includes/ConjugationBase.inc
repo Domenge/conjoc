@@ -163,7 +163,7 @@ protected function isTonicDetected($root){
  * \details    takes an infinitive and remove the accent
  *                  
  * \param      $infinitive 
- * \param      $vowelGrave the vowel to neutralize
+ * \param      $tonic the tonic to neutralize
  * \return     the infinitive
  */
   protected function neutralizeTonic($infinitive,$tonic){
@@ -193,8 +193,8 @@ protected function isTonicDetected($root){
  * \brief      tells if the accent must be neutralized
  * \details    takes an infinitive and remove the accent
  *                  
- * \param      $infinitive 
- * \param      $vowelGrave the vowel to neutralize
+ * \param      $temps
+ * \param      $person
  * \return     a boolean
  */
   protected function mustNeutralizeVowel($temps,$person){

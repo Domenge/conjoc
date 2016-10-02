@@ -1,9 +1,18 @@
 <?php
-
-
+/**
+ * \file      ConjugationGasconSecondGroup.inc
+ * \author    Domenge Château-Annaud
+ * \version   1.0
+ * \date      May 2016
+ * \brief     worker class for conjugating the second group of gascon verbs
+*/
 class ConjugationGasconSecondGroup extends ConjugationBase{
 
-    protected function getStandardConjugation(){
+      /**
+      * \brief returns an array w/ the conjugations of the current verb, acts as a helper for getConjugationArray()
+      * \return an array w/ the desinences commonly used
+      */
+   protected function getStandardConjugation(){
         $arr = array();
         $model = $this->getVerbModel();
 
@@ -59,6 +68,12 @@ class ConjugationGasconSecondGroup extends ConjugationBase{
         return $arr;
     } // getStandardConjugation
 
+    /**
+    * \brief does some changes inside the radical if needed for a some desinence and according to the verb model
+    * \param $radical a string the radical to be altered
+    * \param $desinence a string the current desinence
+    * \return the radical
+    */
     protected function fixRadical($radical,$desinence){
 
         $desinences = array('i','as','','a','an','e','es','en','ias','ia','ian');
@@ -111,6 +126,11 @@ class ConjugationGasconSecondGroup extends ConjugationBase{
         return $radical;
     } // fixRadical
   
+    /**
+    * \brief sometimes a desinence can be altered this function does the change
+    * \param $radical a string the radical to be altered
+    * \return the desinence
+    */
     protected function fixDesinence($desinence){
         $model = $this->getVerbModel();
         if ($model == '213'){
@@ -119,6 +139,10 @@ class ConjugationGasconSecondGroup extends ConjugationBase{
         return $desinence;
     } // fixDesinence
 
+    /**
+    * \brief the most important function, returns the data for conjugating the current verb
+    * \return an array
+    */
     protected function getConjugationArray(){
         $infinitive = $this->getVerb();
 
@@ -163,6 +187,10 @@ class ConjugationGasconSecondGroup extends ConjugationBase{
         return $conjugations;
     } // getConjugationArray
 
+    /**
+    * \brief returns an array w/ the length of each size of the desinence  for each tense for each person
+    * \return an associative array of integers
+    */
     protected function getDesinenceLengthArray(){
 
         $model = $this->getVerbModel();
@@ -226,6 +254,9 @@ class ConjugationGasconSecondGroup extends ConjugationBase{
 
     } // getDesinenceLengthArray
 
+    /**
+    * \brief a placeholder for the conjugate function
+    */
     public function display(){
         return array();
     } // display

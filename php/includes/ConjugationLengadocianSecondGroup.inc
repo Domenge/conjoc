@@ -1,7 +1,17 @@
 <?php
-
+/**
+ * \file      ConjugationLengasocianSecondGroup.inc
+ * \author    Domenge Château-Annaud
+ * \version   1.0
+ * \date      May 2016
+ * \brief     worker class for conjugating the second group of lengadocian verbs
+*/
 class ConjugationLengadocianSecondGroup extends ConjugationBase{
 
+    /**
+    * \brief returns an array w/ the conjugations of the current verb, acts as a helper for getConjugationArray()
+    * \return an array w/ the desinences commonly used
+    */
     protected function getStandardConjugation(){
 
         $arr = array();
@@ -68,6 +78,10 @@ class ConjugationLengadocianSecondGroup extends ConjugationBase{
         return $arr;
     } // getStandardConjugation
 
+    /**
+    * \brief the most important function, returns the data for conjugating the current verb
+    * \return an array
+    */
     protected function getConjugationArray(){
 
         $infinitive = $this->getVerb();
@@ -108,10 +122,17 @@ class ConjugationLengadocianSecondGroup extends ConjugationBase{
 
     } // getConjugationArray
 
+    /**
+    * \brief a placeholder for the conjugate function
+    */
     public function display(){
         return array();
     } // display
 
+    /**
+    * \brief returns an array w/ the length of each size of the desinence  for each tense for each person
+    * \return an associative array of integers
+    */
     protected function getDesinenceLengthArray(){
 
         $model = $this->getVerbModel();
@@ -184,6 +205,12 @@ class ConjugationLengadocianSecondGroup extends ConjugationBase{
 
     } // getDesinenceLengthArray
 
+    /**
+    * \brief does some changes inside the radical if needed for a some desinence and according to the verb model
+    * \param $radical a string the radical to be altered
+    * \param $desinence a string the current desinence
+    * \return the radical
+    */
     protected function fixRadical($radical, $desinence){
         $model = $this->getVerbModel();
 

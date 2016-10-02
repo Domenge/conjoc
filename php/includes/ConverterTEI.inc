@@ -31,6 +31,7 @@ class ConverterTEI implements iConverter{
   private $_converterIndexation; /**< ConverterIndexation */
   /**
   * \brief Ctor
+  * \return the object
   */
   public function __construct(){
     $this->_converterIndexation = new ConverterIndexation();
@@ -104,6 +105,13 @@ class ConverterTEI implements iConverter{
   $this->createDownloadFile($o,$conjugated['dialect'] . "_$name");	   
   } // convertConjugation
   
+    /**
+    * \brief a heavy loaded function used as helper for convertConjugation() where a the XML writing takes place
+    * \param $model a string the model code
+    * \param $ConjugationArray an associative array of the conjugation data
+    * \sa ConverterHTML::formaConjugation()
+    * \return an XML string
+    */
   private function formatConjugation($model, $ConjugationArray){
     $out = "";
       
@@ -147,8 +155,8 @@ class ConverterTEI implements iConverter{
     $aryPOS['auxiliary'] = 0;
     // iterating in the conjugations, a record is created for each flexion
 
-/*
-	I N D I C A T I V E
+/**
+*	I N D I C A T I V E
 */	
     $mood = 'indicative';
     $aryPOS['mood'] = 1;
@@ -199,8 +207,8 @@ EOT;
 
     } // for
 
-/*
-	C O N D I T I O N A L
+/**
+*	C O N D I T I O N A L
 */	
     $ary = $ConjugationArray['Conditional'];
 
@@ -245,8 +253,8 @@ EOT;
 
     } // for
 
-/*
-	I N F I N I T I V E
+/**
+*	I N F I N I T I V E
 */	
     // INFINITIVE, GERUND & PARTICLE
     $ary = $ConjugationArray['Impersonal forms'];   
@@ -278,8 +286,8 @@ $str = <<<EOT
 EOT;
 	$out .= $str;
 
-/*
-	G E R U N D I V E
+/**
+*	G E R U N D I V E
 */	
 
     $mood = 'gerund';
@@ -309,11 +317,11 @@ $str = <<<EOT
 EOT;
 	$out .= $str;
 
-/*
-	P A S T  P A R T I C I P L E
+/**
+*	P A S T  P A R T I C I P L E
 */
-/*
-M A S C U L I N E
+/**
+* M A S C U L I N E
 */	
     $mood = 'participle';
     $tns  = 'past';
@@ -350,8 +358,8 @@ $str = <<<EOT
 	        	       	
 EOT;
 
-/*
-F E M I N I N E
+/**
+* F E M I N I N E
 */	
     $out .= $str;
     $orth = $conj[1];	
@@ -385,7 +393,9 @@ EOT;
 	$out .= $str;
 
  
-    // IMPERATIVE
+/**
+* I M P E R A T I V E
+*/
     $ary = $ConjugationArray['Imperative'];   
     $mood = 'imperative';
     $aryPOS['mood'] = 3;
@@ -433,8 +443,8 @@ EOT;
     } // for
 
     
-/*
-	S U B J U N C T I V E
+/**
+*	S U B J U N C T I V E
 */
     $ary = $ConjugationArray['Subjunctive'];   
 
@@ -492,6 +502,11 @@ EOT;
     return $out;  
   } // formatConjugation
 
+  /**
+  * \brief a placeholder function to convert an array into HTML
+  * \param $list
+  * \return a HTML string
+  */
   public function convertArray(array $list){
     $o = $this->getHeader();
     if (count($list) > 0){
@@ -516,10 +531,18 @@ EOT;
     $this->createDownloadFile($o);	   
   } // convertArray
 
+  /**
+  * \brief does nothing
+  */
   public function convertSelect(array $conjugation){
   
   }
 
+  /**
+  * \brief builds the correct TEI header according to the dialect
+  * \param $dialect a string the dialect
+  * \return an XML string
+  */
 private function getHeader($dialect='none'){
 
 switch($dialect){
@@ -583,6 +606,10 @@ EOT;
 	return $out;	
 } // getHeader
 
+/**
+* \brief builds the correct TEI footer
+* \return an XML string
+*/
 private function getFooter(){
 	$out = <<<EOT
     </body>
@@ -592,7 +619,9 @@ EOT;
 	return $out;	
 } // getFooter
 
+
   /**
+  * \brief sets the way to initiate a download from the navigator
   * \param $strToWrite an XML string
   * \param $name string a suffix for the filename
   * \return this function exits the call

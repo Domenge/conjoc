@@ -1,10 +1,26 @@
 <?php
-
+/**
+ * \file      ConverterHTML.inc
+ * \author    Domenge Château-Annaud
+ * \version   1.0
+ * \date      May 2016
+ * \brief     converts a conjugation in HTML format
+ *
+ * \details   
+ */
 class ConverterHTML implements iConverter{
 
+    /**
+    * \brief the ctor
+    * \return the object
+    */
     public function __construct(){
     } // __construct
 
+    /**
+    * \brief return a list of Tenses
+    * \return an array
+    */
     protected function getTempses(){
         $arr = array();
         $arr[] = "Present";
@@ -38,6 +54,11 @@ class ConverterHTML implements iConverter{
   $arr["dictionaryDefinition"]
 
 */
+    /**
+    * \brief return a list of Tenses
+    * \param $conjugated an array of the conjugation data
+    * \return a string in HTML
+    */
     public function convertConjugation(array $conjugated){
 
         $tempses = $this->getTempses();
@@ -59,7 +80,9 @@ class ConverterHTML implements iConverter{
         $dialect = $conjugated["dialect"];
         $dictionaryDefinitions = $conjugated["dictionaryDefinition"];
 
-        /* I N F I N I T I V E */
+        /**
+	* I N F I N I T I V E
+	*/
         $out .= "<h2>$infinitive</h2>\n";
 
         $out .= '<div class="verb">' . "\n";
@@ -91,7 +114,12 @@ class ConverterHTML implements iConverter{
         $out .= $this->formatConjugation($conjugated);
         return $out; 
     } // convertConjugation
-  
+
+    /**
+    * \brief a heavy loaded function used as helper for convertConjugation() where a the HTML writing takes place
+    * \param $conjugated an associative array of the conjugation data
+    * \return a HTML string
+    */
     private function formatConjugation($conjugated){
         $dialect = $conjugated["dialect"];
         $conjugations = $conjugated["conjugations"];
@@ -132,14 +160,16 @@ class ConverterHTML implements iConverter{
             } // switch
         } // for
     
-        /*
-          HTML and CSS code
+        /**
+        *  HTML and CSS code
         */ 
         $out = '';
 
         $out .= '<div class="row">' . "\n"; // ROW 
 
-        // INDICATIVE
+        /**
+	* INDICATIVE
+	*/
         $ary = $ModesArray['Indicatiu'];
         $persons = $this->getPersonsArray();
         $tempses = array("present","imperfach","preterit","futur");
@@ -174,8 +204,10 @@ class ConverterHTML implements iConverter{
 
         $out .= '</tbody>'."\n".'</table>'."\n".'</div>'."\n";
    
-        // IMPERSONAL FORMS
-        $ary = $ModesArray['Formas impersonalas'];   
+        /**
+	* IMPERSONAL FORMS
+	*/
+	$ary = $ModesArray['Formas impersonalas'];   
         $out .= '<div class="impersonal_forms col-sm-3"><table>'. "\n". '<tbody>' . "\n";
         $out .= '<tr><th class="mode">Formas impersonalas</th></tr><tr>' . "\n";  
         $out .= '<tr><th class="tempses">Infinitiu</th></tr>';
@@ -208,7 +240,9 @@ class ConverterHTML implements iConverter{
         $out .= "<tr><td>en $ger</td></tr>" . "\n";
         $out .= '</tbody>'."\n".'</table>'."\n".'</div>'."\n";
 
-        // IMPERATIVE
+        /**
+	* IMPERATIVE
+	*/
         $ary = $ModesArray['Imperatiu'];   
         $out .= '<div class="imperative col-sm-3">'."\n".'<table>'."\n".'<tbody>'."\n";
         $out .= '<tr><th colspan="2" class="mode">Imperatiu</th></tr><tr>';
@@ -238,7 +272,9 @@ class ConverterHTML implements iConverter{
 
         $out .= '<div>' . "\n"; // ROW
     
-        // SUBJUNCTIVE
+        /**
+	* SUBJUNCTIVE
+	*/
         $ary = $ModesArray['Subjontiu'];   
         $out .= '<div class="subjunctive col-sm-6">'."\n".'<table>'."\n".'<tbody>'."\n";
         $out .= '<tr><th colspan="3" class="mode">Subjontiu</th></tr>'."\n";    
@@ -260,7 +296,9 @@ class ConverterHTML implements iConverter{
         $out .= '</tbody>'."\n".'</table>'."\n".'</div>'."\n";
 
 
-        // CONDITIONAL
+        /**
+	* CONDITIONAL
+	*/
         $ary = $ModesArray['Condicional'];   
         $out .= '<div class="conditional col-sm-6">'."\n".'<table>'."\n".'<tbody>'."\n";
         $out .= '<tr><th  colspan="2" class="mode">Condicional</th></tr><tr>'."\n";    
@@ -281,6 +319,9 @@ class ConverterHTML implements iConverter{
         return $out;  
     } // formatConjugation
 
+    /**
+    * \return an array of the code for persons
+    */
     private function getPersonsArray(){
         $ary = array();
         $ary[] = 's1'; 
@@ -292,7 +333,11 @@ class ConverterHTML implements iConverter{
      
         return $ary;
     }
-  
+    /**
+    * \brief a placeholder function to convert an array into HTML
+    * \param $list
+    * \return a HTML string
+    */
     public function convertArray(array $list){
         $o = "";
         if (count($list) > 0){
@@ -320,10 +365,18 @@ class ConverterHTML implements iConverter{
         return $o;
     } // convertArray
 
+    /**
+    * \brief does nothing
+    */
     public function convertSelect(array $conjugation){
   
     }
 
+    /**
+    * \brief converts a word coming from a verb conjugated,  
+    * \param $data an objet w/ all the info from an indexed conjugation
+    * \return a string
+    */
     public function convertIndexedData($data){
         if(empty($data)){
             echo("Conjugation not found");
@@ -347,6 +400,11 @@ class ConverterHTML implements iConverter{
         return $o;
     }  // convertIndexedData
 
+    /**
+    * \brief a POS part of speech array is converted in HTML array
+    * \param $aPos an array containing POS data
+    * \return a HTML string
+    */
     private function convertPOS(array $aPos){
         $type = $aPos['type'];   	  
         $person = $aPos['person'];

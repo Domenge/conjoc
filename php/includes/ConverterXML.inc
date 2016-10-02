@@ -102,25 +102,25 @@ EOT;
   * \param $name string a suffix for the filename
   * \return this function exits the call
   */
-private function createDownloadFile($strToWrite, $name='All'){
-  $file_name = tempnam(getcwd(). '/cache/', "Indexationexport.$name");
+  private function createDownloadFile($strToWrite, $name='All'){
+  	  $file_name = tempnam(getcwd(). '/cache/', "Indexationexport.$name");
 
-  $name = "extraccion_XML_$name";
-  $handle = @fopen($file_name, 'w'); // The @ supresses errors.
+  	  $name = "extraccion_XML_$name";
+  	  $handle = @fopen($file_name, 'w'); // The @ supresses errors.
 
-  // Write data
-  @fwrite($handle, $strToWrite);
+  	  // Write data
+  	  @fwrite($handle, $strToWrite);
 
-  // Close the file.
-  @fclose($handle);
+  	  // Close the file.
+  	  @fclose($handle);
 
-  header("Content-type: application/xml");
-  header("Content-Disposition: attachment; filename=". preg_replace('/\.$/', '', str_replace(' ', '_', htmlspecialchars($name))) .".xml");
+  	  header("Content-type: application/xml");
+  	  header("Content-Disposition: attachment; filename=". preg_replace('/\.$/', '', str_replace(' ', '_', htmlspecialchars($name))) .".xml");
 
-  @readfile($file_name); // The @ makes it silent.
-  @unlink($file_name); // Clean up, the @ makes it silent.
-  exit(0);
-} // createDownloadFile
+  	  @readfile($file_name); // The @ makes it silent.
+  	  @unlink($file_name); // Clean up, the @ makes it silent.
+  	  exit(0);
+   } // createDownloadFile
  
 } // class ConverterXML
 
