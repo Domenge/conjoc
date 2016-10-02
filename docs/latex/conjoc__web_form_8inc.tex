@@ -1,0 +1,183 @@
+\hypertarget{conjoc__web_form_8inc}{}\section{Référence du fichier conjoc\+\_\+web\+Form.\+inc}
+\label{conjoc__web_form_8inc}\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{conjoc__web_form_8inc_a9c7725a828c1a44761bc51fe7a346215}{tei\+\_\+export\+\_\+lengadocian\+\_\+all} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{conjoc__web_form_8inc_a465cce16b0d09f364ccb546c46c82306}{indexation\+\_\+lengadocian\+\_\+all} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{conjoc__web_form_8inc_a3698c970fd73cda200a3a459dc50beec}{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{conjoc__web_form_8inc_a5ea54e98ecadf55b7fe917fe6237a52e}{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+callback} (\$string=\char`\"{}\char`\"{})
+\item 
+\hyperlink{conjoc__web_form_8inc_add934c4187ded056db9c8369764a51ed}{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+submit} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{conjoc__web_form_8inc_ae85a92c4f091005289a97fb20b8762ef}{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+validate} (\$form, \&\$form\+\_\+state)
+\item 
+\hyperlink{conjoc__web_form_8inc_aacc782a067b5e8fdaeca34be9a282c61}{conjoc\+\_\+get\+Random\+Lengadocian\+Verb} ()
+\item 
+\hyperlink{conjoc__web_form_8inc_aab99a7a60692cf7228d4a79924c32cb2}{conjugador\+\_\+l} (\$\hyperlink{teibase_8php_aa8d8fadfcf4239c7aa288414da9d0ace}{verb}=N\+U\+LL, \$action=N\+U\+LL)
+\item 
+\hyperlink{conjoc__web_form_8inc_a5d341264c049e9bda5fd2d0acce4dfd7}{conjugador\+\_\+conjugate} (\$\hyperlink{teibase_8php_aa8d8fadfcf4239c7aa288414da9d0ace}{verb}, \$model)
+\item 
+\hyperlink{conjoc__web_form_8inc_a16562f736e2ff741407adb1ceb3c9170}{conjugador\+\_\+displaynotes} (\$nummodel)
+\item 
+\hyperlink{conjoc__web_form_8inc_ac41ee7cf6ccd6dd46de8112c7c315cfe}{conjugador\+\_\+display\+Singles} ()
+\item 
+\hyperlink{conjoc__web_form_8inc_adfb69460570fdffecec436447f5ed729}{conjugador\+\_\+display\+Top20} (\$verb\+Current)
+\item 
+\hyperlink{conjoc__web_form_8inc_a64885b968e081840d6a10adc2a38db9e}{conjugador\+\_\+display\+Others\+In\+Model} (\$\hyperlink{teibase_8php_aa8d8fadfcf4239c7aa288414da9d0ace}{verb})
+\item 
+\hyperlink{conjoc__web_form_8inc_ac96a30f96cb3957ed4ac47c4eb40df10}{conjugador\+\_\+count\+Others\+In\+Model} (\$\hyperlink{teibase_8php_aa8d8fadfcf4239c7aa288414da9d0ace}{verb})
+\item 
+\hyperlink{conjoc__web_form_8inc_a1bfbce593ac5c763b1542fa713249aa3}{conjugador\+\_\+display\+Usuals} ()
+\item 
+\hyperlink{conjoc__web_form_8inc_a9ab9dfc2c3015a0855c27f37812bb897}{conjugador\+\_\+get\+Top20} ()
+\item 
+\hyperlink{conjoc__web_form_8inc_a90ac7751a59eefed3b3576f1cedb016f}{conjugador\+\_\+get\+Others\+In\+Model} (\$\hyperlink{teibase_8php_aa8d8fadfcf4239c7aa288414da9d0ace}{verb})
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+conjoc\+\_\+verb\+Form.\+inc
+
+Demonstrates usage of the Form A\+PI\textquotesingle{}s autocomplete features.
+
+This file provides three examples in increasing complexity\+:
+\begin{DoxyItemize}
+\item A simple username autocomplete (usernames are unique, so little effort is required)
+\item A node title autocomplete (titles are not unique, so we have to find the nid and stash it in the field)
+\item A username autocomplete that updates a node title autocomplete with a changed \#autocomplete\+\_\+path so that the \#autocomplete\+\_\+path can have context (the username to use in the search). 
+\end{DoxyItemize}
+
+\subsection{Documentation des fonctions}
+\hypertarget{conjoc__web_form_8inc_a3698c970fd73cda200a3a459dc50beec}{}\label{conjoc__web_form_8inc_a3698c970fd73cda200a3a459dc50beec} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete@{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete}}
+\index{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete@{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete()}{ajax\_conjoc\_verb\_autocomplete()}}
+{\footnotesize\ttfamily ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_a5ea54e98ecadf55b7fe917fe6237a52e}{}\label{conjoc__web_form_8inc_a5ea54e98ecadf55b7fe917fe6237a52e} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+callback@{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+callback}}
+\index{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+callback@{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+callback}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+callback()}{ajax\_conjoc\_verb\_autocomplete\_callback()}}
+{\footnotesize\ttfamily ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{\$string = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$string} & The string that will be searched. \\
+\hline
+\end{DoxyParams}
+\hypertarget{conjoc__web_form_8inc_add934c4187ded056db9c8369764a51ed}{}\label{conjoc__web_form_8inc_add934c4187ded056db9c8369764a51ed} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+submit@{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+submit}}
+\index{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+submit@{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+submit}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+submit()}{ajax\_conjoc\_verb\_autocomplete\_submit()}}
+{\footnotesize\ttfamily ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+submit (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+
+Submit handler for node lookup unique autocomplete example.
+
+Here the nid has already been placed in \$form\+\_\+state\mbox{[}\textquotesingle{}values\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}node\textquotesingle{}\mbox{]} by the validation handler.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$form} & Form A\+PI form. \\
+\hline
+array & {\em \$form\+\_\+state} & Form A\+PI form state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Form A\+PI array. 
+\end{DoxyReturn}
+\hypertarget{conjoc__web_form_8inc_ae85a92c4f091005289a97fb20b8762ef}{}\label{conjoc__web_form_8inc_ae85a92c4f091005289a97fb20b8762ef} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+validate@{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+validate}}
+\index{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+validate@{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+validate}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+validate()}{ajax\_conjoc\_verb\_autocomplete\_validate()}}
+{\footnotesize\ttfamily ajax\+\_\+conjoc\+\_\+verb\+\_\+autocomplete\+\_\+validate (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$form} & Form A\+PI form. \\
+\hline
+array & {\em \$form\+\_\+state} & Form A\+PI form state. \\
+\hline
+\end{DoxyParams}
+\hypertarget{conjoc__web_form_8inc_aacc782a067b5e8fdaeca34be9a282c61}{}\label{conjoc__web_form_8inc_aacc782a067b5e8fdaeca34be9a282c61} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!conjoc\+\_\+get\+Random\+Lengadocian\+Verb@{conjoc\+\_\+get\+Random\+Lengadocian\+Verb}}
+\index{conjoc\+\_\+get\+Random\+Lengadocian\+Verb@{conjoc\+\_\+get\+Random\+Lengadocian\+Verb}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{conjoc\+\_\+get\+Random\+Lengadocian\+Verb()}{conjoc\_getRandomLengadocianVerb()}}
+{\footnotesize\ttfamily conjoc\+\_\+get\+Random\+Lengadocian\+Verb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_a5d341264c049e9bda5fd2d0acce4dfd7}{}\label{conjoc__web_form_8inc_a5d341264c049e9bda5fd2d0acce4dfd7} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!conjugador\+\_\+conjugate@{conjugador\+\_\+conjugate}}
+\index{conjugador\+\_\+conjugate@{conjugador\+\_\+conjugate}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{conjugador\+\_\+conjugate()}{conjugador\_conjugate()}}
+{\footnotesize\ttfamily conjugador\+\_\+conjugate (\begin{DoxyParamCaption}\item[{}]{\$verb,  }\item[{}]{\$model }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_ac96a30f96cb3957ed4ac47c4eb40df10}{}\label{conjoc__web_form_8inc_ac96a30f96cb3957ed4ac47c4eb40df10} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!conjugador\+\_\+count\+Others\+In\+Model@{conjugador\+\_\+count\+Others\+In\+Model}}
+\index{conjugador\+\_\+count\+Others\+In\+Model@{conjugador\+\_\+count\+Others\+In\+Model}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{conjugador\+\_\+count\+Others\+In\+Model()}{conjugador\_countOthersInModel()}}
+{\footnotesize\ttfamily conjugador\+\_\+count\+Others\+In\+Model (\begin{DoxyParamCaption}\item[{}]{\$verb }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_a16562f736e2ff741407adb1ceb3c9170}{}\label{conjoc__web_form_8inc_a16562f736e2ff741407adb1ceb3c9170} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!conjugador\+\_\+displaynotes@{conjugador\+\_\+displaynotes}}
+\index{conjugador\+\_\+displaynotes@{conjugador\+\_\+displaynotes}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{conjugador\+\_\+displaynotes()}{conjugador\_displaynotes()}}
+{\footnotesize\ttfamily conjugador\+\_\+displaynotes (\begin{DoxyParamCaption}\item[{}]{\$nummodel }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_a64885b968e081840d6a10adc2a38db9e}{}\label{conjoc__web_form_8inc_a64885b968e081840d6a10adc2a38db9e} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!conjugador\+\_\+display\+Others\+In\+Model@{conjugador\+\_\+display\+Others\+In\+Model}}
+\index{conjugador\+\_\+display\+Others\+In\+Model@{conjugador\+\_\+display\+Others\+In\+Model}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{conjugador\+\_\+display\+Others\+In\+Model()}{conjugador\_displayOthersInModel()}}
+{\footnotesize\ttfamily conjugador\+\_\+display\+Others\+In\+Model (\begin{DoxyParamCaption}\item[{}]{\$verb }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_ac41ee7cf6ccd6dd46de8112c7c315cfe}{}\label{conjoc__web_form_8inc_ac41ee7cf6ccd6dd46de8112c7c315cfe} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!conjugador\+\_\+display\+Singles@{conjugador\+\_\+display\+Singles}}
+\index{conjugador\+\_\+display\+Singles@{conjugador\+\_\+display\+Singles}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{conjugador\+\_\+display\+Singles()}{conjugador\_displaySingles()}}
+{\footnotesize\ttfamily conjugador\+\_\+display\+Singles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_adfb69460570fdffecec436447f5ed729}{}\label{conjoc__web_form_8inc_adfb69460570fdffecec436447f5ed729} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!conjugador\+\_\+display\+Top20@{conjugador\+\_\+display\+Top20}}
+\index{conjugador\+\_\+display\+Top20@{conjugador\+\_\+display\+Top20}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{conjugador\+\_\+display\+Top20()}{conjugador\_displayTop20()}}
+{\footnotesize\ttfamily conjugador\+\_\+display\+Top20 (\begin{DoxyParamCaption}\item[{}]{\$verb\+Current }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_a1bfbce593ac5c763b1542fa713249aa3}{}\label{conjoc__web_form_8inc_a1bfbce593ac5c763b1542fa713249aa3} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!conjugador\+\_\+display\+Usuals@{conjugador\+\_\+display\+Usuals}}
+\index{conjugador\+\_\+display\+Usuals@{conjugador\+\_\+display\+Usuals}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{conjugador\+\_\+display\+Usuals()}{conjugador\_displayUsuals()}}
+{\footnotesize\ttfamily conjugador\+\_\+display\+Usuals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_a90ac7751a59eefed3b3576f1cedb016f}{}\label{conjoc__web_form_8inc_a90ac7751a59eefed3b3576f1cedb016f} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!conjugador\+\_\+get\+Others\+In\+Model@{conjugador\+\_\+get\+Others\+In\+Model}}
+\index{conjugador\+\_\+get\+Others\+In\+Model@{conjugador\+\_\+get\+Others\+In\+Model}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{conjugador\+\_\+get\+Others\+In\+Model()}{conjugador\_getOthersInModel()}}
+{\footnotesize\ttfamily conjugador\+\_\+get\+Others\+In\+Model (\begin{DoxyParamCaption}\item[{}]{\$verb }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_a9ab9dfc2c3015a0855c27f37812bb897}{}\label{conjoc__web_form_8inc_a9ab9dfc2c3015a0855c27f37812bb897} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!conjugador\+\_\+get\+Top20@{conjugador\+\_\+get\+Top20}}
+\index{conjugador\+\_\+get\+Top20@{conjugador\+\_\+get\+Top20}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{conjugador\+\_\+get\+Top20()}{conjugador\_getTop20()}}
+{\footnotesize\ttfamily conjugador\+\_\+get\+Top20 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_aab99a7a60692cf7228d4a79924c32cb2}{}\label{conjoc__web_form_8inc_aab99a7a60692cf7228d4a79924c32cb2} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!conjugador\+\_\+l@{conjugador\+\_\+l}}
+\index{conjugador\+\_\+l@{conjugador\+\_\+l}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{conjugador\+\_\+l()}{conjugador\_l()}}
+{\footnotesize\ttfamily conjugador\+\_\+l (\begin{DoxyParamCaption}\item[{}]{\$verb = {\ttfamily NULL},  }\item[{}]{\$action = {\ttfamily NULL} }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_a465cce16b0d09f364ccb546c46c82306}{}\label{conjoc__web_form_8inc_a465cce16b0d09f364ccb546c46c82306} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!indexation\+\_\+lengadocian\+\_\+all@{indexation\+\_\+lengadocian\+\_\+all}}
+\index{indexation\+\_\+lengadocian\+\_\+all@{indexation\+\_\+lengadocian\+\_\+all}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{indexation\+\_\+lengadocian\+\_\+all()}{indexation\_lengadocian\_all()}}
+{\footnotesize\ttfamily indexation\+\_\+lengadocian\+\_\+all (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+
+\hypertarget{conjoc__web_form_8inc_a9c7725a828c1a44761bc51fe7a346215}{}\label{conjoc__web_form_8inc_a9c7725a828c1a44761bc51fe7a346215} 
+\index{conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}!tei\+\_\+export\+\_\+lengadocian\+\_\+all@{tei\+\_\+export\+\_\+lengadocian\+\_\+all}}
+\index{tei\+\_\+export\+\_\+lengadocian\+\_\+all@{tei\+\_\+export\+\_\+lengadocian\+\_\+all}!conjoc\+\_\+web\+Form.\+inc@{conjoc\+\_\+web\+Form.\+inc}}
+\subsubsection{\texorpdfstring{tei\+\_\+export\+\_\+lengadocian\+\_\+all()}{tei\_export\_lengadocian\_all()}}
+{\footnotesize\ttfamily tei\+\_\+export\+\_\+lengadocian\+\_\+all (\begin{DoxyParamCaption}\item[{}]{\$form,  }\item[{\&}]{\$form\+\_\+state }\end{DoxyParamCaption})}
+
+L E N G A D O C I A N L E N G A D O C I A N L E N G A D O C I A N 

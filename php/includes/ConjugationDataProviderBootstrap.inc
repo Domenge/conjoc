@@ -24,7 +24,7 @@ class ConjugationDataProviderBootstrap extends ConjugationDataProviderBase{
 */
   public function __construct($baseTableName){
       parent::__construct($baseTableName);
-      $this->cnx = new mysqli("localhost","conjocuser","ADLcWBDV4zkdmnf0","conjoc");
+      $this->cnx = new mysqli("localhost","conjocuser","mypasswd","conjoc");
       if (!$this->cnx->set_charset("utf8")) {
         printf("Error loading character set utf8: %s\n", $this->cnx->error);
         exit();

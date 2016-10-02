@@ -1,0 +1,7 @@
+<map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
+<area shape="rect" id="node1" href="$interfacei_conjugation_manager.html" title="iConjugationManager" alt="" coords="5,56,163,83"/>
+<area shape="rect" id="node2" href="$class_conjugation_manager_base.html" title="ConjugationManagerBase" alt="" coords="211,56,397,83"/>
+<area shape="rect" id="node3" href="$class_conjugation_gascon_manager.html" title="ConjugationGasconManager" alt="" coords="462,5,665,32"/>
+<area shape="rect" id="node4" href="$class_conjugation_lengadocian_manager.html" title="ConjugationLengadocianManager" alt="" coords="445,56,681,83"/>
+<area shape="rect" id="node5" href="$class_conjugation_provencal_manager.html" title="ConjugationProvencalManager" alt="" coords="455,107,672,133"/>
+</map>
